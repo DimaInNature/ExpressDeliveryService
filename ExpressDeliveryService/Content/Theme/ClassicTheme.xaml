@@ -1,0 +1,350 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region Fonts-->
+
+    <FontFamily x:Key="ProximaNovaTh">/ExpressDeliveryService;component/Content/Font/ProximaNova/#Proxima Nova Th</FontFamily>
+    <FontFamily x:Key="ProximaNovaLight">/ExpressDeliveryService;component/Content/Font/ProximaNova/#Proxima Nova Light</FontFamily>
+
+    <!--#endregion-->
+
+    <!--#region TextBox-->
+
+    <Style x:Key="LoginTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaTh}" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="FontSize" Value="20" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
+
+                        <Grid Margin="5,0,0,0">
+
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" />
+
+                            <TextBlock
+                                x:Name="hint"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="-1"
+                                Background="Transparent"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="Gray"
+                                IsHitTestVisible="False"
+                                Text="{TemplateBinding Tag}"
+                                TextAlignment="Center"
+                                Visibility="Collapsed" />
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="hint" Property="Visibility" Value="Visible" />
+                            <Setter Property="BorderBrush" Value="Red" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="hint" Property="Opacity" Value="0.5" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region PasswordBox-->
+
+    <Style x:Key="LoginPasswordBoxStyle" TargetType="PasswordBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="20" />
+
+    </Style>
+
+    <!--#region TextBlock-->
+
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+    <!--#region Button-->
+
+    <!--#region TransparentButton-->
+
+    <Storyboard x:Key="TransparentButtonMouseEnter">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="40" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="70" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="100" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="130" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    <Storyboard x:Key="TransparentButtonMouseLeave">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="70" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="40" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Style x:Key="TransparentButtonStyle" TargetType="Button">
+
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaTh}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        ClipToBounds="False"
+                        CornerRadius="5">
+                        <Grid>
+                            <Rectangle
+                                Fill="{TemplateBinding Background}"
+                                RadiusX="5"
+                                RadiusY="5" />
+                            <Rectangle
+                                Width="{TemplateBinding MinWidth}"
+                                HorizontalAlignment="Left"
+                                Opacity="0.3"
+                                RadiusX="5"
+                                RadiusY="5">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                                <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                                <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
+                                                <TranslateTransform />
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#CCCCCC" />
+                                        <GradientStop Color="#F6F6F6" />
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Button.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource TransparentButtonMouseEnter}" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.MouseLeave">
+                <BeginStoryboard Storyboard="{StaticResource TransparentButtonMouseLeave}" />
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Button-->
+
+    <Storyboard x:Key="ButtonMouseEnter">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="40" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="70" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="100" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="130" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    <Storyboard x:Key="ButtonMouseLeave">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
+            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="70" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="40" />
+            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Style x:Key="ButtonStyle" TargetType="Button">
+
+        <Setter Property="Background" Value="#cb11ab" />
+        <Setter Property="Tag" Value="#cb11ab" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaTh}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="MinWidth" Value="0" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid>
+                        <Rectangle
+                            Fill="{TemplateBinding Background}"
+                            RadiusX="5"
+                            RadiusY="5" />
+                        <Rectangle
+                            Width="{TemplateBinding MinWidth}"
+                            HorizontalAlignment="Left"
+                            RadiusX="5"
+                            RadiusY="5">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <LinearGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform />
+                                        </TransformGroup>
+                                    </LinearGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#cb11ab" />
+                                    <GradientStop Color="#FF800C" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}" />
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Button.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource ButtonMouseEnter}" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.MouseLeave">
+                <BeginStoryboard Storyboard="{StaticResource ButtonMouseLeave}" />
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region TextButton-->
+
+    <Style x:Key="TextButtonStyle" TargetType="Button">
+
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaTh}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Content}" />
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ControlButton-->
+
+    <!--#region Base-->
+
+    <Style x:Key="ControlButtonStyle" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Width" Value="22" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Close-->
+
+    <Style
+        x:Key="ControlButtonCloseStyle"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="Transparent" CornerRadius="60">
+                        <Image x:Name="Image" RenderOptions.BitmapScalingMode="Fant">
+                            <Image.Source>
+                                <BitmapImage
+                                    CacheOption="OnLoad"
+                                    DecodePixelHeight="200"
+                                    UriSource="/Content/Images/Controls/WindowControls/Default/ControlButtonClose.png" />
+                            </Image.Source>
+                        </Image>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Image" Property="Source" Value="/Content/Images/Controls/WindowControls/MouseEnter/ControlButtonCloseMouseEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+</ResourceDictionary>
