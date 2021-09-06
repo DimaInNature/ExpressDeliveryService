@@ -1,5 +1,5 @@
 ﻿using ExpressDeliveryService.Service.Command;
-using System;
+using ExpressDeliveryService.View;
 using System.ComponentModel;
 using System.Security;
 using System.Windows;
@@ -18,7 +18,6 @@ namespace ExpressDeliveryService.ViewModel
             RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
             ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
             RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
-
         }
 
         #region Properties
@@ -113,14 +112,16 @@ namespace ExpressDeliveryService.ViewModel
 
         public ICommand EnterButtonClickCommand { get; private set; }
 
-        private async void EnterButtonClick(object obj)
+        private void EnterButtonClick(object obj)
         {
-            var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+            // Параметр является ссылкой на представление
+            var view = obj as LoginView;
 
-            var otherWindowViewModel = new MainViewModel();
+            var displayRootRegistry = (Application.Current as App).DisplayWindow;
 
-            await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
-            
+            displayRootRegistry.Show(new MainViewModel());
+
+            view.Close();
         }
 
         #endregion
