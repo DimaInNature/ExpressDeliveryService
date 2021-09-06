@@ -1,4 +1,5 @@
 ﻿using ExpressDeliveryService.Service.Command;
+using System;
 using System.ComponentModel;
 using System.Security;
 using System.Windows;
@@ -6,7 +7,7 @@ using System.Windows.Input;
 
 namespace ExpressDeliveryService.ViewModel
 {
-    class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
         public LoginViewModel()
         {
@@ -17,6 +18,7 @@ namespace ExpressDeliveryService.ViewModel
             RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
             ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
             RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
+
         }
 
         #region Properties
@@ -111,8 +113,13 @@ namespace ExpressDeliveryService.ViewModel
 
         public ICommand EnterButtonClickCommand { get; private set; }
 
-        private void EnterButtonClick(object obj)
+        private async void EnterButtonClick(object obj)
         {
+            var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+            var otherWindowViewModel = new MainViewModel();
+
+            await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
             
         }
 
