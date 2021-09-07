@@ -9,6 +9,11 @@ namespace ExpressDeliveryService.ViewModel
 
         }
 
+        public MainViewModel(object userProps)
+        {
+
+        }
+
         #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

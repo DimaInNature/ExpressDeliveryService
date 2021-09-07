@@ -6,15 +6,424 @@
     xmlns:local="clr-namespace:ExpressDeliveryService.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
-    Title="MainView"
+    Title="Delivery Express"
     Width="800"
-    Height="450"
+    Height="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
+    <Window.Resources>
+
+        <!--#region LeftMenuOpen-->
+
+        <Storyboard x:Key="LeftMenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="150" />
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuCloseButton" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region LeftMenuClose-->
+
+        <Storyboard x:Key="LeftMenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuCloseButton" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region ViewButton-->
+
+        <Storyboard x:Key="ViewButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ViewMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="ViewButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ViewMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region CreateButton-->
+
+        <Storyboard x:Key="CreateButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CreateMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CreateMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="CreateButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CreateMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CreateMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region EditButton-->
+
+        <Storyboard x:Key="EditButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="EditButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region DeleteButton-->
+
+        <Storyboard x:Key="DeleteButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="DeleteButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region SettingsButton-->
+
+        <Storyboard x:Key="SettingsButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SettingsMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="SettingsButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SettingsMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SettingsMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+    </Window.Resources>
+
+    <Window.Triggers>
+
+        <!--#region LeftMenuShowButton-->
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuShowButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuOpen}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region LeftMenuCloseButton-->
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuCloseButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region ViewMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource ViewButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ViewMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource ViewButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region CreateMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource CreateButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="CreateMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource CreateButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region EditMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="EditMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="EditMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region DeleteMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="DeleteMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+        <!--#region SettingsMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource SettingsButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="SettingsMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource SettingsButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
+    </Window.Triggers>
 
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
 
-    <Grid />
+    <Border CornerRadius="20">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                        <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Offset="1" Color="#cb11ab" />
+                <GradientStop Color="#491274" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        x:Name="LeftMenuShowButton"
+                        Grid.Column="0"
+                        Width="40"
+                        Height="40"
+                        Margin="30,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Show"
+                        Visibility="Visible" />
+
+                    <Button
+                        x:Name="LeftMenuCloseButton"
+                        Grid.Column="0"
+                        Width="40"
+                        Height="40"
+                        Margin="30,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Close"
+                        Visibility="Collapsed" />
+                </Grid>
+
+            </Grid>
+
+            <!--#region Left Menu-->
+
+            <Grid
+                x:Name="LeftMenu"
+                Grid.RowSpan="2"
+                Width="0"
+                HorizontalAlignment="Left">
+                <Grid Margin="0,78,20,0" Background="White">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Button
+                        x:Name="ViewMenuButton"
+                        Grid.Row="0"
+                        Height="20"
+                        Content="Просмотр" />
+                    <Button
+                        x:Name="CreateMenuButton"
+                        Grid.Row="1"
+                        Height="20"
+                        Content="Создать" />
+                    <Button
+                        x:Name="EditMenuButton"
+                        Grid.Row="2"
+                        Height="20"
+                        Content="Изменить" />
+                    <Button
+                        x:Name="DeleteMenuButton"
+                        Grid.Row="3"
+                        Height="20"
+                        Content="Удалить" />
+                    <Button
+                        x:Name="SettingsMenuButton"
+                        Grid.Row="4"
+                        Height="20"
+                        Content="Настройки" />
+                </Grid>
+            </Grid>
+
+            <!--#endregion-->
+
+            <Grid Grid.Row="1" Panel.ZIndex="-1">
+                <Border Background="White" CornerRadius="20">
+                    <Frame Margin="15" Background="Transparent" />
+                </Border>
+            </Grid>
+
+            <!--#region Menu Panel-->
+
+            <Border
+                x:Name="ViewMenuPanel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="115,0,450,0"
+                Panel.ZIndex="-1"
+                Background="Green"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <Border
+                x:Name="CreateMenuPanel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="115,0,450,0"
+                Panel.ZIndex="-1"
+                Background="Red"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <Border
+                x:Name="EditMenuPanel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="115,0,450,0"
+                Panel.ZIndex="-1"
+                Background="HotPink"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <Border
+                x:Name="DeleteMenuPanel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="115,0,450,0"
+                Panel.ZIndex="-1"
+                Background="Black"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <Border
+                x:Name="SettingsMenuPanel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="115,0,450,0"
+                Panel.ZIndex="-1"
+                Background="DodgerBlue"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <!--#endregion-->
+
+        </Grid>
+
+
+    </Border>
 
 </Window>
