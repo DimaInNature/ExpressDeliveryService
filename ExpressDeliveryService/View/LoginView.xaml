@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:ExpressDeliveryService.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
+    x:Name="ThisWindow"
     Title="Авторизация"
     Width="800"
     Height="500"
@@ -13,8 +14,7 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d"
-    x:Name="ThisWindow">
+    mc:Ignorable="d">
 
     <Window.DataContext>
         <vm:LoginViewModel />

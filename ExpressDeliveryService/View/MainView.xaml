@@ -250,7 +250,12 @@
         <vm:MainViewModel />
     </Window.DataContext>
 
-    <Border CornerRadius="20">
+    <Border CornerRadius="20" MouseDown="WindowDragMove">
+
+        <x:Code>
+            private void WindowDragMove(object sender, MouseButtonEventArgs e) =&gt; DragMove();
+        </x:Code>
+
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                 <LinearGradientBrush.RelativeTransform>
@@ -289,21 +294,21 @@
                     <Button
                         x:Name="LeftMenuShowButton"
                         Grid.Column="0"
-                        Width="40"
-                        Height="40"
-                        Margin="30,0,0,0"
+                        Width="45"
+                        Height="45"
+                        Margin="20,5,0,0"
                         HorizontalAlignment="Left"
-                        Content="Show"
+                        Style="{DynamicResource MenuButtonShow}"
                         Visibility="Visible" />
 
                     <Button
                         x:Name="LeftMenuCloseButton"
                         Grid.Column="0"
-                        Width="40"
-                        Height="40"
-                        Margin="30,0,0,0"
+                        Width="45"
+                        Height="45"
+                        Margin="20,5,0,0"
                         HorizontalAlignment="Left"
-                        Content="Close"
+                        Style="{DynamicResource MenuButtonClose}"
                         Visibility="Collapsed" />
                 </Grid>
 
@@ -315,49 +320,73 @@
                 x:Name="LeftMenu"
                 Grid.RowSpan="2"
                 Width="0"
+                Margin="10,0,0,5"
                 HorizontalAlignment="Left">
-                <Grid Margin="0,78,20,0" Background="White">
+                <Grid Margin="0,81,0,0" Background="#F6F6F6">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <Button
                         x:Name="ViewMenuButton"
                         Grid.Row="0"
-                        Height="20"
-                        Content="Просмотр" />
+                        Width="150"
+                        Height="25"
+                        Margin="-5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Просмотр"
+                        Style="{DynamicResource MenuButtonBase}" />
                     <Button
                         x:Name="CreateMenuButton"
                         Grid.Row="1"
-                        Height="20"
-                        Content="Создать" />
+                        Width="150"
+                        Height="25"
+                        Margin="-5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Создать"
+                        Style="{DynamicResource MenuButtonBase}" />
+
                     <Button
                         x:Name="EditMenuButton"
                         Grid.Row="2"
-                        Height="20"
-                        Content="Изменить" />
+                        Width="150"
+                        Height="25"
+                        Margin="-5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Изменить"
+                        Style="{DynamicResource MenuButtonBase}" />
+
                     <Button
                         x:Name="DeleteMenuButton"
                         Grid.Row="3"
-                        Height="20"
-                        Content="Удалить" />
+                        Width="150"
+                        Height="25"
+                        Margin="-5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Удалить"
+                        Style="{DynamicResource MenuButtonBase}" />
                     <Button
                         x:Name="SettingsMenuButton"
                         Grid.Row="4"
-                        Height="20"
-                        Content="Настройки" />
+                        Width="150"
+                        Height="25"
+                        Margin="-5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Настройки"
+                        Style="{DynamicResource MenuButtonBase}" />
                 </Grid>
             </Grid>
 
             <!--#endregion-->
 
             <Grid Grid.Row="1" Panel.ZIndex="-1">
-                <Border Background="White" CornerRadius="20">
+                <Border Background="#F6F6F6" CornerRadius="20">
                     <Frame Margin="15" Background="Transparent" />
                 </Border>
             </Grid>
@@ -367,10 +396,9 @@
             <Border
                 x:Name="ViewMenuPanel"
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="115,0,450,0"
+                Margin="115,4,450,0"
                 Panel.ZIndex="-1"
-                Background="Green"
+                Background="#D5D5D5"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed" />
@@ -378,10 +406,9 @@
             <Border
                 x:Name="CreateMenuPanel"
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="115,0,450,0"
+                Margin="115,4,450,0"
                 Panel.ZIndex="-1"
-                Background="Red"
+                Background="#D5D5D5"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed" />
@@ -389,10 +416,9 @@
             <Border
                 x:Name="EditMenuPanel"
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="115,0,450,0"
+                Margin="115,4,450,0"
                 Panel.ZIndex="-1"
-                Background="HotPink"
+                Background="#D5D5D5"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed" />
@@ -400,10 +426,9 @@
             <Border
                 x:Name="DeleteMenuPanel"
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="115,0,450,0"
+                Margin="115,4,450,0"
                 Panel.ZIndex="-1"
-                Background="Black"
+                Background="#D5D5D5"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed" />
@@ -411,10 +436,9 @@
             <Border
                 x:Name="SettingsMenuPanel"
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="115,0,450,0"
+                Margin="115,4,450,0"
                 Panel.ZIndex="-1"
-                Background="DodgerBlue"
+                Background="#D5D5D5"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed" />
@@ -422,7 +446,6 @@
             <!--#endregion-->
 
         </Grid>
-
 
     </Border>
 
