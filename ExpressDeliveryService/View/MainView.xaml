@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:ExpressDeliveryService.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
+    x:Name="ThisWindow"
     Title="Delivery Express"
     Width="800"
     Height="600"
@@ -15,14 +16,21 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+
     <Window.Resources>
 
         <!--#region LeftMenuOpen-->
 
         <Storyboard x:Key="LeftMenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="150" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200" />
             </DoubleAnimationUsingKeyFrames>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="WorkAreaBorder" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
+                <DiscreteBooleanKeyFrame KeyTime="0" Value="False" />
+            </BooleanAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MenuBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
             </ObjectAnimationUsingKeyFrames>
@@ -39,12 +47,42 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
             </DoubleAnimationUsingKeyFrames>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="WorkAreaBorder" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
+                <DiscreteBooleanKeyFrame KeyTime="0" Value="True" />
+            </BooleanAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MenuBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuCloseButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Collapsed}" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}" />
             </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--#endregion-->
+
+        <!--#region HomeButton-->
+
+        <Storyboard x:Key="HomeButtonAnimation">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HomeMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="HomeButtonAnimationLeave">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="HomeMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
         <!--#endregion-->
@@ -189,6 +227,17 @@
 
         <!--#endregion-->
 
+        <!--#region HomeMenuButton-->
+
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource HomeButtonAnimation}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="HomeMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource HomeButtonAnimationLeave}" />
+        </EventTrigger>
+
+        <!--#endregion-->
+
         <!--#region ViewMenuButton-->
 
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuButton">
@@ -277,6 +326,8 @@
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
 
+            <!--#region Menu-->
+
             <Grid Grid.Row="0">
 
                 <Grid.ColumnDefinitions>
@@ -300,16 +351,6 @@
                         HorizontalAlignment="Left"
                         Style="{DynamicResource MenuButtonShow}"
                         Visibility="Visible" />
-
-                    <Button
-                        x:Name="LeftMenuCloseButton"
-                        Grid.Column="0"
-                        Width="45"
-                        Height="45"
-                        Margin="20,5,0,0"
-                        HorizontalAlignment="Left"
-                        Style="{DynamicResource MenuButtonClose}"
-                        Visibility="Collapsed" />
                 </Grid>
 
             </Grid>
@@ -320,83 +361,123 @@
                 x:Name="LeftMenu"
                 Grid.RowSpan="2"
                 Width="0"
-                Margin="10,0,0,5"
-                HorizontalAlignment="Left">
-                <Grid Margin="0,81,0,0" Background="#F6F6F6">
+                HorizontalAlignment="Left"
+                Background="#F6F6F6"
+                Row="0">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                <Grid.Clip>
+                    <RectangleGeometry
+                        RadiusX="20"
+                        RadiusY="20"
+                        Rect="0,0,800,600" />
+                </Grid.Clip>
 
-                    <Button
-                        x:Name="ViewMenuButton"
-                        Grid.Row="0"
-                        Width="150"
-                        Height="25"
-                        Margin="-5,0,0,0"
-                        HorizontalAlignment="Left"
-                        Content="Просмотр"
-                        Style="{DynamicResource MenuButtonBase}" />
-                    <Button
-                        x:Name="CreateMenuButton"
-                        Grid.Row="1"
-                        Width="150"
-                        Height="25"
-                        Margin="-5,0,0,0"
-                        HorizontalAlignment="Left"
-                        Content="Создать"
-                        Style="{DynamicResource MenuButtonBase}" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-                    <Button
-                        x:Name="EditMenuButton"
-                        Grid.Row="2"
-                        Width="150"
-                        Height="25"
-                        Margin="-5,0,0,0"
-                        HorizontalAlignment="Left"
-                        Content="Изменить"
-                        Style="{DynamicResource MenuButtonBase}" />
+                <Button
+                    x:Name="HomeMenuButton"
+                    Grid.Row="1"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Главная"
+                    Style="{DynamicResource MenuHomeButton}" />
 
-                    <Button
-                        x:Name="DeleteMenuButton"
-                        Grid.Row="3"
-                        Width="150"
-                        Height="25"
-                        Margin="-5,0,0,0"
-                        HorizontalAlignment="Left"
-                        Content="Удалить"
-                        Style="{DynamicResource MenuButtonBase}" />
-                    <Button
-                        x:Name="SettingsMenuButton"
-                        Grid.Row="4"
-                        Width="150"
-                        Height="25"
-                        Margin="-5,0,0,0"
-                        HorizontalAlignment="Left"
-                        Content="Настройки"
-                        Style="{DynamicResource MenuButtonBase}" />
-                </Grid>
+                <Button
+                    x:Name="ViewMenuButton"
+                    Grid.Row="2"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Просмотр"
+                    Style="{DynamicResource MenuViewButton}" />
+
+                <Button
+                    x:Name="CreateMenuButton"
+                    Grid.Row="3"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Создать"
+                    Style="{DynamicResource MenuCreateButton}" />
+
+                <Button
+                    x:Name="EditMenuButton"
+                    Grid.Row="4"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Изменить"
+                    Style="{DynamicResource MenuEditButton}" />
+
+                <Button
+                    x:Name="DeleteMenuButton"
+                    Grid.Row="5"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Удалить"
+                    Style="{DynamicResource MenuDeleteButton}" />
+
+                <Button
+                    x:Name="SettingsMenuButton"
+                    Grid.Row="6"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="Настройки"
+                    Style="{DynamicResource MenuSettingsButton}" />
+
+                <Button
+                    x:Name="ExitMenuButton"
+                    Grid.Row="7"
+                    Width="180"
+                    Height="25"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ExitMenuButtonClickCommand}"
+                    CommandParameter="{Binding ElementName=ThisWindow}"
+                    Content="Выйти"
+                    Style="{DynamicResource MenuUserExitButton}" />
+
             </Grid>
 
             <!--#endregion-->
 
-            <Grid Grid.Row="1" Panel.ZIndex="-1">
-                <Border Background="#F6F6F6" CornerRadius="20">
-                    <Frame Margin="15" Background="Transparent" />
-                </Border>
-            </Grid>
-
             <!--#region Menu Panel-->
 
             <Border
+                x:Name="HomeMenuPanel"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
+                Panel.ZIndex="-1"
+                Background="#D5D5D5"
+                CornerRadius="20"
+                Opacity="0"
+                Visibility="Collapsed" />
+
+            <Border
                 x:Name="ViewMenuPanel"
-                Grid.Row="1"
-                Margin="115,4,450,0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
                 Panel.ZIndex="-1"
                 Background="#D5D5D5"
                 CornerRadius="20"
@@ -405,8 +486,9 @@
 
             <Border
                 x:Name="CreateMenuPanel"
-                Grid.Row="1"
-                Margin="115,4,450,0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
                 Panel.ZIndex="-1"
                 Background="#D5D5D5"
                 CornerRadius="20"
@@ -415,8 +497,9 @@
 
             <Border
                 x:Name="EditMenuPanel"
-                Grid.Row="1"
-                Margin="115,4,450,0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
                 Panel.ZIndex="-1"
                 Background="#D5D5D5"
                 CornerRadius="20"
@@ -425,8 +508,9 @@
 
             <Border
                 x:Name="DeleteMenuPanel"
-                Grid.Row="1"
-                Margin="115,4,450,0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
                 Panel.ZIndex="-1"
                 Background="#D5D5D5"
                 CornerRadius="20"
@@ -435,8 +519,9 @@
 
             <Border
                 x:Name="SettingsMenuPanel"
-                Grid.Row="1"
-                Margin="115,4,450,0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,300,0"
                 Panel.ZIndex="-1"
                 Background="#D5D5D5"
                 CornerRadius="20"
@@ -444,6 +529,40 @@
                 Visibility="Collapsed" />
 
             <!--#endregion-->
+
+            <Border
+                Name="MenuBorder"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Panel.ZIndex="-3"
+                Background="Black"
+                CornerRadius="20"
+                IsHitTestVisible="False"
+                Opacity="0.2"
+                Visibility="Collapsed" />
+
+            <Button
+                x:Name="LeftMenuCloseButton"
+                Grid.Row="0"
+                Width="30"
+                Height="30"
+                Margin="200,-20,0,0"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="-2"
+                Style="{DynamicResource MenuButtonClose}"
+                Visibility="Collapsed" />
+
+            <!--#endregion-->
+
+            <Grid Grid.Row="1" Panel.ZIndex="-4">
+                <Border
+                    Name="WorkAreaBorder"
+                    Background="#F2F2F2"
+                    CornerRadius="20"
+                    IsHitTestVisible="True">
+                    <Grid />
+                </Border>
+            </Grid>
 
         </Grid>
 

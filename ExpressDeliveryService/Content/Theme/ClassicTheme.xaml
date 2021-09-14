@@ -198,6 +198,7 @@
             <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
+
     <Storyboard x:Key="ButtonMouseLeave">
         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
             <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
@@ -343,9 +344,71 @@
 
     <!--#endregion-->
 
+    <!--#region UserExit-->
+
+    <Style
+        x:Key="UserExitButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Foreground" Value="#CCCCCC" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1.5*" />
+                        </Grid.RowDefinitions>
+
+                        <Image
+                            x:Name="Img"
+                            Grid.Row="0"
+                            Margin="2"
+                            HorizontalAlignment="Center"
+                            RenderOptions.BitmapScalingMode="Fant"
+                            Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonDefault.png" />
+
+                        <TextBlock
+                            x:Name="TextB"
+                            Grid.Row="1"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="Выйти" />
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonEnter.png" />
+                            <Setter TargetName="TextB" Property="Foreground" Value="White" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
     <!--#endregion-->
 
     <!--#region MenuButton-->
+
+    <!--#region Show-->
 
     <Style
         x:Key="MenuButtonShow"
@@ -380,6 +443,10 @@
         </Setter>
     </Style>
 
+    <!--#endregion-->
+
+    <!--#region Close-->
+
     <Style
         x:Key="MenuButtonClose"
         BasedOn="{StaticResource ControlButtonStyle}"
@@ -394,9 +461,54 @@
                                 <BitmapImage
                                     CacheOption="OnLoad"
                                     DecodePixelHeight="200"
-                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/MenuIconShowEnter.png" />
+                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/WindowControls/Default/CloseLeftMenuButtonIcon.png" />
                             </Image.Source>
                         </Image>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Home-->
+
+    <Style
+        x:Key="MenuHomeButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/HomeMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -404,35 +516,12 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Image" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/MenuIconShowDefault.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/HomeMenuButtonIconEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
                 </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
-    <Style
-        x:Key="MenuButtonBase"
-        BasedOn="{StaticResource ControlButtonStyle}"
-        TargetType="Button">
-        <Setter Property="Background" Value="#F6F6F6" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
-        <Setter Property="FontSize" Value="17" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-
-                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
-                        <ContentPresenter
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{TemplateBinding Content}" />
-                    </Border>
-
-                </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -442,6 +531,374 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--#endregion-->
+
+    <!--#region View-->
+
+    <Style
+        x:Key="MenuViewButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/ViewMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/ViewMenuButtonIconEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Create-->
+
+    <Style
+        x:Key="MenuCreateButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/CreateMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/CreateMenuButtonIconEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Edit-->
+
+    <Style
+        x:Key="MenuEditButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Edit/EditMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Edit/EditMenuButtonIconEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Delete-->
+
+    <Style
+        x:Key="MenuDeleteButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/DeleteMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/DeleteMenuButtonIconEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Settings-->
+
+    <Style
+        x:Key="MenuSettingsButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/SettingsMenuButtonIconDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/SettingsMenuButtonIconEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region Exit-->
+
+    <Style
+        x:Key="MenuUserExitButton"
+        BasedOn="{StaticResource ControlButtonStyle}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonDefault.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
 
     <!--#endregion-->
 

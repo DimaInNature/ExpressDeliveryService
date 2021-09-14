@@ -7,10 +7,12 @@ namespace ExpressDeliveryService
 {
     public partial class App : Application
     {
-        public DisplayWindowService DisplayWindow = new DisplayWindowService();
+        public DisplayWindowService DisplayWindow { get; private set; }
 
         public App()
         {
+            DisplayWindow = new DisplayWindowService();
+
             // Регистрация связей всех ViewModel и их View
 
             DisplayWindow.RegisterWindow<LoginViewModel, LoginView>();

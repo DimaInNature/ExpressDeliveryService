@@ -1,23 +1,19 @@
 ﻿using ExpressDeliveryService.Service.Command;
 using ExpressDeliveryService.View;
-using System.ComponentModel;
 using System.Security;
 using System.Windows;
 using System.Windows.Input;
+using ExpressDeliveryService.ViewModel.Base;
 
 namespace ExpressDeliveryService.ViewModel
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : ViewModelBase
     {
         public LoginViewModel()
         {
-            IsPasswordWatermarkVisible = true;
-            IsRegisterPasswordWatermarkVisible = true;
+            SetUpDefaultCondition();
 
-            EnterButtonClickCommand = new DelegateCommandService(EnterButtonClick);
-            RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
-            ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
-            RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
+            SetUpCommands();
         }
 
         #region Properties
@@ -115,6 +111,7 @@ namespace ExpressDeliveryService.ViewModel
         private void EnterButtonClick(object obj)
         {
             // Параметр является ссылкой на представление
+
             var view = obj as LoginView;
 
             var displayRootRegistry = (Application.Current as App).DisplayWindow;
@@ -158,18 +155,23 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region PropertyChanged
+        #region Methods
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string PropertyName)
+        private void SetUpDefaultCondition()
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-            }
+            IsPasswordWatermarkVisible = true;
+            IsRegisterPasswordWatermarkVisible = true;
+        }
+
+        private void SetUpCommands()
+        {
+            EnterButtonClickCommand = new DelegateCommandService(EnterButtonClick);
+            RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
+            ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
+            RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
         }
 
         #endregion
+
     }
 }

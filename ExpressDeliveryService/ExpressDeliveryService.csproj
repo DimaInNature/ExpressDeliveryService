@@ -64,8 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\Command\DelegateCommand.cs" />
     <Compile Include="Service\DisplayWindowService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -81,7 +83,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Service\Command\DelegateCommand.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -136,6 +137,43 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Images\Controls\MenuControl\MenuIconShowDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\View\ViewMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\View\ViewMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Edit\EditMenuButtonIconDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Edit\EditMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Create\CreateMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Create\CreateMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Delete\DeleteMenuButtonIconDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Delete\DeleteMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Settings\SettingsMenuButtonIconDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Settings\SettingsMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\UserExit\ExitUserButtonDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\UserExit\ExitUserButtonEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\Home\HomeMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Home\HomeMenuButtonIconEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\WindowControls\Default\CloseLeftMenuButtonIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

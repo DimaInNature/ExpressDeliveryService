@@ -21,10 +21,7 @@ namespace ExpressDeliveryService.Service.Command
             {
                 return canExecute(parameter);
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         public void Execute(object parameter)

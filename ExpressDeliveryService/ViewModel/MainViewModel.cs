@@ -1,31 +1,49 @@
-﻿using System.ComponentModel;
+﻿using System.Windows;
+using System.Windows.Input;
+using ExpressDeliveryService.Service.Command;
+using ExpressDeliveryService.View;
+using ExpressDeliveryService.ViewModel.Base;
 
 namespace ExpressDeliveryService.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
         {
-
+            SetUpCommands();
         }
 
-        public MainViewModel(object userProps)
+        #region Commands
+
+        #region ExitMenuButtonClickCommand
+
+        public ICommand ExitMenuButtonClickCommand { get; private set; }
+
+        private void ExitMenuButtonClick(object obj)
         {
+            // Параметр является ссылкой на представление
 
-        }
+            var view = obj as MainView;
 
-        #region PropertyChanged
+            var displayRootRegistry = (Application.Current as App).DisplayWindow;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+            displayRootRegistry.Show(new LoginViewModel());
 
-        private void OnPropertyChanged(string PropertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-            }
+            view.Close();
         }
 
         #endregion
+
+        #endregion
+
+        #region Methods
+
+        private void SetUpCommands()
+        {
+            ExitMenuButtonClickCommand = new DelegateCommandService(ExitMenuButtonClick);
+        }
+
+        #endregion
+
     }
 }
