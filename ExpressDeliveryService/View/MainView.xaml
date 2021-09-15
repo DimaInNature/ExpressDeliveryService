@@ -227,67 +227,85 @@
 
         <!--#endregion-->
 
-        <!--#region HomeMenuButton-->
+        <!--#region HomeMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource HomeButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="HomeMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="HomeMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="HomeMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource HomeButtonAnimationLeave}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region ViewMenuButton-->
+        <!--#region ViewMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource ViewButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ViewMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ViewMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ViewMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource ViewButtonAnimationLeave}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region CreateMenuButton-->
+        <!--#region CreateMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource CreateButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="CreateMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="CreateMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="CreateMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource CreateButtonAnimationLeave}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region EditMenuButton-->
+        <!--#region EditMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="EditMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="EditMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource EditButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="EditMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="EditMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="EditMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region DeleteMenuButton-->
+        <!--#region DeleteMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="DeleteMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="DeleteMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="DeleteMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region SettingsMenuButton-->
+        <!--#region SettingsMenuRadioButton-->
 
-        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuButton">
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource SettingsButtonAnimation}" />
         </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="SettingsMenuButton">
+        <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="SettingsMenuRadioButton">
+            <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="SettingsMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource SettingsButtonAnimationLeave}" />
         </EventTrigger>
 
@@ -384,68 +402,200 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button
-                    x:Name="HomeMenuButton"
+                <RadioButton
+                    x:Name="HomeMenuRadioButton"
                     Grid.Row="1"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Главная"
-                    Style="{DynamicResource MenuHomeButton}" />
+                    IsChecked="True">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource HomeMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
-                <Button
-                    x:Name="ViewMenuButton"
+                <RadioButton
+                    x:Name="ViewMenuRadioButton"
                     Grid.Row="2"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Просмотр"
-                    Style="{DynamicResource MenuViewButton}" />
+                    IsChecked="False">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource ViewMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
-                <Button
-                    x:Name="CreateMenuButton"
+                <RadioButton
+                    x:Name="CreateMenuRadioButton"
                     Grid.Row="3"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Создать"
-                    Style="{DynamicResource MenuCreateButton}" />
+                    IsChecked="False">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource CreateMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
-                <Button
-                    x:Name="EditMenuButton"
+                <RadioButton
+                    x:Name="EditMenuRadioButton"
                     Grid.Row="4"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Изменить"
-                    Style="{DynamicResource MenuEditButton}" />
+                    IsChecked="False">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource EditMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
-                <Button
-                    x:Name="DeleteMenuButton"
+                <RadioButton
+                    x:Name="DeleteMenuRadioButton"
                     Grid.Row="5"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Удалить"
-                    Style="{DynamicResource MenuDeleteButton}" />
+                    IsChecked="False">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource DeleteMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
-                <Button
-                    x:Name="SettingsMenuButton"
+                <RadioButton
+                    x:Name="SettingsMenuRadioButton"
                     Grid.Row="6"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
                     Content="Настройки"
-                    Style="{DynamicResource MenuSettingsButton}" />
+                    IsChecked="False">
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RadioButton.Style>
+                </RadioButton>
 
                 <Button
-                    x:Name="ExitMenuButton"
+                    x:Name="ExitMenuRadioButton"
                     Grid.Row="7"
                     Width="180"
                     Height="25"
@@ -555,13 +705,485 @@
             <!--#endregion-->
 
             <Grid Grid.Row="1" Panel.ZIndex="-4">
+
                 <Border
                     Name="WorkAreaBorder"
                     Background="#F2F2F2"
                     CornerRadius="20"
                     IsHitTestVisible="True">
-                    <Grid />
+                    <Grid>
+
+                        <Grid Name="HomeGrid" Background="Red">
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Grid Name="ViewGrid" Background="Black">
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Grid Name="CreateGrid">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!--#region Top-->
+
+                            <Grid Row="0">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="30"
+                                    Style="{DynamicResource TextBlockStyle}"
+                                    Text="Калькулятор расчета доставки" />
+                            </Grid>
+
+                            <!--#endregion-->
+
+                            <!--#region Body-->
+
+                            <Grid Row="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--#region From-->
+
+                                    <TextBlock
+                                        Width="90"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Откуда" />
+
+                                    <TextBox
+                                        Name="FromStreetTextBox"
+                                        Grid.Row="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Откуда забрать" />
+
+                                    <DatePicker
+                                        Name="FromTimeDatePicker"
+                                        Grid.Row="2"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда отправить" />
+
+                                    <TextBox
+                                        Name="FromTimeTextBox"
+                                        Grid.Row="2"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region To-->
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Width="60"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Куда" />
+
+                                    <TextBox
+                                        Name="ToStreetTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Куда привезти" />
+
+                                    <DatePicker
+                                        Name="ToTimeDatePicker"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда получить" />
+
+                                    <TextBox
+                                        Name="ToTimeTextBox"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Box Size-->
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.RowSpan="2"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Размер коробки (см)" />
+
+                                    <TextBox
+                                        Name="SizeHeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Высота" />
+
+                                    <TextBox
+                                        Name="SizeWidthBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="140,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ширина" />
+
+                                    <TextBox
+                                        Name="SizeLenghtBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="260,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Длина" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Other Box Props-->
+
+                                    <TextBox
+                                        Name="MoneyValueBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ценность (руб.)" />
+
+                                    <TextBox
+                                        Name="WeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="240,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Вес (гр.)" />
+
+                                    <!--#endregion-->
+
+                                </Grid>
+
+                                <Grid Row="1">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Width="240"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Дополнительные услуги" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Страхование"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,40,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Температурный режим"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,70,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Упаковка"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Итоговая стоимость" />
+
+                                    <TextBox
+                                        Name="ValueTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="160"
+                                        Height="40"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Стоимость" />
+
+                                    <Button
+                                        Grid.Row="1"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Width="160"
+                                        Height="40"
+                                        Margin="0,100,0,0"
+                                        Content="Заказать"
+                                        Style="{DynamicResource ButtonStyle}" />
+
+                                </Grid>
+
+                            </Grid>
+
+                            <!--#endregion-->
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Grid Name="EditGrid" Background="Aqua">
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Grid Name="DeleteGrid">
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Grid Name="SettingsGrid">
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                    </Grid>
                 </Border>
+
             </Grid>
 
         </Grid>
