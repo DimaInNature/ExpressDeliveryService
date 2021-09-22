@@ -10,16 +10,16 @@ namespace ExpressDeliveryService.ViewModel
     {
         public MainViewModel()
         {
-            SetUpCommands();
+            
         }
 
         #region Commands
 
         #region ExitMenuButtonClickCommand
 
-        public ICommand ExitMenuButtonClickCommand { get; private set; }
+        public ICommand ExitMenuButtonClickCommand { get; private set; } = new DelegateCommandService(ExitMenuButtonClick);
 
-        private void ExitMenuButtonClick(object obj)
+        private static void ExitMenuButtonClick(object obj)
         {
             // Параметр является ссылкой на представление
 
@@ -38,10 +38,6 @@ namespace ExpressDeliveryService.ViewModel
 
         #region Methods
 
-        private void SetUpCommands()
-        {
-            ExitMenuButtonClickCommand = new DelegateCommandService(ExitMenuButtonClick);
-        }
 
         #endregion
 

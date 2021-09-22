@@ -711,6 +711,7 @@
                     Background="#F2F2F2"
                     CornerRadius="20"
                     IsHitTestVisible="True">
+
                     <Grid>
 
                         <Grid Name="HomeGrid" Background="Red">
@@ -1095,9 +1096,310 @@
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Style>
+
                         </Grid>
 
-                        <Grid Name="EditGrid" Background="Aqua">
+                        <Grid Name="EditGrid">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!--#region Top-->
+
+                            <Grid Row="0">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="30"
+                                    Style="{DynamicResource TextBlockStyle}"
+                                    Text="Изменить заказ" />
+                            </Grid>
+
+                            <!--#endregion-->
+
+                            <!--#region Body-->
+
+                            <Grid Row="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--#region From-->
+
+                                    <TextBlock
+                                        Width="90"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Откуда" />
+
+                                    <TextBox
+                                        Name="EditFromStreetTextBox"
+                                        Grid.Row="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Откуда забрать" />
+
+                                    <DatePicker
+                                        Name="EditFromTimeDatePicker"
+                                        Grid.Row="2"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда отправить" />
+
+                                    <TextBox
+                                        Name="EditFromTimeTextBox"
+                                        Grid.Row="2"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region To-->
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Width="60"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Куда" />
+
+                                    <TextBox
+                                        Name="EditToStreetTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Куда привезти" />
+
+                                    <DatePicker
+                                        Name="EditToTimeDatePicker"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда получить" />
+
+                                    <TextBox
+                                        Name="EditToTimeTextBox"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Box Size-->
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.RowSpan="2"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Размер коробки (см)" />
+
+                                    <TextBox
+                                        Name="EditSizeHeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Высота" />
+
+                                    <TextBox
+                                        Name="EditSizeWidthBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="140,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ширина" />
+
+                                    <TextBox
+                                        Name="EditSizeLenghtBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="260,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Длина" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Other Box Props-->
+
+                                    <TextBox
+                                        Name="EditMoneyValueBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ценность (руб.)" />
+
+                                    <TextBox
+                                        Name="EditWeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="240,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Вес (гр.)" />
+
+                                    <!--#endregion-->
+
+                                </Grid>
+
+                                <Grid Row="1">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Width="240"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Дополнительные услуги" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Страхование"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,40,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Температурный режим"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,70,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Упаковка"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20" />
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Итоговая стоимость" />
+
+                                    <TextBox
+                                        Name="EditValueTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="160"
+                                        Height="40"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Стоимость" />
+
+                                    <Button
+                                        Grid.Row="1"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Width="160"
+                                        Height="40"
+                                        Margin="0,100,0,0"
+                                        Content="Изменить"
+                                        Style="{DynamicResource ButtonStyle}" />
+
+                                </Grid>
+
+                            </Grid>
+
+                            <!--#endregion-->
 
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -1123,10 +1425,325 @@
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Style>
+
                         </Grid>
 
                         <Grid Name="DeleteGrid">
 
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!--#region Top-->
+
+                            <Grid Row="0">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="30"
+                                    Style="{DynamicResource TextBlockStyle}"
+                                    Text="Отменить заказ" />
+                            </Grid>
+
+                            <!--#endregion-->
+
+                            <!--#region Body-->
+
+                            <Grid Row="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--#region From-->
+
+                                    <TextBlock
+                                        Width="90"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Откуда" />
+
+                                    <TextBox
+                                        Name="DeleteFromStreetTextBox"
+                                        Grid.Row="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Откуда забрать" />
+
+                                    <DatePicker
+                                        Name="DeleteFromTimeDatePicker"
+                                        Grid.Row="2"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда отправить" />
+
+                                    <TextBox
+                                        Name="DeleteFromTimeTextBox"
+                                        Grid.Row="2"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region To-->
+
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Width="60"
+                                        Height="35"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Куда" />
+
+                                    <TextBox
+                                        Name="DeleteToStreetTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="350"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Куда привезти" />
+
+                                    <DatePicker
+                                        Name="DeleteToTimeDatePicker"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда получить" />
+
+                                    <TextBox
+                                        Name="DeleteToTimeTextBox"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="0,0,30,0"
+                                        HorizontalAlignment="Right"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Время" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Box Size-->
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.RowSpan="2"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Размер коробки (см)" />
+
+                                    <TextBox
+                                        Name="DeleteSizeHeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Высота" />
+
+                                    <TextBox
+                                        Name="DeleteSizeWidthBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="140,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ширина" />
+
+                                    <TextBox
+                                        Name="DeleteSizeLenghtBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="260,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Длина" />
+
+                                    <!--#endregion-->
+
+                                    <!--#region Other Box Props-->
+
+                                    <TextBox
+                                        Name="DeleteMoneyValueBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="40"
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Ценность (руб.)" />
+
+                                    <TextBox
+                                        Name="DeleteWeightBoxTextBox"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="40"
+                                        Margin="240,10,0,0"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Вес (гр.)" />
+
+                                    <!--#endregion-->
+
+                                </Grid>
+
+                                <Grid Row="1">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Width="240"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Дополнительные услуги" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Страхование"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20"
+                                        IsHitTestVisible="False" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,40,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Температурный режим"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20"
+                                        IsHitTestVisible="False" />
+
+                                    <CheckBox
+                                        Grid.Row="1"
+                                        Width="225"
+                                        Height="25"
+                                        Margin="0,70,0,0"
+                                        VerticalAlignment="Top"
+                                        Content="Упаковка"
+                                        FontFamily="{DynamicResource ProximaNovaTh}"
+                                        FontSize="20"
+                                        IsHitTestVisible="False" />
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Width="200"
+                                        Height="23"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="21"
+                                        Style="{DynamicResource TextBlockStyle}"
+                                        Text="Итоговая стоимость" />
+
+                                    <TextBox
+                                        Name="DeleteValueTextBox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="160"
+                                        Height="40"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        IsHitTestVisible="False"
+                                        Style="{DynamicResource ColorTextBoxStyle}"
+                                        Tag="Стоимость" />
+
+                                    <Button
+                                        Grid.Row="1"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Width="160"
+                                        Height="40"
+                                        Margin="0,100,0,0"
+                                        Content="Отменить"
+                                        Style="{DynamicResource ButtonStyle}" />
+
+                                </Grid>
+
+                            </Grid>
+
+                            <!--#endregion-->
+
                             <Grid.Style>
                                 <Style TargetType="Grid">
                                     <Style.Triggers>
@@ -1151,6 +1768,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Style>
+
                         </Grid>
 
                         <Grid Name="SettingsGrid">
@@ -1182,6 +1800,7 @@
                         </Grid>
 
                     </Grid>
+
                 </Border>
 
             </Grid>

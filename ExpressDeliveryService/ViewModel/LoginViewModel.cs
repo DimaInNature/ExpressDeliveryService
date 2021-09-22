@@ -12,8 +12,6 @@ namespace ExpressDeliveryService.ViewModel
         public LoginViewModel()
         {
             SetUpDefaultCondition();
-
-            SetUpCommands();
         }
 
         #region Properties
@@ -22,7 +20,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public SecureString SecurePassword
         {
-            get { return _securePassword; }
+            get => _securePassword;
             set
             {
                 _securePassword = value;
@@ -34,7 +32,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public string Password
         {
-            get { return _password; }
+            get => _password;
             set
             {
                 _password = value;
@@ -46,7 +44,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public bool IsPasswordWatermarkVisible
         {
-            get { return _isPasswordWatermarkVisible; }
+            get => _isPasswordWatermarkVisible;
             set
             {
                 if (value.Equals(_isPasswordWatermarkVisible)) return;
@@ -63,7 +61,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public SecureString SecureRegisterPassword
         {
-            get { return _secureRegisterPassword; }
+            get =>_secureRegisterPassword;
             set
             {
                 _secureRegisterPassword = value;
@@ -75,7 +73,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public string RegisterPassword
         {
-            get { return _registerPassword; }
+            get => _registerPassword;
             set
             {
                 _registerPassword = value;
@@ -87,7 +85,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public bool IsRegisterPasswordWatermarkVisible
         {
-            get { return _isRegisterPasswordWatermarkVisible; }
+            get => _isRegisterPasswordWatermarkVisible; 
             set
             {
                 if (value.Equals(_isRegisterPasswordWatermarkVisible)) return;
@@ -106,9 +104,9 @@ namespace ExpressDeliveryService.ViewModel
 
         #region EnterButtonClickCommand
 
-        public ICommand EnterButtonClickCommand { get; private set; }
+        public ICommand EnterButtonClickCommand { get; private set; } = new DelegateCommandService(EnterButtonClick);
 
-        private void EnterButtonClick(object obj)
+        private static void EnterButtonClick(object obj)
         {
             // Параметр является ссылкой на представление
 
@@ -125,9 +123,9 @@ namespace ExpressDeliveryService.ViewModel
 
         #region RegisterButtonClickCommand
 
-        public ICommand RegisterButtonClickCommand { get; private set; }
+        public ICommand RegisterButtonClickCommand { get; private set; } = new DelegateCommandService(RegisterButtonClick);
 
-        private void RegisterButtonClick(object obj)
+        private static void RegisterButtonClick(object obj)
         {
             
         }
@@ -136,17 +134,17 @@ namespace ExpressDeliveryService.ViewModel
 
         #region ExitButtonClickCommand
 
-        public ICommand ExitButtonClickCommand { get; private set; }
+        public ICommand ExitButtonClickCommand { get; private set; } = new DelegateCommandService(ExitButtonClick);
 
-        private void ExitButtonClick(object obj) => Application.Current.Shutdown();
+        private static void ExitButtonClick(object obj) => Application.Current.Shutdown();
 
         #endregion
 
         #region RecoverButtonClickCommand
 
-        public ICommand RecoverButtonClickCommand { get; private set; }
+        public ICommand RecoverButtonClickCommand { get; private set; } = new DelegateCommandService(RecoverButtonClick);
 
-        private void RecoverButtonClick(object obj)
+        private static void RecoverButtonClick(object obj)
         {
 
         }
@@ -161,14 +159,6 @@ namespace ExpressDeliveryService.ViewModel
         {
             IsPasswordWatermarkVisible = true;
             IsRegisterPasswordWatermarkVisible = true;
-        }
-
-        private void SetUpCommands()
-        {
-            EnterButtonClickCommand = new DelegateCommandService(EnterButtonClick);
-            RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
-            ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
-            RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
         }
 
         #endregion
