@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Service\Command\DelegateCommand.cs" />
     <Compile Include="Service\DisplayWindowService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -123,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Images\Controls\WindowControls\Default\ControlButtonClose.png" />

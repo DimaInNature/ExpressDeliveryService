@@ -538,8 +538,56 @@
                 Panel.ZIndex="-1"
                 Background="#F6F6F6"
                 CornerRadius="20"
-                Opacity="0"
-                Visibility="Collapsed" />
+                Opacity="100"
+                Visibility="Visible">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Background="Transparent" Column="0" />
+
+                    <Grid Background="Blue" Column="1">
+
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                                <ListBox
+                                    x:Name="EditOrdersListViewItemsControl"
+                                    ItemsSource="{Binding EditOrders, Mode=TwoWay}"
+                                    SelectedItem="{Binding SelectedEditOrder, Mode=TwoWay}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Border
+                                                Name="EditOrderItem"
+                                                Width="200"
+                                                Height="40"
+                                                Margin="0,0,10,0"
+                                                Background="Red">
+
+
+
+                                                <TextBlock Text="{Binding Path=ProductName}" />
+
+
+
+                                            </Border>
+
+
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                       
+
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+            </Border>
 
             <Border
                 x:Name="DeleteMenuPanel"
@@ -1080,7 +1128,8 @@
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Куда привезти" />
+                                        Tag="Куда привезти"
+                                        Text="{Binding SelectedEditOrder.ProductName}"/>
 
                                     <DatePicker
                                         Name="EditToTimeDatePicker"
