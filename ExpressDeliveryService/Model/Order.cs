@@ -4,12 +4,6 @@ namespace ExpressDeliveryService.Model
 {
     public class Order
     {
-        public Order(string ProductName)
-        {
-            this.ProductName = ProductName;
-        }
-
-        public Order(){}
         ///<summary> Уникальный идентификатор заказа.</summary>
         public int IdOrder { get; private set; }
 
@@ -50,8 +44,6 @@ namespace ExpressDeliveryService.Model
 
         ///<summary> Итоговая стоимость доставки. </summary>
         public double TotalCostOfDelivery { get; set; }
-
-        
 
     }
 }

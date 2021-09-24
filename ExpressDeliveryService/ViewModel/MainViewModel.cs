@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using ExpressDeliveryService.Model;
 using ExpressDeliveryService.Service.Command;
 using ExpressDeliveryService.View;
 using ExpressDeliveryService.ViewModel.Base;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ExpressDeliveryService.ViewModel
 {
@@ -16,25 +13,30 @@ namespace ExpressDeliveryService.ViewModel
     {
         public MainViewModel()
         {
-            EditOrders = new List<Order>();
-            EditOrders.Add(new Order("Test 1"));
-            EditOrders.Add(new Order("Test 2"));
-            Ts = new DelegateCommandService((Object) =>
-            {
-                MessageBox.Show(SelectedEditOrder.ProductName);
-            });
+            SetExampleData();
         }
 
         #region Properties
 
-        public static List<Order> EditOrders { get; set; }
+        #region Orders Props
+
+        public static List<Order> Orders { get; set; }
+
+        public Order SelectedViewOrder
+        {
+            get => _selectedViewOrder;
+            set
+            {
+                _selectedViewOrder = value;
+                OnPropertyChanged("SelectedViewOrder");
+            }
+        }
+
+        private Order _selectedViewOrder;
 
         public Order SelectedEditOrder
         {
-            get
-            {
-                return _selectedEditOrder;
-            }
+            get => _selectedEditOrder;
             set
             {
                 _selectedEditOrder = value;
@@ -42,7 +44,21 @@ namespace ExpressDeliveryService.ViewModel
             }
         }
 
-        public Order _selectedEditOrder;
+        private Order _selectedEditOrder;
+
+        public Order SelectedDeleteOrder
+        {
+            get => _selectedDeleteOrder;
+            set
+            {
+                _selectedDeleteOrder = value;
+                OnPropertyChanged("SelectedDeleteOrder");
+            }
+        }
+
+        private Order _selectedDeleteOrder;
+
+        #endregion
 
         #endregion
 
@@ -67,24 +83,38 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region t
-
-        public ICommand Ts { get; private set; }
-
-        private static void t2(object obj)
-        {
-
-            
-
-
-        }
-
-        #endregion
-
         #endregion
 
         #region Methods
 
+        private void SetExampleData()
+        {
+            Orders = new List<Order>();
+            Orders.Add(new Order
+            {
+                FromPlace = "FromPlaceTest",
+                FromDate = new DateTime(2021, 06, 5),
+                FromTime = "00:00",
+
+                ToPlace = "ToPlaceTest",
+                ToDate = new DateTime(2022, 06, 5),
+                ToTime = "01:00",
+
+                BoxWidth = 20,
+                BoxHeight = 25,
+                BoxLenght = 30,
+
+                ProductValue = 1110,
+                ProductName = "Тестовое имя",
+                ProductWeight = 200,
+
+                AvailabilityOfInsuranceService = true,
+                ComplianceTemperatureRegimeService = false,
+                PackagingService = false,
+
+                TotalCostOfDelivery = 0
+            });
+        }
 
         #endregion
 

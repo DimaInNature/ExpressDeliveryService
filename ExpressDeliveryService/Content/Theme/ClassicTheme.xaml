@@ -771,6 +771,43 @@
 
     <!--#endregion-->
 
+    <Style x:Key="BigButton" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="#cb11ab" />
+        <Setter Property="FontFamily" Value="{StaticResource ProximaNovaTh}" />
+
+    </Style>
+
+    <Style
+        x:Key="HomeButtonStyle"
+        BasedOn="{StaticResource BigButton}"
+        TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+
+                        <Grid>
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{TemplateBinding Foreground}"
+                                Text="{TemplateBinding Content}"
+                                TextWrapping="Wrap" />
+
+                        </Grid>
+
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--#endregion-->
 
     <!--#region RadioButton-->
