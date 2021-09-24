@@ -1235,17 +1235,18 @@
                                         Text="Откуда" />
 
                                     <TextBox
-                                        Name="FromStreetTextBox"
+                                        Name="CreateFromStreetTextBox"
                                         Grid.Row="1"
                                         Width="350"
                                         Height="40"
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Откуда забрать" />
+                                        Tag="Откуда забрать"
+                                        Text="{x:Null}" />
 
                                     <DatePicker
-                                        Name="FromTimeDatePicker"
+                                        Name="CreateFromTimeDatePicker"
                                         Grid.Row="2"
                                         Width="200"
                                         Height="40"
@@ -1255,7 +1256,7 @@
                                         Tag="Когда отправить" />
 
                                     <TextBox
-                                        Name="FromTimeTextBox"
+                                        Name="CreateFromTimeTextBox"
                                         Grid.Row="2"
                                         Width="130"
                                         Height="40"
@@ -1279,7 +1280,7 @@
                                         Text="Куда" />
 
                                     <TextBox
-                                        Name="ToStreetTextBox"
+                                        Name="CreateToStreetTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="350"
@@ -1290,7 +1291,7 @@
                                         Tag="Куда привезти" />
 
                                     <DatePicker
-                                        Name="ToTimeDatePicker"
+                                        Name="CreateToTimeDatePicker"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="200"
@@ -1301,7 +1302,7 @@
                                         Tag="Когда получить" />
 
                                     <TextBox
-                                        Name="ToTimeTextBox"
+                                        Name="CreateToTimeTextBox"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="130"
@@ -1327,7 +1328,7 @@
                                         Text="Размер коробки (см)" />
 
                                     <TextBox
-                                        Name="SizeHeightBoxTextBox"
+                                        Name="CreateBoxHeightTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1338,7 +1339,7 @@
                                         Tag="Высота" />
 
                                     <TextBox
-                                        Name="SizeWidthBoxTextBox"
+                                        Name="CreateBoxWidthTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1349,7 +1350,7 @@
                                         Tag="Ширина" />
 
                                     <TextBox
-                                        Name="SizeLenghtBoxTextBox"
+                                        Name="CreateBoxLenghtTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1400,6 +1401,7 @@
                                         Text="Дополнительные услуги" />
 
                                     <CheckBox
+                                        Name="CreateAvailabilityOfInsurancePurchasedCheckBox"
                                         Grid.Row="1"
                                         Width="225"
                                         Height="25"
@@ -1410,6 +1412,7 @@
                                         FontSize="20" />
 
                                     <CheckBox
+                                        Name="CreateComplianceTemperatureRegimePurchasedCheckBox"
                                         Grid.Row="1"
                                         Width="225"
                                         Height="25"
@@ -1420,6 +1423,7 @@
                                         FontSize="20" />
 
                                     <CheckBox
+                                        Name="CreatePackagingPurchasedCheckBox"
                                         Grid.Row="1"
                                         Width="225"
                                         Height="25"
@@ -1430,7 +1434,7 @@
                                         FontSize="20" />
 
                                     <TextBox
-                                        Name="ValueTextBox"
+                                        Name="CreateTotalCostTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="140"
@@ -1443,7 +1447,7 @@
                                         Tag="Стоимость" />
 
                                     <TextBox
-                                        Name="MoneyValueBoxTextBox"
+                                        Name="CreateProductCostTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="200"
@@ -1454,7 +1458,7 @@
                                         Tag="Ценность (руб.)" />
 
                                     <TextBox
-                                        Name="WeightBoxTextBox"
+                                        Name="CreateProductWeightTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="130"
@@ -1465,6 +1469,7 @@
                                         Tag="Вес (гр.)" />
 
                                     <TextBox
+                                        Name="CreateProductNameTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="200"
@@ -1483,8 +1488,70 @@
                                         Width="160"
                                         Height="40"
                                         Margin="0,100,0,0"
-                                        Content="Заказать"
-                                        Style="{DynamicResource ButtonStyle}" />
+                                        Content="Заказать">
+
+                                        <Button.Style>
+
+                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateFromStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateFromTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateFromTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxHeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxWidthTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxLenghtTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateToStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateToTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateToTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateProductCostTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateProductWeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=CreateProductNameTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+
+
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </Button.Style>
+
+                                    </Button>
 
                                 </Grid>
 
@@ -1574,6 +1641,7 @@
                                         Text="Откуда" />
 
                                     <TextBox
+                                        Name="EditFromStreetTextBox"
                                         Grid.Row="1"
                                         Width="350"
                                         Height="40"
@@ -1584,6 +1652,7 @@
                                         Text="{Binding SelectedEditOrder.FromPlace}" />
 
                                     <DatePicker
+                                        Name="EditFromTimeDatePicker"
                                         Grid.Row="2"
                                         Width="200"
                                         Height="40"
@@ -1594,6 +1663,7 @@
                                         Text="{Binding SelectedEditOrder.FromDate}" />
 
                                     <TextBox
+                                        Name="EditFromTimeTextBox"
                                         Grid.Row="2"
                                         Width="130"
                                         Height="40"
@@ -1618,6 +1688,7 @@
                                         Text="Куда" />
 
                                     <TextBox
+                                        Name="EditToStreetTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="350"
@@ -1629,6 +1700,7 @@
                                         Text="{Binding SelectedEditOrder.ToPlace}" />
 
                                     <DatePicker
+                                        Name="EditToTimeDatePicker"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="200"
@@ -1640,6 +1712,7 @@
                                         Text="{Binding SelectedEditOrder.ToDate}" />
 
                                     <TextBox
+                                        Name="EditToTimeTextBox"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="130"
@@ -1666,6 +1739,7 @@
                                         Text="Размер коробки (см)" />
 
                                     <TextBox
+                                        Name="EditBoxHeightTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1677,6 +1751,7 @@
                                         Text="{Binding SelectedEditOrder.Box.Height}" />
 
                                     <TextBox
+                                        Name="EditBoxWidthTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1688,6 +1763,7 @@
                                         Text="{Binding SelectedEditOrder.Box.Width}" />
 
                                     <TextBox
+                                        Name="EditBoxLenghtTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -1772,6 +1848,7 @@
                                         IsChecked="{Binding SelectedEditOrder.PackagingPurchased}" />
 
                                     <TextBox
+                                        Name="EditTotalCostTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="140"
@@ -1785,6 +1862,7 @@
                                         Text="{Binding SelectedEditOrder.TotalCost}" />
 
                                     <TextBox
+                                        Name="EditProductCostTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="200"
@@ -1796,6 +1874,7 @@
                                         Text="{Binding SelectedEditOrder.Product.Cost}" />
 
                                     <TextBox
+                                        Name="EditProductWeightTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="130"
@@ -1807,6 +1886,7 @@
                                         Text="{Binding SelectedEditOrder.Product.Weight}" />
 
                                     <TextBox
+                                        Name="EditProductNameTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="200"
@@ -1826,8 +1906,70 @@
                                         Width="160"
                                         Height="40"
                                         Margin="0,100,0,0"
-                                        Content="Изменить"
-                                        Style="{DynamicResource ButtonStyle}" />
+                                        Content="Изменить">
+
+                                        <Button.Style>
+
+                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=EditFromStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditFromTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditFromTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditBoxHeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditBoxWidthTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditBoxLenghtTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditToStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditToTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditToTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditProductCostTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditProductWeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=EditProductNameTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+
+
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </Button.Style>
+
+                                    </Button>
 
                                 </Grid>
 
@@ -1917,6 +2059,7 @@
                                         Text="Откуда" />
 
                                     <TextBox
+                                        Name="DeleteFromStreetTextBox"
                                         Grid.Row="1"
                                         Width="350"
                                         Height="40"
@@ -1928,6 +2071,7 @@
                                         Text="{Binding SelectedDeleteOrder.FromPlace}" />
 
                                     <DatePicker
+                                        Name="DeleteFromTimeDatePicker"
                                         Grid.Row="2"
                                         Width="200"
                                         Height="40"
@@ -1939,6 +2083,7 @@
                                         Text="{Binding SelectedDeleteOrder.FromDate}" />
 
                                     <TextBox
+                                        Name="DeleteFromTimeTextBox"
                                         Grid.Row="2"
                                         Width="130"
                                         Height="40"
@@ -1964,6 +2109,7 @@
                                         Text="Куда" />
 
                                     <TextBox
+                                        Name="DeleteToStreetTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="350"
@@ -1976,6 +2122,7 @@
                                         Text="{Binding SelectedDeleteOrder.ToPlace}" />
 
                                     <DatePicker
+                                        Name="DeleteToTimeDatePicker"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="200"
@@ -1988,6 +2135,7 @@
                                         Text="{Binding SelectedDeleteOrder.ToDate}" />
 
                                     <TextBox
+                                        Name="DeleteToTimeTextBox"
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         Width="130"
@@ -2015,6 +2163,7 @@
                                         Text="Размер коробки (см)" />
 
                                     <TextBox
+                                        Name="DeleteBoxHeightTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -2027,6 +2176,7 @@
                                         Text="{Binding SelectedDeleteOrder.Box.Height}" />
 
                                     <TextBox
+                                        Name="DeleteBoxWidhtTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -2039,6 +2189,7 @@
                                         Text="{Binding SelectedDeleteOrder.Box.Width}" />
 
                                     <TextBox
+                                        Name="DeleteBoxLenghtTextBox"
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Width="100"
@@ -2140,6 +2291,7 @@
                                         Text="{Binding SelectedDeleteOrder.TotalCost}" />
 
                                     <TextBox
+                                        Name="DeleteProductCostTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="200"
@@ -2152,6 +2304,7 @@
                                         Text="{Binding SelectedDeleteOrder.Product.Cost}" />
 
                                     <TextBox
+                                        Name="DeleteProductWeightTextBox"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Width="130"
@@ -2164,6 +2317,7 @@
                                         Text="{Binding SelectedDeleteOrder.Product.Weight}" />
 
                                     <TextBox
+                                        Name="DeleteProductNameTextBox"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Width="200"
@@ -2184,8 +2338,70 @@
                                         Width="160"
                                         Height="40"
                                         Margin="0,100,0,0"
-                                        Content="Удалить"
-                                        Style="{DynamicResource ButtonStyle}" />
+                                        Content="Удалить">
+
+                                        <Button.Style>
+
+                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxHeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxWidthTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxLenghtTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteToStreetTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteToTimeDatePicker, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteToTimeTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductCostTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductWeightTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductNameTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+
+
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </Button.Style>
+
+                                    </Button>
 
                                 </Grid>
 
