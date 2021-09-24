@@ -100,19 +100,88 @@ namespace ExpressDeliveryService.ViewModel
                 ToDate = new DateTime(2022, 06, 5),
                 ToTime = "01:00",
 
-                BoxWidth = 20,
-                BoxHeight = 25,
-                BoxLenght = 30,
+                Box = new Box()
+                {
+                    Width = 30,
+                    Height = 25,
+                    Lenght = 30
+                },
 
-                ProductValue = 1110,
-                ProductName = "Тестовое имя",
-                ProductWeight = 200,
+                Product = new Product()
+                {
+                    Name = "Тестовый",
+                    Cost = 1110,
+                    Weight = 200
+                },
 
-                AvailabilityOfInsuranceService = true,
-                ComplianceTemperatureRegimeService = false,
-                PackagingService = false,
+                AvailabilityOfInsurancePurchased = true,
+                ComplianceTemperatureRegimePurchased = false,
+                PackagingPurchased = false,
 
-                TotalCostOfDelivery = 0
+                TotalCost = 10
+            });
+
+            
+            Orders.Add(new Order
+            {
+                FromPlace = "FromPlaceTest",
+                FromDate = new DateTime(2021, 06, 5),
+                FromTime = "00:00",
+
+                ToPlace = "ToPlaceTest",
+                ToDate = new DateTime(2022, 06, 5),
+                ToTime = "01:00",
+
+                Box = new Box()
+                {
+                    Width = 30,
+                    Height = 25,
+                    Lenght = 30
+                },
+
+                Product = new Product()
+                {
+                    Name = "Тестовый",
+                    Cost = 1110,
+                    Weight = 200
+                },
+
+                AvailabilityOfInsurancePurchased = true,
+                ComplianceTemperatureRegimePurchased = false,
+                PackagingPurchased = false,
+
+                TotalCost = 10
+            });
+
+            Orders.Add(new Order
+            {
+                FromPlace = "FromPlaceTest",
+                FromDate = new DateTime(2021, 06, 5),
+                FromTime = "00:00",
+
+                ToPlace = "ToPlaceTest",
+                ToDate = new DateTime(2022, 06, 5),
+                ToTime = "01:00",
+
+                Box = new Box()
+                {
+                    Width = 30,
+                    Height = 25,
+                    Lenght = 30
+                },
+
+                Product = new Product()
+                {
+                    Name = "Тестовый",
+                    Cost = 1110,
+                    Weight = 200
+                },
+
+                AvailabilityOfInsurancePurchased = true,
+                ComplianceTemperatureRegimePurchased = false,
+                PackagingPurchased = false,
+
+                TotalCost = 10
             });
         }
 

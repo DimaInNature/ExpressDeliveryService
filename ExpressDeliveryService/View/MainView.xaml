@@ -193,7 +193,6 @@
             <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
         </EventTrigger>
 
-
         <!--#endregion-->
 
         <!--#region DeleteMenuRadioButton-->
@@ -209,7 +208,6 @@
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
         </EventTrigger>
-
 
         <!--#endregion-->
 
@@ -552,7 +550,12 @@
 
                         <StackPanel Orientation="Vertical">
 
-                            <ListBox ItemsSource="{Binding Orders, Mode=TwoWay}" SelectedItem="{Binding SelectedEditOrder, Mode=TwoWay}">
+                            <ListBox
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                ItemsSource="{Binding Orders, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedEditOrder, Mode=TwoWay}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
 
@@ -571,13 +574,14 @@
                                                     FontSize="20"
                                                     Foreground="White"
                                                     Style="{DynamicResource TextBlockStyle}"
-                                                    Text="{Binding Path=ProductName}" />
+                                                    Text="{Binding Path=Product.Name}" />
 
                                             </Grid>
 
                                         </Border>
 
                                     </DataTemplate>
+
 
                                 </ListBox.ItemTemplate>
 
@@ -613,7 +617,12 @@
 
                         <StackPanel Orientation="Vertical">
 
-                            <ListBox ItemsSource="{Binding Orders, Mode=TwoWay}" SelectedItem="{Binding SelectedDeleteOrder, Mode=TwoWay}">
+                            <ListBox
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                ItemsSource="{Binding Orders, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedDeleteOrder, Mode=TwoWay}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
 
@@ -632,7 +641,7 @@
                                                     FontSize="20"
                                                     Foreground="White"
                                                     Style="{DynamicResource TextBlockStyle}"
-                                                    Text="{Binding Path=ProductName}" />
+                                                    Text="{Binding Path=Product.Name}" />
 
                                             </Grid>
 
@@ -700,9 +709,9 @@
                                 <Button
                                     x:Name="HomeCreateOrderButton"
                                     Margin="15"
+                                    BorderBrush="#cb11ab"
                                     Content="Создать"
                                     FontSize="70"
-                                    BorderBrush="#cb11ab"
                                     Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
@@ -721,8 +730,8 @@
                                     x:Name="HomeViewOrderButton"
                                     Grid.Column="0"
                                     Margin="15,0,5,15"
-                                    Content="Просмотр"
                                     BorderBrush="#cb11ab"
+                                    Content="Просмотр"
                                     FontSize="30"
                                     Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
@@ -731,9 +740,9 @@
                                     x:Name="HomeEditOrderButton"
                                     Grid.Column="1"
                                     Margin="15,0,5,15"
+                                    BorderBrush="#cb11ab"
                                     Content="Изменить"
                                     FontSize="30"
-                                    BorderBrush="#cb11ab"
                                     Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
@@ -741,9 +750,9 @@
                                     x:Name="HomeDeleteOrderButton"
                                     Grid.Column="2"
                                     Margin="15,0,5,15"
+                                    BorderBrush="#cb11ab"
                                     Content="Удалить"
                                     FontSize="30"
-                                    BorderBrush="#cb11ab"
                                     Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
@@ -751,9 +760,9 @@
                                     x:Name="HomeSettingsOrderButton"
                                     Grid.Column="3"
                                     Margin="15,0,15,15"
+                                    BorderBrush="#cb11ab"
                                     Content="Настройки"
                                     FontSize="30"
-                                    BorderBrush="#cb11ab"
                                     Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
@@ -796,7 +805,12 @@
 
                                 <StackPanel Orientation="Vertical">
 
-                                    <ListBox ItemsSource="{Binding Orders, Mode=TwoWay}" SelectedItem="{Binding SelectedViewOrder, Mode=TwoWay}">
+                                    <ListBox
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        ItemsSource="{Binding Orders, Mode=TwoWay}"
+                                        SelectedItem="{Binding SelectedViewOrder, Mode=TwoWay}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
 
@@ -815,7 +829,7 @@
                                                             FontSize="20"
                                                             Foreground="White"
                                                             Style="{DynamicResource TextBlockStyle}"
-                                                            Text="{Binding Path=ProductName}" />
+                                                            Text="{Binding Path=Product.Name}" />
 
                                                     </Grid>
 
@@ -983,7 +997,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Название"
-                                        Text="{Binding SelectedViewOrder.ProductName}" />
+                                        Text="{Binding SelectedViewOrder.Product.Name}" />
 
                                     <TextBox
                                         Grid.Row="0"
@@ -996,7 +1010,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Вес (гр.)"
-                                        Text="{Binding SelectedViewOrder.ProductWeight}" />
+                                        Text="{Binding SelectedViewOrder.Product.Weight}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -1008,7 +1022,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ценность (руб.)"
-                                        Text="{Binding SelectedViewOrder.ProductValue}" />
+                                        Text="{Binding SelectedViewOrder.Product.Cost}" />
 
                                     <!--#region Box Size-->
 
@@ -1035,7 +1049,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Высота"
-                                        Text="{Binding SelectedViewOrder.BoxHeight}" />
+                                        Text="{Binding SelectedViewOrder.Box.Height}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -1048,7 +1062,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ширина"
-                                        Text="{Binding SelectedViewOrder.BoxWidth}" />
+                                        Text="{Binding SelectedViewOrder.Box.Width}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -1062,7 +1076,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Длина"
-                                        Text="{Binding SelectedViewOrder.BoxLenght}" />
+                                        Text="{Binding SelectedViewOrder.Box.Lenght}" />
 
                                     <!--#endregion-->
 
@@ -1085,7 +1099,7 @@
                                         Content="Страхование"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.AvailabilityOfInsuranceService}"
+                                        IsChecked="{Binding SelectedViewOrder.AvailabilityOfInsurancePurchased}"
                                         IsHitTestVisible="False" />
 
                                     <CheckBox
@@ -1097,7 +1111,7 @@
                                         Content="Температурный режим"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.ComplianceTemperatureRegimeService}"
+                                        IsChecked="{Binding SelectedViewOrder.ComplianceTemperatureRegimePurchased}"
                                         IsHitTestVisible="False" />
 
                                     <CheckBox
@@ -1109,7 +1123,7 @@
                                         Content="Упаковка"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.PackagingService}"
+                                        IsChecked="{Binding SelectedViewOrder.PackagingPurchased}"
                                         IsHitTestVisible="False" />
 
                                     <TextBlock
@@ -1134,7 +1148,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Стоимость"
-                                        Text="{Binding SelectedViewOrder.TotalCostOfDelivery}" />
+                                        Text="{Binding SelectedViewOrder.TotalCost}" />
 
                                 </Grid>
 
@@ -1660,7 +1674,7 @@
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Высота"
-                                        Text="{Binding SelectedEditOrder.BoxHeight}" />
+                                        Text="{Binding SelectedEditOrder.Box.Height}" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -1671,7 +1685,7 @@
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ширина"
-                                        Text="{Binding SelectedEditOrder.BoxWidth}" />
+                                        Text="{Binding SelectedEditOrder.Box.Width}" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -1682,7 +1696,7 @@
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Длина"
-                                        Text="{Binding SelectedEditOrder.BoxLenght}" />
+                                        Text="{Binding SelectedEditOrder.Box.Lenght}" />
 
                                     <!--#endregion-->
 
@@ -1733,7 +1747,7 @@
                                         Content="Страхование"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedEditOrder.AvailabilityOfInsuranceService}" />
+                                        IsChecked="{Binding SelectedEditOrder.AvailabilityOfInsurancePurchased}" />
 
                                     <CheckBox
                                         Grid.Row="1"
@@ -1744,7 +1758,7 @@
                                         Content="Температурный режим"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedEditOrder.ComplianceTemperatureRegimeService}" />
+                                        IsChecked="{Binding SelectedEditOrder.ComplianceTemperatureRegimePurchased}" />
 
                                     <CheckBox
                                         Grid.Row="1"
@@ -1755,7 +1769,7 @@
                                         Content="Упаковка"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedEditOrder.PackagingService}" />
+                                        IsChecked="{Binding SelectedEditOrder.PackagingPurchased}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -1768,7 +1782,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Стоимость"
-                                        Text="{Binding SelectedEditOrder.TotalCostOfDelivery}" />
+                                        Text="{Binding SelectedEditOrder.TotalCost}" />
 
                                     <TextBox
                                         Grid.Row="0"
@@ -1779,7 +1793,7 @@
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ценность (руб.)"
-                                        Text="{Binding SelectedEditOrder.ProductValue}" />
+                                        Text="{Binding SelectedEditOrder.Product.Cost}" />
 
                                     <TextBox
                                         Grid.Row="0"
@@ -1790,7 +1804,7 @@
                                         HorizontalAlignment="Left"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Вес (гр.)"
-                                        Text="{Binding SelectedEditOrder.ProductWeight}" />
+                                        Text="{Binding SelectedEditOrder.Product.Weight}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -1802,7 +1816,7 @@
                                         VerticalAlignment="Top"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Название"
-                                        Text="{Binding SelectedEditOrder.ProductName}" />
+                                        Text="{Binding SelectedEditOrder.Product.Name}" />
 
                                     <Button
                                         Grid.Row="1"
@@ -2010,7 +2024,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Высота"
-                                        Text="{Binding SelectedDeleteOrder.BoxHeight}" />
+                                        Text="{Binding SelectedDeleteOrder.Box.Height}" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -2022,7 +2036,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ширина"
-                                        Text="{Binding SelectedDeleteOrder.BoxWidth}" />
+                                        Text="{Binding SelectedDeleteOrder.Box.Width}" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -2034,7 +2048,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Длина"
-                                        Text="{Binding SelectedDeleteOrder.BoxLenght}" />
+                                        Text="{Binding SelectedDeleteOrder.Box.Lenght}" />
 
                                     <!--#endregion-->
 
@@ -2085,7 +2099,7 @@
                                         Content="Страхование"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedDeleteOrder.AvailabilityOfInsuranceService}"
+                                        IsChecked="{Binding SelectedDeleteOrder.AvailabilityOfInsurancePurchased}"
                                         IsHitTestVisible="False" />
 
                                     <CheckBox
@@ -2097,7 +2111,7 @@
                                         Content="Температурный режим"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedDeleteOrder.ComplianceTemperatureRegimeService}"
+                                        IsChecked="{Binding SelectedDeleteOrder.ComplianceTemperatureRegimePurchased}"
                                         IsHitTestVisible="False" />
 
                                     <CheckBox
@@ -2109,7 +2123,7 @@
                                         Content="Упаковка"
                                         FontFamily="{DynamicResource ProximaNovaTh}"
                                         FontSize="20"
-                                        IsChecked="{Binding SelectedEditOrder.PackagingService}"
+                                        IsChecked="{Binding SelectedEditOrder.PackagingPurchased}"
                                         IsHitTestVisible="False" />
 
                                     <TextBox
@@ -2123,7 +2137,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Стоимость"
-                                        Text="{Binding SelectedDeleteOrder.TotalCostOfDelivery}" />
+                                        Text="{Binding SelectedDeleteOrder.TotalCost}" />
 
                                     <TextBox
                                         Grid.Row="0"
@@ -2135,7 +2149,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Ценность (руб.)"
-                                        Text="{Binding SelectedDeleteOrder.ProductValue}" />
+                                        Text="{Binding SelectedDeleteOrder.Product.Cost}" />
 
                                     <TextBox
                                         Grid.Row="0"
@@ -2147,7 +2161,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Вес (гр.)"
-                                        Text="{Binding SelectedDeleteOrder.ProductWeight}" />
+                                        Text="{Binding SelectedDeleteOrder.Product.Weight}" />
 
                                     <TextBox
                                         Grid.Row="1"
@@ -2160,7 +2174,7 @@
                                         IsHitTestVisible="False"
                                         Style="{DynamicResource ColorTextBoxStyle}"
                                         Tag="Название"
-                                        Text="{Binding SelectedDeleteOrder.ProductName}" />
+                                        Text="{Binding SelectedDeleteOrder.Product.Name}" />
 
                                     <Button
                                         Grid.Row="1"

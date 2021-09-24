@@ -64,7 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Box.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Service\Command\DelegateCommand.cs" />
     <Compile Include="Service\DisplayWindowService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
