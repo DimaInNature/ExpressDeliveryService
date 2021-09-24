@@ -773,10 +773,34 @@
 
     <Style x:Key="BigButton" TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Background" Value="#cb11ab" />
+        <Setter Property="Background" Value="White" />
         <Setter Property="FontFamily" Value="{StaticResource ProximaNovaTh}" />
 
     </Style>
+
+    <Storyboard x:Key="HomeButtonMouseEnterAnimation">
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#b341ad" />
+        </ColorAnimationUsingKeyFrames>
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#b341ad" />
+        </ColorAnimationUsingKeyFrames>
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
+        </ColorAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Storyboard x:Key="HomeButtonMouseLeaveAnimation">
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#cb11ab" />
+        </ColorAnimationUsingKeyFrames>
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
+        </ColorAnimationUsingKeyFrames>
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#cb11ab" />
+        </ColorAnimationUsingKeyFrames>
+    </Storyboard>
 
     <Style
         x:Key="HomeButtonStyle"
@@ -786,7 +810,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
 
-                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                    <Border
+                        Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10">
 
                         <Grid>
 
@@ -803,9 +832,20 @@
 
                     </Border>
 
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Button.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource HomeButtonMouseEnterAnimation}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource HomeButtonMouseLeaveAnimation}" />
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
+            
         </Setter>
+
     </Style>
 
     <!--#endregion-->

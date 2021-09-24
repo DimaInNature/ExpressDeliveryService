@@ -702,7 +702,8 @@
                                     Margin="15"
                                     Content="Создать"
                                     FontSize="70"
-                                    Foreground="White"
+                                    BorderBrush="#cb11ab"
+                                    Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
                             </Grid>
@@ -721,8 +722,9 @@
                                     Grid.Column="0"
                                     Margin="15,0,5,15"
                                     Content="Просмотр"
+                                    BorderBrush="#cb11ab"
                                     FontSize="30"
-                                    Foreground="White"
+                                    Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
                                 <Button
@@ -731,7 +733,8 @@
                                     Margin="15,0,5,15"
                                     Content="Изменить"
                                     FontSize="30"
-                                    Foreground="White"
+                                    BorderBrush="#cb11ab"
+                                    Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
                                 <Button
@@ -740,7 +743,8 @@
                                     Margin="15,0,5,15"
                                     Content="Удалить"
                                     FontSize="30"
-                                    Foreground="White"
+                                    BorderBrush="#cb11ab"
+                                    Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
                                 <Button
@@ -749,7 +753,8 @@
                                     Margin="15,0,15,15"
                                     Content="Настройки"
                                     FontSize="30"
-                                    Foreground="White"
+                                    BorderBrush="#cb11ab"
+                                    Foreground="#cb11ab"
                                     Style="{DynamicResource HomeButtonStyle}" />
 
                             </Grid>
