@@ -1,4 +1,4 @@
-﻿using ExpressDeliveryService.Service.Command;
+﻿using ExpressDeliveryService.Services.Command;
 using ExpressDeliveryService.View;
 using System.Security;
 using System.Windows;

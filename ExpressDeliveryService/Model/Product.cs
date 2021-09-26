@@ -4,64 +4,67 @@ namespace ExpressDeliveryService.Model
 {
     ///<summary> Класс - модель, представляющий товар,
     /// который будет перевозиться.</summary>
-    
+
     public class Product
     {
         ///<summary> Название товара.</summary>
+        
         public string Name
         {
-            get => name;
+            get => _name;
             set
             {
                 if (value != string.Empty)
                 {
-                    name = value;
+                    _name = value;
                 }
                 else
                 {
-                    name = "NoData";
+                    _name = "NoData";
                 }
             }
         }
 
-        private string name;
+        private string _name;
 
         ///<summary> Ценность товара в рублях.</summary>
+        
         public double Cost
         {
-            get => cost;
+            get => _cost;
             set
             {
                 if (value > 0)
                 {
-                    cost = Convert.ToDouble(value);
+                    _cost = Convert.ToDouble(value);
                 }
                 else
                 {
-                    cost = 0;
+                    _cost = 0;
                 }
             }
         }
 
-        private double cost;
+        private double _cost;
 
         ///<summary> Вес товара в граммах.</summary>
+        
         public int Weight
         {
-            get => weight;
+            get => _weight;
             set
             {
                 if (value > 0 && Convert.ToInt32(value) < 10000)
                 {
-                    weight = Convert.ToInt32(value);
+                    _weight = Convert.ToInt32(value);
                 }
                 else
                 {
-                    weight = 0;
+                    _weight = 0;
                 }
             }
         }
 
-        private int weight;
+        private int _weight;
     }
 }

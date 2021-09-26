@@ -1,4 +1,5 @@
 ﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ExpressDeliveryService.Model
 {
@@ -7,121 +8,114 @@ namespace ExpressDeliveryService.Model
     
     public class Order
     {
-        ///<summary> Уникальный идентификатор заказа.</summary>
-        
-        public int IdOrder { get; set; }
+        ///<summary> Уникальный идентификатор.</summary>
+
+        [BsonId]
+        public Guid Id { get; set; }
 
         ///<summary> Место получения товара.</summary>
         
         public string FromPlace
         {
-            get => fromPlace;
+            get => _fromPlace;
             set
             {
                 if (value != String.Empty)
                 {
-                    fromPlace = value;
+                    _fromPlace = value;
                 }
                 else
                 {
-                    fromPlace = "NoData";
+                    _fromPlace = "NoData";
                 }
             }
         }
 
-        private string fromPlace;
+        private string _fromPlace;
 
         ///<summary> Дата получения товара (dd/mm/yy).</summary>
         
-        public DateTime FromDate
+        public DateTime? FromDate
         {
-            get => fromDate;
+            get => _fromDate;
             set
             {
                 if (value != DateTime.MinValue)
                 {
-                    fromDate = value;
+                    _fromDate = value;
                 }
             }
         }
 
-        private DateTime fromDate;
+        private DateTime? _fromDate;
 
         ///<summary> Время получения товара.</summary>
         
         public string FromTime
         {
-            get => fromTime;
+            get => _fromTime;
             set
             {
-                if ((value != String.Empty) && (value.Length == 5))
+                if (value.Length == 5 || value == string.Empty)
                 {
-                    fromTime = value;
-                }
-                else
-                {
-                    fromTime = "00:00";
+                    _fromTime = value;
                 }
             }
         }
 
-        private string fromTime;
+        private string _fromTime;
 
         ///<summary> Место доставки товара.</summary>
         
         public string ToPlace
         {
-            get => toPlace;
+            get => _toPlace;
             set
             {
                 if (value != String.Empty)
                 {
-                    toPlace = value;
+                    _toPlace = value;
                 }
                 else
                 {
-                    toPlace = "NoData";
+                    _toPlace = "NoData";
                 }
             }
         }
 
-        private string toPlace;
+        private string _toPlace;
 
         ///<summary> Дата доставки товара (dd/mm/yy).</summary>
         
-        public DateTime ToDate
+        public DateTime? ToDate
         {
-            get => toDate;
+            get => _toDate;
             set
             {
                 if (value != DateTime.MinValue)
                 {
-                    toDate = value;
+                    _toDate = value;
                 }
             }
         }
 
-        private DateTime toDate;
+        private DateTime? _toDate;
 
         ///<summary> Время доставки товара.</summary>
         
         public string ToTime
         {
-            get => toTime;
+            get => _toTime;
             set
             {
-                if ((value != String.Empty) && (value.Length == 5))
+                if (value.Length == 5 || value == string.Empty)
                 {
-                    toTime = value;
-                }
-                else
-                {
-                    toTime = "00:00";
+                    _toTime = value;
                 }
             }
         }
 
-        private string toTime;
+        private string _toTime;
 
         ///<summary> Объект, представляющий коробку,
         /// в которую будет упаковываться товар.</summary>
@@ -143,20 +137,20 @@ namespace ExpressDeliveryService.Model
         
         public double TotalCost
         {
-            get => totalCost;
+            get => _totalCost;
             set
             {
                 if (Convert.ToDouble(value) > 0)
                 {
-                    totalCost = Convert.ToDouble(value);
+                    _totalCost = Convert.ToDouble(value);
                 }
                 else
                 {
-                    totalCost = 0;
+                    _totalCost = 0;
                 }
             }
         }
 
-        private double totalCost;
+        private double _totalCost;
     }
 }

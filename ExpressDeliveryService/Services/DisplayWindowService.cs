@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ExpressDeliveryService.Service
+namespace ExpressDeliveryService.Services
 {
     public class DisplayWindowService
     {
-        Dictionary<Type, Type> vmToWindowMapping = new Dictionary<Type, Type>();
+        Dictionary<Type, Type> _vmToWindowMapping = new Dictionary<Type, Type>();
 
         /// <summary> Регистрация связи ViewModel и View.</summary>
         
-        public void RegisterWindow<VM, Win>() where Win : Window, new() where VM : class
+        public void RegisterWindow<TVm, TWin>() where TWin : Window, new() where TVm : class
         {
-            var vmType = typeof(VM);
+            var vmType = typeof(TVm);
 
             if (vmType.IsInterface)
             {
                 throw new ArgumentException("Cannot register interfaces");
             }
 
-            if (vmToWindowMapping.ContainsKey(vmType))
+            if (_vmToWindowMapping.ContainsKey(vmType))
             {
                 throw new InvalidOperationException(
                     $"Type {vmType.FullName} is already registered");
             }
                 
-            vmToWindowMapping[vmType] = typeof(Win);
+            _vmToWindowMapping[vmType] = typeof(TWin);
         }
 
-        Dictionary<object, Window> openWindows = new Dictionary<object, Window>();
+        Dictionary<object, Window> _openWindows = new Dictionary<object, Window>();
 
         /// <summary> Открывает окно View переданного в параметр ViewModel.
         /// Если есть соответствие.</summary>
@@ -41,16 +41,16 @@ namespace ExpressDeliveryService.Service
                 throw new ArgumentNullException("vm");
             }
 
-            if (openWindows.ContainsKey(vm))
+            if (_openWindows.ContainsKey(vm))
             {
                 throw new InvalidOperationException(
                     "UI for this VM is already displayed");
             }
                 
-            var window = CreateWindowInstanceWithVM(vm);
+            var window = CreateWindowInstanceWithVm(vm);
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Show();
-            openWindows[vm] = window;
+            _openWindows[vm] = window;
         }
 
         /// <summary> Открывает View переданного в параметр ViewModel, как диалоговое.
@@ -58,14 +58,14 @@ namespace ExpressDeliveryService.Service
         
         public async Task ShowDialog(object vm)
         {
-            var window = CreateWindowInstanceWithVM(vm);
+            var window = CreateWindowInstanceWithVm(vm);
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             await window.Dispatcher.InvokeAsync(() => window.ShowDialog());
         }
 
         /// <summary> Создание связи View и ViewModel.</summary>
         
-        private Window CreateWindowInstanceWithVM(object vm)
+        private Window CreateWindowInstanceWithVm(object vm)
         {
             if (vm == null)
             {
@@ -76,7 +76,7 @@ namespace ExpressDeliveryService.Service
 
             var vmType = vm.GetType();
 
-            while (vmType != null && !vmToWindowMapping.TryGetValue(vmType, out windowType))
+            while (vmType != null && !_vmToWindowMapping.TryGetValue(vmType, out windowType))
             {
                 vmType = vmType.BaseType;
             }

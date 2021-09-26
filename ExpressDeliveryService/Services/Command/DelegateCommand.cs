@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace ExpressDeliveryService.Service.Command
+namespace ExpressDeliveryService.Services.Command
 {
-    class DelegateCommandService : ICommand
+    public class DelegateCommandService : ICommand
     {
-        Action<object> execute;
+        Action<object> _execute;
 
-        Func<object, bool> canExecute;
+        Func<object, bool> _canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -17,30 +17,30 @@ namespace ExpressDeliveryService.Service.Command
 
         public bool CanExecute(object parameter)
         {
-            if (canExecute != null)
+            if (_canExecute != null)
             {
-                return canExecute(parameter);
+                return _canExecute(parameter);
             }
             return true;
         }
 
         public void Execute(object parameter)
         {
-            if (execute != null)
+            if (_execute != null)
             {
-                execute(parameter);
+                _execute(parameter);
             }
         }
 
         public DelegateCommandService(Action<object> executeAction) : this(executeAction, null)
         {
-            execute = executeAction;
+            _execute = executeAction;
         }
 
         public DelegateCommandService(Action<object> executeAction, Func<object, bool> canExecuteFunc)
         {
-            canExecute = canExecuteFunc;
-            execute = executeAction;
+            _canExecute = canExecuteFunc;
+            _execute = executeAction;
         }
     }
 }

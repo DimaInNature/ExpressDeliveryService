@@ -11,60 +11,60 @@ namespace ExpressDeliveryService.Model
 
         public double Width
         {
-            get => width;
+            get => _width;
             set
             {
                 if (Convert.ToDouble(value) > 0 && Convert.ToDouble(value) < 200)
                 {
-                    width = Convert.ToDouble(value);
+                    _width = Convert.ToDouble(value);
                 }
                 else
                 {
-                    width = 0;
+                    _width = 0;
                 }
             }
         }
 
-        private double width;
+        private double _width;
 
         ///<summary> Высота коробки.</summary>
 
         public double Height
         {
-            get => height;
+            get => _height;
             set
             {
                 if (Convert.ToDouble(value) > 0 && Convert.ToDouble(value) < 200)
                 {
-                    height = value;
+                    _height = value;
                 }
                 else
                 {
-                    height = 0;
+                    _height = 0;
                 }
             }
         }
 
-        private double height;
+        private double _height;
 
         ///<summary> Длина коробки.</summary>
 
         public double Lenght
         {
-            get => lenght;
+            get => _lenght;
             set
             {
                 if (Convert.ToDouble(value) > 0 && Convert.ToDouble(value) < 200)
                 {
-                    lenght = Convert.ToDouble(value);
+                    _lenght = Convert.ToDouble(value);
                 }
                 else
                 {
-                    lenght = 0;
+                    _lenght = 0;
                 }
             }
         }
 
-        private double lenght;
+        private double _lenght;
     }
 }
