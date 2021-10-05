@@ -6,7 +6,7 @@ namespace ExpressDeliveryService.Model
     ///<summary> Класс - модель,
     /// представляющий заказ.</summary>
     
-    public class Order
+    public sealed class Order
     {
         ///<summary> Уникальный идентификатор.</summary>
 
@@ -56,10 +56,7 @@ namespace ExpressDeliveryService.Model
             get => _fromTime;
             set
             {
-                if (value.Length == 5 || value == string.Empty)
-                {
-                    _fromTime = value;
-                }
+                _fromTime = value;
             }
         }
 
@@ -108,10 +105,7 @@ namespace ExpressDeliveryService.Model
             get => _toTime;
             set
             {
-                if (value.Length == 5 || value == string.Empty)
-                {
-                    _toTime = value;
-                }
+                _toTime = value;
             }
         }
 
@@ -152,5 +146,8 @@ namespace ExpressDeliveryService.Model
         }
 
         private double _totalCost;
+
+        ///<summary> Пользователь, который сделал заказ. </summary>
+
     }
 }

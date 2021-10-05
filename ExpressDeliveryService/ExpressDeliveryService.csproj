@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Content\Images\Logo\Logo.ico</ApplicationIcon>
@@ -155,8 +157,9 @@
     <Compile Include="Model\Box.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Services\Command\DelegateCommand.cs" />
-    <Compile Include="Services\DataManager.cs" />
+    <Compile Include="Data\DataManager.cs" />
     <Compile Include="Services\DisplayWindowService.cs" />
     <Compile Include="Services\Interfaces\IDataManager.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -216,9 +219,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Content\Images\Controls\WindowControls\Default\ControlButtonClose.png" />
     <Resource Include="Content\Images\Controls\WindowControls\MouseEnter\ControlButtonCloseMouseEnter.png" />

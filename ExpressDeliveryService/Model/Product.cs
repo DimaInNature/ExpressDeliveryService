@@ -5,7 +5,7 @@ namespace ExpressDeliveryService.Model
     ///<summary> Класс - модель, представляющий товар,
     /// который будет перевозиться.</summary>
 
-    public class Product
+    public sealed class Product
     {
         ///<summary> Название товара.</summary>
         

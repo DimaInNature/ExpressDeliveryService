@@ -1204,49 +1204,19 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
         <Setter Property="FontSize" Value="17" />
-        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Background" Value="#F2F2F2" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
 
                     <Border Background="{TemplateBinding Background}" CornerRadius="10">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Image
-                                x:Name="Img"
-                                Grid.Column="0"
-                                Margin="2"
-                                HorizontalAlignment="Center"
-                                RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/SettingsMenuButtonIconDefault.png" />
-
                             <ContentPresenter
-                                Grid.Column="1"
-                                Margin="-10,0,0,0"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}" />
                         </Grid>
                     </Border>
-
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/SettingsMenuButtonIconEnter.png" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsChecked" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/SettingsMenuButtonIconEnter.png" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
 
                 </ControlTemplate>
 

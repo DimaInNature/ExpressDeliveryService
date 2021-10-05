@@ -194,7 +194,8 @@
                 Margin="0,84,0,157.96"
                 HorizontalAlignment="Center"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Логин" />
+                Tag="Логин"
+                Text="{Binding EnterUserLogin}" />
 
             <PasswordBox
                 x:Name="EnterPasswordPasswordBox"
@@ -272,8 +273,24 @@
                 VerticalAlignment="Bottom"
                 Command="{Binding EnterButtonClickCommand}"
                 CommandParameter="{Binding ElementName=ThisWindow}"
-                Content="Войти"
-                Style="{DynamicResource ButtonStyle}" />
+                Content="Войти">
+
+                <Button.Style>
+                    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EnterLoginTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PasswordBoxWatermark, Path=Visibility}" Value="Visible">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
 
         </Grid>
 
@@ -360,7 +377,8 @@
                 HorizontalAlignment="Center"
                 Opacity="0.8"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Имя" />
+                Tag="Имя"
+                Text="{Binding CreateUserName}" />
 
             <Border
                 Width="250"
@@ -377,7 +395,8 @@
                 Margin="0,65,0,200"
                 HorizontalAlignment="Center"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Фамилия" />
+                Tag="Фамилия"
+                Text="{Binding CreateUserSurname}" />
 
             <Border
                 Width="250"
@@ -394,7 +413,8 @@
                 Margin="0,65,0,120"
                 HorizontalAlignment="Center"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Отчество (при наличии)" />
+                Tag="Отчество (при наличии)"
+                Text="{Binding CreateUserPatronymic}" />
 
             <Border
                 Width="250"
@@ -411,7 +431,8 @@
                 Margin="0,65,0,40"
                 HorizontalAlignment="Center"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Электронная почта" />
+                Tag="Электронная почта"
+                Text="{Binding CreateUserMail}" />
 
             <Border
                 Width="250"
@@ -428,7 +449,8 @@
                 Margin="0,105,0,0"
                 HorizontalAlignment="Center"
                 Style="{DynamicResource LoginTextBoxStyle}"
-                Tag="Логин" />
+                Tag="Логин"
+                Text="{Binding CreateUserLogin}" />
 
             <Border
                 Width="250"
@@ -485,8 +507,41 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 Command="{Binding RegisterButtonClickCommand}"
-                Content="Создать"
-                Style="{DynamicResource ButtonStyle}" />
+                CommandParameter="{Binding ElementName=ThisWindow}"
+                Content="Создать">
+
+                <Button.Style>
+                    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=RegisterLoginTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RegisterPasswordBoxWatermark, Path=Visibility}" Value="Visible">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RegisterMailTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RegisterMiddleNameTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RegisterSurnameTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=RegisterNameTextBox, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
 
         </Grid>
 

@@ -5,7 +5,7 @@ namespace ExpressDeliveryService.Model
     ///<summary> Класс - модель, представляющий коробку,
     /// в которую будет упаковываться товар.</summary>
     
-    public class Box
+    public sealed class Box
     {
         ///<summary> Ширина коробки.</summary>
 

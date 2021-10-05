@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
     x:Name="ThisWindow"
-    Title="Delivery Express"
+    Title="{Binding ViewTitle}"
     Width="800"
     Height="600"
     AllowsTransparency="True"
@@ -910,9 +910,9 @@
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
                                         IsHitTestVisible="False"
+                                        SelectedDate="{Binding SelectedViewOrder.FromDate}"
                                         Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить"
-                                        SelectedDate="{Binding SelectedViewOrder.FromDate}" />
+                                        Tag="Когда отправить" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -961,9 +961,9 @@
                                         Margin="50,0,0,0"
                                         HorizontalAlignment="Left"
                                         IsHitTestVisible="False"
+                                        SelectedDate="{Binding SelectedViewOrder.ToDate}"
                                         Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить"
-                                        SelectedDate="{Binding SelectedViewOrder.ToDate}" />
+                                        Tag="Когда получить" />
 
                                     <TextBox
                                         Grid.Row="3"
@@ -1682,10 +1682,9 @@
                                         Height="40"
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить"
                                         SelectedDate="{Binding EditFromDate}"
-                                        />
+                                        Style="{DynamicResource DatePickerStyle}"
+                                        Tag="Когда отправить" />
 
                                     <TextBox
                                         Name="EditFromTimeTextBox"
@@ -1732,9 +1731,9 @@
                                         Height="40"
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
+                                        SelectedDate="{Binding EditToDate}"
                                         Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить"
-                                        SelectedDate="{Binding EditToDate}" />
+                                        Tag="Когда получить" />
 
                                     <TextBox
                                         Name="EditToTimeTextBox"
@@ -2104,9 +2103,9 @@
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
                                         IsHitTestVisible="False"
+                                        SelectedDate="{Binding DeleteFromDate}"
                                         Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить"
-                                        SelectedDate="{Binding DeleteFromDate}" />
+                                        Tag="Когда отправить" />
 
                                     <TextBox
                                         Name="DeleteFromTimeTextBox"
@@ -2156,9 +2155,9 @@
                                         Margin="20,0,0,0"
                                         HorizontalAlignment="Left"
                                         IsHitTestVisible="False"
+                                        SelectedDate="{Binding DeleteToDate}"
                                         Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить"
-                                        SelectedDate="{Binding DeleteToDate}" />
+                                        Tag="Когда получить" />
 
                                     <TextBox
                                         Name="DeleteToTimeTextBox"
@@ -2465,154 +2464,405 @@
 
                         <Grid Name="SettingsGrid">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-                            <!--#region Top-->
+                            <Grid Column="0">
 
-                            <Grid Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="30"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="Настройки" />
+                                <RadioButton
+                                    Name="UserSettingsRadioButton"
+                                    Grid.Row="0"
+                                    Width="180"
+                                    Height="25"
+                                    Content="Пользователь"
+                                    IsChecked="True">
+
+                                    <RadioButton.Style>
+                                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsChecked" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+
+                                </RadioButton>
+
+                                <RadioButton
+                                    Name="ClientSettingsRadioButton"
+                                    Grid.Row="1"
+                                    Width="180"
+                                    Height="25"
+                                    Content="Клиент"
+                                    IsChecked="False">
+
+                                    <RadioButton.Style>
+                                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsChecked" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+
+                                </RadioButton>
 
                             </Grid>
 
-                            <!--#endregion-->
+                            <Grid Column="1">
 
-                            <!--#region Body-->
+                                <!--  #Region User  -->
 
-                            <Grid Row="1">
+                                <Grid Name="SettingsUserGrid">
 
-                                <Grid Row="0">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition Height="100" />
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition Height="100" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--#region Network and Data-->
+                                    <!--#region Top-->
 
                                     <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Width="175"
-                                        Height="27"
-                                        Margin="20,0,0,0"
+                                        Width="400"
+                                        Height="40"
+                                        Margin="0,60,0,0"
                                         HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
+                                        VerticalAlignment="Top"
+                                        FontSize="30"
                                         Style="{DynamicResource TextBlockStyle}"
-                                        Text="Сеть и данные" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="20,10,20,0"
-                                        VerticalAlignment="Top"
-                                        Content="Проверка подключения к сети"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="20,40,20,0"
-                                        VerticalAlignment="Top"
-                                        Content="Проверка целостности данных"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20" />
+                                        Text="Настройки пользователя"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
 
                                     <!--#endregion-->
 
-                                    <!--#region Logging-->
+                                    <!--#region Body-->
 
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="1"
+                                    <TextBox
+                                        x:Name="SettingsUserNameTextBox"
+                                        Width="300"
+                                        Height="25"
+                                        Margin="0,25,0,280"
+                                        HorizontalAlignment="Center"
+                                        Opacity="0.8"
+                                        Style="{DynamicResource LoginTextBoxStyle}"
+                                        Tag="Имя"
+                                        Text="{Binding SettingsUserName, Mode=TwoWay}" />
+
+                                    <Border
+                                        Width="300"
+                                        Height="2"
+                                        Margin="0,60,0,280"
+                                        Background="#491274"
+                                        IsHitTestVisible="False"
+                                        Opacity="0.5" />
+
+                                    <TextBox
+                                        x:Name="SettingsSurnameTextBox"
+                                        Width="300"
+                                        Height="25"
+                                        Margin="0,25,0,200"
+                                        HorizontalAlignment="Center"
+                                        Style="{DynamicResource LoginTextBoxStyle}"
+                                        Tag="Фамилия"
+                                        Text="{Binding SettingsUserSurname, Mode=TwoWay}" />
+
+                                    <Border
+                                        Width="300"
+                                        Height="2"
+                                        Margin="0,60,0,200"
+                                        Background="#491274"
+                                        IsHitTestVisible="False"
+                                        Opacity="0.5" />
+
+                                    <TextBox
+                                        x:Name="SettingsPatronymicTextBox"
+                                        Width="300"
+                                        Height="25"
+                                        Margin="0,25,0,120"
+                                        HorizontalAlignment="Center"
+                                        Style="{DynamicResource LoginTextBoxStyle}"
+                                        Tag="Отчество (при наличии)"
+                                        Text="{Binding SettingsUserPatronymic, Mode=TwoWay}" />
+
+                                    <Border
+                                        Width="300"
+                                        Height="2"
+                                        Margin="0,60,0,120"
+                                        Background="#491274"
+                                        IsHitTestVisible="False"
+                                        Opacity="0.5" />
+
+                                    <TextBox
+                                        x:Name="SettingsUserMailTextBox"
+                                        Width="300"
+                                        Height="25"
+                                        Margin="0,25,0,40"
+                                        HorizontalAlignment="Center"
+                                        Style="{DynamicResource LoginTextBoxStyle}"
+                                        Tag="Электронная почта"
+                                        Text="{Binding SettingsUserMail, Mode=TwoWay}" />
+
+                                    <Border
+                                        Width="300"
+                                        Height="2"
+                                        Margin="0,60,0,40"
+                                        Background="#491274"
+                                        IsHitTestVisible="False"
+                                        Opacity="0.5" />
+
+                                    <TextBox
+                                        x:Name="SettingsLoginTextBox"
+                                        Width="300"
+                                        Height="25"
+                                        Margin="0,65,0,0"
+                                        HorizontalAlignment="Center"
+                                        Style="{DynamicResource LoginTextBoxStyle}"
+                                        Tag="Логин"
+                                        Text="{Binding SettingsUserLogin}" />
+
+                                    <Border
+                                        Width="300"
+                                        Height="2"
+                                        Margin="0,100,0,0"
+                                        Background="#491274"
+                                        IsHitTestVisible="False"
+                                        Opacity="0.5" />
+
+                                    <Button
                                         Width="160"
-                                        Height="27"
-                                        Margin="20,0,0,0"
+                                        Height="37"
+                                        Margin="0,0,0,100"
                                         HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Логирование" />
+                                        VerticalAlignment="Bottom"
+                                        Command="{Binding SettingsUserEditClickCommand}"
+                                        Content="Сохранить">
 
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="285"
-                                        Height="25"
-                                        Margin="20,10,20,0"
-                                        VerticalAlignment="Top"
-                                        Content="Сохранять историю действий"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20" />
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+                                                <Style.Triggers>
 
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="275"
-                                        Height="25"
-                                        Margin="10,40,20,0"
-                                        VerticalAlignment="Top"
-                                        Content="Сохранять историю ошибок"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20" />
+                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserNameTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=SettingsSurnameTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=SettingsPatronymicTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserMailTextBox, Path=Text}" Value="">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserPasswordBoxWatermark, Path=Visibility}" Value="Visible">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                        <Setter Property="Background" Value="Gray" />
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+
+                                    </Button>
 
                                     <!--#endregion-->
 
-                                    <!--#region Client-->
-
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        Width="87"
-                                        Height="27"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Клиент" />
-
-                                    <CheckBox
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="310"
-                                        Height="25"
-                                        Margin="30,10,20,0"
-                                        VerticalAlignment="Top"
-                                        Content="Располагать окно выше других"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20" />
-
-                                    <!--#endregion-->
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="true">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="true">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
 
                                 </Grid>
 
+                                <!--  #EndRegion  -->
+
+                                <!--  #Region Client  -->
+
+                                <Grid Name="SettingsClientGrid">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <!--#region Top-->
+
+                                    <Grid Row="0">
+
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="24"
+                                            Style="{DynamicResource TextBlockStyle}"
+                                            Text="Настройки клиента" />
+
+                                    </Grid>
+
+                                    <!--#endregion-->
+
+                                    <!--#region Body-->
+
+                                    <Grid Row="1">
+
+                                        <Grid Row="0">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="100" />
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="100" />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--#region Network and Data-->
+
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Width="153"
+                                                Height="27"
+                                                Margin="20,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="23"
+                                                Style="{DynamicResource TextBlockStyle}"
+                                                Text="Сеть и данные" />
+
+                                            <CheckBox
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Width="300"
+                                                Height="25"
+                                                Margin="20,10,20,0"
+                                                VerticalAlignment="Top"
+                                                Content="Проверка подключения к сети"
+                                                FontFamily="{DynamicResource ProximaNovaTh}"
+                                                FontSize="17" />
+
+                                            <CheckBox
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Width="300"
+                                                Height="25"
+                                                Margin="20,40,20,0"
+                                                VerticalAlignment="Top"
+                                                Content="Проверка целостности данных"
+                                                FontFamily="{DynamicResource ProximaNovaTh}"
+                                                FontSize="17" />
+
+                                            <!--#endregion-->
+
+                                            <!--#region Logging-->
+
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Width="142"
+                                                Height="27"
+                                                Margin="20,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="23"
+                                                Style="{DynamicResource TextBlockStyle}"
+                                                Text="Логирование" />
+
+                                            <CheckBox
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="285"
+                                                Height="25"
+                                                Margin="20,10,20,0"
+                                                VerticalAlignment="Top"
+                                                Content="Сохранять историю действий"
+                                                FontFamily="{DynamicResource ProximaNovaTh}"
+                                                FontSize="17" />
+
+                                            <CheckBox
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="275"
+                                                Height="25"
+                                                Margin="20,40,20,0"
+                                                VerticalAlignment="Top"
+                                                Content="Сохранять историю ошибок"
+                                                FontFamily="{DynamicResource ProximaNovaTh}"
+                                                FontSize="17" />
+
+                                            <!--#endregion-->
+
+                                            <!--#region Client-->
+
+                                            <TextBlock
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Width="74"
+                                                Height="27"
+                                                Margin="20,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="23"
+                                                Style="{DynamicResource TextBlockStyle}"
+                                                Text="Клиент" />
+
+                                            <CheckBox
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                Width="310"
+                                                Height="25"
+                                                Margin="20,10,20,0"
+                                                VerticalAlignment="Top"
+                                                Content="Располагать окно выше других"
+                                                FontFamily="{DynamicResource ProximaNovaTh}"
+                                                FontSize="17" />
+
+                                            <!--#endregion-->
+
+                                        </Grid>
+
+                                    </Grid>
+
+                                    <!--#endregion-->
+
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+
+                                </Grid>
+
+                                <!--  #EndRegion  -->
+
                             </Grid>
-
-                            <!--#endregion-->
-
 
                             <Grid.Style>
                                 <Style TargetType="Grid">

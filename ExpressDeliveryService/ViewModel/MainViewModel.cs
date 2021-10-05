@@ -1,32 +1,59 @@
-﻿using System;
+﻿using ExpressDeliveryService.Data;
 using ExpressDeliveryService.Model;
 using ExpressDeliveryService.Services.Command;
 using ExpressDeliveryService.View;
 using ExpressDeliveryService.ViewModel.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using ExpressDeliveryService.Services;
 
 namespace ExpressDeliveryService.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public sealed class MainViewModel : ViewModelBase
     {
-        DataManager db = new DataManager("ExpressDeliveryDB");
+        public MainViewModel(){}
 
-        public MainViewModel()
+        public MainViewModel(User activeUser)
         {
-            _orders = db.GetAll<Order>("Orders");
+            ActiveUser = activeUser;
 
-            CreateButtonClickCommand = new DelegateCommandService(CreateButtonClick);
-            EditButtonClickCommand = new DelegateCommandService(EditButtonClick);
-            EditMenuItemClickCommand = new DelegateCommandService(EditMenuItemClick);
-            DeleteButtonClickCommand = new DelegateCommandService(DeleteButtonClick);
-            DeleteMenuItemClickCommand = new DelegateCommandService(DeleteMenuItemClick);
+            InitialCommands();
+            InitialDataCollections();
+            SetViewProperties();
+            SetSettingsUserFields();
         }
 
         #region Properties
+
+        public static User ActiveUser { get; private set; }
+
+        private readonly DataManager _db = new DataManager(DataManager.ActualNameDB);
+
+        #region View Props
+
+        public string ViewTitle
+        {
+            get => _viewTitle;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _viewTitle = value;
+                    OnPropertyChanged("ViewTitle");
+                }
+                else
+                {
+                    _viewTitle = String.Empty;
+                    OnPropertyChanged("ViewTitle");
+                }
+            }
+        }
+
+        private string _viewTitle;
+
+        #endregion
 
         #region Data Collections
 
@@ -80,7 +107,7 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region Create
+        #region Create Fields
 
         #region From
 
@@ -427,7 +454,7 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region Edit
+        #region Edit Fields
 
         #region From
 
@@ -762,7 +789,7 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region Delete
+        #region Delete Fields
 
         #region From
 
@@ -1097,17 +1124,139 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
+        #region Settings User Fields
+
+        public string SettingsUserName
+        {
+            get => _settingsUserName;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _settingsUserName = value;
+                    OnPropertyChanged("SettingsUserName");
+                }
+                else
+                {
+                    _settingsUserName = String.Empty;
+                    OnPropertyChanged("SettingsUserName");
+                }
+            }
+        }
+
+        private string _settingsUserName;
+
+        public string SettingsUserSurname
+        {
+            get => _settingsUserSurname;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _settingsUserSurname = value;
+                    OnPropertyChanged("SettingsUserSurname");
+                }
+                else
+                {
+                    _settingsUserSurname = String.Empty;
+                    OnPropertyChanged("SettingsUserSurname");
+                }
+            }
+        }
+
+        private string _settingsUserSurname;
+
+        public string SettingsUserPatronymic
+        {
+            get => _settingsUserPatronymic;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _settingsUserPatronymic = value;
+                    OnPropertyChanged("SettingsUserPatronymic");
+                }
+                else
+                {
+                    _settingsUserPatronymic = String.Empty;
+                    OnPropertyChanged("SettingsUserPatronymic");
+                }
+            }
+        }
+
+        private string _settingsUserPatronymic;
+
+        public string SettingsUserMail
+        {
+            get => _settingsUserMail;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _settingsUserMail = value;
+                    OnPropertyChanged("SettingsUserMail");
+                }
+                else
+                {
+                    _settingsUserMail = String.Empty;
+                    OnPropertyChanged("SettingsUserMail");
+                }
+            }
+        }
+
+        private string _settingsUserMail;
+
+        public string SettingsUserLogin
+        {
+            get => _settingsUserLogin;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _settingsUserLogin = value;
+                    OnPropertyChanged("SettingsUserLogin");
+                }
+                else
+                {
+                    _settingsUserLogin = String.Empty;
+                    OnPropertyChanged("SettingsUserLogin");
+                }
+            }
+        }
+
+        private string _settingsUserLogin;
+
         #endregion
+
+        #region Commands
+
+        public ICommand CreateButtonClickCommand { get; private set; }
+
+        public ICommand ExitMenuButtonClickCommand { get; private set; }
+
+        public ICommand EditButtonClickCommand { get; private set; }
+
+        public ICommand EditMenuItemClickCommand { get; private set; }
+
+        public ICommand DeleteButtonClickCommand { get; private set; }
+
+        public ICommand DeleteMenuItemClickCommand { get; private set; }
+
+        public ICommand SettingsUserEditClickCommand { get; private set; }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         #region Commands
 
         #region CreateButtonClickCommand
 
-        public ICommand CreateButtonClickCommand { get; private set; }
-
-        private  void CreateButtonClick(object obj)
+        private void CreateButtonClick(object obj)
         {
-            db.Create("Orders", new Order()
+            Order newOrder = new Order()
             {
                 FromPlace = CreateFromPlace,
                 FromDate = CreateFromDate,
@@ -1134,22 +1283,45 @@ namespace ExpressDeliveryService.ViewModel
                 AvailabilityOfInsurancePurchased = CreateAvailabilityOfInsurancePurchased,
                 ComplianceTemperatureRegimePurchased = CreateComplianceTemperatureRegimePurchased,
                 PackagingPurchased = CreatePackagingPurchased
-            });
+            };
 
-            _orders = db.GetAll<Order>("Orders");
+
+            if (ActiveUser.Orders != null)
+            {
+                ActiveUser.Orders.Add(newOrder);
+            }
+            else
+            {
+                ActiveUser.Orders = new List<Order>(); 
+                ActiveUser.Orders.Add(newOrder);
+            }
+
+            User newUser = new User()
+            {
+                Id = ActiveUser.Id,
+                Name = ActiveUser.Name,
+                Surname = ActiveUser.Surname,
+                Patronymic = ActiveUser.Patronymic,
+                Mail = ActiveUser.Mail,
+                Login = ActiveUser.Login,
+                Password = ActiveUser.Password,
+                Orders = ActiveUser.Orders
+            };
+
+            _db.Edit("Users", ActiveUser.Id, newUser);
+
+            _orders = ActiveUser.Orders;
             OnPropertyChanged("Orders");
+
+            ActiveUser = newUser;
         }
 
         #endregion
 
         #region ExitMenuButtonClickCommand
 
-        public ICommand ExitMenuButtonClickCommand { get; private set; } = new DelegateCommandService(ExitMenuButtonClick);
-
         private static void ExitMenuButtonClick(object obj)
         {
-            // Параметр является ссылкой на представление
-
             var view = obj as MainView;
 
             var displayRootRegistry = (Application.Current as App).DisplayWindow;
@@ -1162,8 +1334,6 @@ namespace ExpressDeliveryService.ViewModel
         #endregion
 
         #region EditButtonClickCommand
-
-        public ICommand EditButtonClickCommand { get; private set; }
 
         private void EditButtonClick(object obj)
         {
@@ -1197,38 +1367,58 @@ namespace ExpressDeliveryService.ViewModel
                 PackagingPurchased = EditPackagingPurchased
             };
 
-            db.Edit("Orders", newOrder.Id, newOrder);
+            if (ActiveUser.Orders != null)
+            {
+                foreach (var i in ActiveUser.Orders)
+                {
 
-            _orders = db.GetAll<Order>("Orders");
+                    if (i.Id == SelectedEditOrder.Id)
+                    {
+                        i.FromPlace = newOrder.FromPlace;
+                        i.FromTime = newOrder.FromTime;
+                        i.FromDate = newOrder.FromDate;
 
+                        i.Product = newOrder.Product;
+                        i.Box = newOrder.Box;
+
+                        i.ToPlace = newOrder.ToPlace;
+                        i.ToTime = newOrder.ToTime;
+                        i.ToDate = newOrder.ToDate;
+
+                        i.AvailabilityOfInsurancePurchased = newOrder.AvailabilityOfInsurancePurchased;
+                        i.ComplianceTemperatureRegimePurchased = newOrder.ComplianceTemperatureRegimePurchased;
+                        i.PackagingPurchased = newOrder.PackagingPurchased;
+                    }
+                }
+            }
+            else
+            {
+                ActiveUser.Orders = new List<Order>();
+            }
+
+            User newUser = new User()
+            {
+                Id = ActiveUser.Id,
+                Name = ActiveUser.Name,
+                Surname = ActiveUser.Surname,
+                Patronymic = ActiveUser.Patronymic,
+                Mail = ActiveUser.Mail,
+                Login = ActiveUser.Login,
+                Password = ActiveUser.Password,
+                Orders = ActiveUser.Orders
+        };
+
+            _db.Edit("Users", ActiveUser.Id, newUser);
+
+            _orders = ActiveUser.Orders;
             OnPropertyChanged("Orders");
-
-            EditFromPlace = String.Empty;
-            EditFromTime = String.Empty;
-            EditFromDate = null;
-
-            EditToPlace = String.Empty;
-            EditToTime = String.Empty;
-            EditToDate = null;
-
-            EditBoxHeight = String.Empty;
-            EditBoxLenght = String.Empty;
-            EditBoxWidth = String.Empty;
-
-            EditProductCost = String.Empty;
-            EditProductName = String.Empty;
-            EditProductWeight = String.Empty;
-
-            EditAvailabilityOfInsurancePurchased = false;
-            EditComplianceTemperatureRegimePurchased = false;
-            EditPackagingPurchased = false;
+            ClearEditFields();
+            ActiveUser = newUser;
         }
 
         #endregion
 
         #region EditMenuItemClickCommand
-
-        public ICommand EditMenuItemClickCommand { get; private set; }
 
         private void EditMenuItemClick(object obj)
         {
@@ -1257,42 +1447,34 @@ namespace ExpressDeliveryService.ViewModel
 
         #region DeleteButtonClickCommand
 
-        public ICommand DeleteButtonClickCommand { get; private set; }
-
         private void DeleteButtonClick(object obj)
         {
-            db.Delete<Order>("Orders", SelectedDeleteOrder.Id);
-            _orders = db.GetAll<Order>("Orders");
+            ActiveUser.Orders.RemoveAll(o => o.Id == SelectedDeleteOrder.Id);
+            
+            User newUser = new User()
+            {
+                Id = ActiveUser.Id,
+                Name = ActiveUser.Name,
+                Surname = ActiveUser.Surname,
+                Patronymic = ActiveUser.Patronymic,
+                Mail = ActiveUser.Mail,
+                Login = ActiveUser.Login,
+                Password = ActiveUser.Password,
+                Orders = ActiveUser.Orders
+            };
 
+            _db.Edit("Users", ActiveUser.Id, newUser);
+
+            _orders = ActiveUser.Orders;
             OnPropertyChanged("Orders");
 
-            DeleteFromPlace = String.Empty;
-            DeleteFromTime = String.Empty;
-            DeleteFromDate = null;
-
-            DeleteToPlace = String.Empty;
-            DeleteToTime = String.Empty;
-            DeleteToDate = null;
-
-            DeleteBoxHeight = String.Empty;
-            DeleteBoxLenght = String.Empty;
-            DeleteBoxWidth = String.Empty;
-
-            DeleteProductCost = String.Empty;
-            DeleteProductName = String.Empty;
-            DeleteProductWeight = String.Empty;
-
-            DeleteAvailabilityOfInsurancePurchased = false;
-            DeleteComplianceTemperatureRegimePurchased = false;
-            DeletePackagingPurchased = false;
-
+            ClearAllFields();
+            ActiveUser = newUser;
         }
 
         #endregion
 
         #region DeleteMenuItemClickCommand
-
-        public ICommand DeleteMenuItemClickCommand { get; private set; }
 
         private void DeleteMenuItemClick(object obj)
         {
@@ -1319,10 +1501,123 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
+        #region SettingsUserEditClickCommand
+
+        private void SettingsUserEditClick(object obj)
+        {
+            User newUser = new User()
+            {
+                Id = ActiveUser.Id,
+                Name = SettingsUserName,
+                Surname = SettingsUserSurname,
+                Patronymic = SettingsUserPatronymic,
+                Mail = SettingsUserMail,
+                Login = SettingsUserLogin,
+                Password = ActiveUser.Password,
+                Orders = ActiveUser.Orders
+            };
+
+            _db.Edit("Users", ActiveUser.Id, newUser);
+
+            ActiveUser = newUser;
+            _viewTitle = ActiveUser.Login;
+            OnPropertyChanged("ViewTitle");
+        }
+
         #endregion
 
-        #region Methods
+        #endregion
 
+        private void ClearEditFields()
+        {
+            EditFromPlace = String.Empty;
+            EditFromTime = String.Empty;
+            EditFromDate = null;
+
+            EditToPlace = String.Empty;
+            EditToTime = String.Empty;
+            EditToDate = null;
+
+            EditBoxHeight = String.Empty;
+            EditBoxLenght = String.Empty;
+            EditBoxWidth = String.Empty;
+
+            EditProductCost = String.Empty;
+            EditProductName = String.Empty;
+            EditProductWeight = String.Empty;
+
+            EditAvailabilityOfInsurancePurchased = false;
+            EditComplianceTemperatureRegimePurchased = false;
+            EditPackagingPurchased = false;
+
+            _selectedEditOrder = null;
+            OnPropertyChanged("SelectedEditOrder");
+        }
+
+        private void ClearDeleteFields()
+        {
+            DeleteFromPlace = String.Empty;
+            DeleteFromTime = String.Empty;
+            DeleteFromDate = null;
+
+            DeleteToPlace = String.Empty;
+            DeleteToTime = String.Empty;
+            DeleteToDate = null;
+
+            DeleteBoxHeight = String.Empty;
+            DeleteBoxLenght = String.Empty;
+            DeleteBoxWidth = String.Empty;
+
+            DeleteProductCost = String.Empty;
+            DeleteProductName = String.Empty;
+            DeleteProductWeight = String.Empty;
+
+            DeleteAvailabilityOfInsurancePurchased = false;
+            DeleteComplianceTemperatureRegimePurchased = false;
+            DeletePackagingPurchased = false;
+
+            _selectedDeleteOrder = null;
+            OnPropertyChanged("SelectedDeleteOrder");
+        }
+
+        private void ClearAllFields()
+        {
+            ClearEditFields();
+            ClearDeleteFields();
+        }
+
+        private void InitialCommands()
+        {
+            CreateButtonClickCommand = new DelegateCommandService(CreateButtonClick);
+            EditButtonClickCommand = new DelegateCommandService(EditButtonClick);
+            EditMenuItemClickCommand = new DelegateCommandService(EditMenuItemClick);
+            DeleteButtonClickCommand = new DelegateCommandService(DeleteButtonClick);
+            DeleteMenuItemClickCommand = new DelegateCommandService(DeleteMenuItemClick);
+            ExitMenuButtonClickCommand = new DelegateCommandService(ExitMenuButtonClick);
+            SettingsUserEditClickCommand = new DelegateCommandService(SettingsUserEditClick);
+        }
+
+        private void InitialDataCollections()
+        {
+            if (ActiveUser.Orders != null)
+            {
+                _orders = ActiveUser.Orders.ToList();
+            }
+        }
+
+        private void SetViewProperties()
+        {
+            _viewTitle = ActiveUser.Login;
+        }
+
+        private void SetSettingsUserFields()
+        {
+            SettingsUserName = ActiveUser.Name;
+            SettingsUserSurname = ActiveUser.Surname;
+            SettingsUserPatronymic = ActiveUser.Patronymic;
+            SettingsUserMail = ActiveUser.Mail;
+            SettingsUserLogin = ActiveUser.Login;
+        }
 
         #endregion
 

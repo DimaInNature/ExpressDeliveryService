@@ -1,22 +1,53 @@
-﻿using ExpressDeliveryService.Services.Command;
+﻿using ExpressDeliveryService.Data;
+using ExpressDeliveryService.Model;
+using ExpressDeliveryService.Services.Command;
 using ExpressDeliveryService.View;
+using ExpressDeliveryService.ViewModel.Base;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using System;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows;
 using System.Windows.Input;
-using ExpressDeliveryService.ViewModel.Base;
 
 namespace ExpressDeliveryService.ViewModel
 {
-    public class LoginViewModel : ViewModelBase
+    public sealed class LoginViewModel : ViewModelBase
     {
         public LoginViewModel()
         {
-            SetUpDefaultCondition();
+            InitialEnterFields();
+            InitialRegisterFields();
+            InitialCommands();
         }
 
         #region Properties
 
-        #region AuthorizationPasswordBox
+        private readonly DataManager _db = new DataManager(DataManager.ActualNameDB);
+
+        #region Enter Fields
+
+        public string EnterUserLogin
+        {
+            get => _enterUserLogin;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _enterUserLogin = value;
+                    OnPropertyChanged("EnterUserLogin");
+                }
+                else
+                {
+                    _enterUserLogin = String.Empty;
+                    OnPropertyChanged("EnterUserLogin");
+                }
+            }
+        }
+
+        private string _enterUserLogin;
 
         public SecureString SecurePassword
         {
@@ -30,11 +61,33 @@ namespace ExpressDeliveryService.ViewModel
 
         private SecureString _securePassword;
 
-        public string Password
+        public unsafe string Password
         {
-            get => _password;
+            [SecurityCritical]
+            get
+            {
+                if (SecurePassword != null)
+                {
+                    SecureString securePassword = SecurePassword;
+                    IntPtr intPtr = Marshal.SecureStringToBSTR(securePassword);
+                    return new string((char*)(void*)intPtr);
+                }
+                return String.Empty;
+            }
+            [SecurityCritical]
             set
             {
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
+                using (SecureString secureString = new SecureString())
+                {
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        secureString.AppendChar(value[i]);
+                    }
+                }
                 _password = value;
                 IsPasswordWatermarkVisible = string.IsNullOrEmpty(_password);
             }
@@ -57,11 +110,113 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
+        #region Registration Fields
+
+        public string CreateUserLogin
+        {
+            get => _createUserLogin;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _createUserLogin = value;
+                    OnPropertyChanged("CreateUserLogin");
+                }
+                else
+                {
+                    _createUserLogin = String.Empty;
+                    OnPropertyChanged("CreateUserLogin");
+                }
+            }
+        }
+
+        private string _createUserLogin;
+
+        public string CreateUserName
+        {
+            get => _createUserName;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _createUserName = value;
+                    OnPropertyChanged("CreateUserName");
+                }
+                else
+                {
+                    _createUserName = String.Empty;
+                    OnPropertyChanged("CreateUserName");
+                }
+            }
+        }
+
+        private string _createUserName;
+
+        public string CreateUserSurname
+        {
+            get => _createUserSurname;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _createUserSurname = value;
+                    OnPropertyChanged("CreateUserSurname");
+                }
+                else
+                {
+                    _createUserSurname = String.Empty;
+                    OnPropertyChanged("CreateUserSurname");
+                }
+            }
+        }
+
+        private string _createUserSurname;
+
+        public string CreateUserPatronymic
+        {
+            get => _createUserPatronymic;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _createUserPatronymic = value;
+                    OnPropertyChanged("CreateUserPatronymic");
+                }
+                else
+                {
+                    _createUserPatronymic = String.Empty;
+                    OnPropertyChanged("CreateUserPatronymic");
+                }
+            }
+        }
+
+        private string _createUserPatronymic;
+
+        public string CreateUserMail
+        {
+            get => _createUserMail;
+            set
+            {
+                if (value != String.Empty)
+                {
+                    _createUserMail = value;
+                    OnPropertyChanged("CreateUserMail");
+                }
+                else
+                {
+                    _createUserMail = String.Empty;
+                    OnPropertyChanged("CreateUserMail");
+                }
+            }
+        }
+
+        private string _createUserMail;
+
         #region RegisterPasswordBox
 
         public SecureString SecureRegisterPassword
         {
-            get =>_secureRegisterPassword;
+            get => _secureRegisterPassword;
             set
             {
                 _secureRegisterPassword = value;
@@ -85,7 +240,7 @@ namespace ExpressDeliveryService.ViewModel
 
         public bool IsRegisterPasswordWatermarkVisible
         {
-            get => _isRegisterPasswordWatermarkVisible; 
+            get => _isRegisterPasswordWatermarkVisible;
             set
             {
                 if (value.Equals(_isRegisterPasswordWatermarkVisible)) return;
@@ -102,47 +257,92 @@ namespace ExpressDeliveryService.ViewModel
 
         #region Commands
 
+        public ICommand EnterButtonClickCommand { get; private set; }
+
+        public ICommand RegisterButtonClickCommand { get; private set; }
+
+        public ICommand ExitButtonClickCommand { get; private set; }
+
+        public ICommand RecoverButtonClickCommand { get; private set; }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+        #region Commands
+
         #region EnterButtonClickCommand
 
-        public ICommand EnterButtonClickCommand { get; private set; } = new DelegateCommandService(EnterButtonClick);
-
-        private static void EnterButtonClick(object obj)
+        private void EnterButtonClick(object obj)
         {
-            // Параметр является ссылкой на представление
+            var collection = new MongoClient().GetDatabase(DataManager.ActualNameDB)
+                .GetCollection<BsonDocument>("Users");
 
-            var view = obj as LoginView;
+            var filter = new BsonDocument("$and", new BsonArray{
 
-            var displayRootRegistry = (Application.Current as App).DisplayWindow;
+                new BsonDocument("Login",EnterUserLogin),
+                new BsonDocument("Password", Password)
+            });
 
-            displayRootRegistry.Show(new MainViewModel());
+            var people = collection.Find(filter).ToList();
 
-            view.Close();
+            if (people.Count > 0)
+            {
+                var view = obj as LoginView;
+
+                var displayRootRegistry = (Application.Current as App).DisplayWindow;
+
+                var user = new User();
+
+                user = BsonSerializer.Deserialize<User>(people[0]);
+
+                displayRootRegistry.Show(new MainViewModel(user));
+
+                view.Close();
+            }
+
         }
 
         #endregion
 
         #region RegisterButtonClickCommand
 
-        public ICommand RegisterButtonClickCommand { get; private set; } = new DelegateCommandService(RegisterButtonClick);
-
-        private static void RegisterButtonClick(object obj)
+        private void RegisterButtonClick(object obj)
         {
-            
+            var newUser = new User()
+            {
+                Id = new Guid(),
+                Name = CreateUserName,
+                Surname = CreateUserSurname,
+                Patronymic = CreateUserPatronymic,
+                Mail = CreateUserMail,
+                Login = CreateUserLogin,
+                Password = RegisterPassword,
+                Orders = null
+            };
+
+            _db.Create("Users", newUser);
+
+            var view = obj as LoginView;
+
+            var displayRootRegistry = (Application.Current as App).DisplayWindow;
+
+            displayRootRegistry.Show(new MainViewModel(newUser));
+
+            view.Close();
         }
 
         #endregion
 
         #region ExitButtonClickCommand
 
-        public ICommand ExitButtonClickCommand { get; private set; } = new DelegateCommandService(ExitButtonClick);
-
         private static void ExitButtonClick(object obj) => Application.Current.Shutdown();
 
         #endregion
 
         #region RecoverButtonClickCommand
-
-        public ICommand RecoverButtonClickCommand { get; private set; } = new DelegateCommandService(RecoverButtonClick);
 
         private static void RecoverButtonClick(object obj)
         {
@@ -153,12 +353,22 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
-        #region Methods
-
-        private void SetUpDefaultCondition()
+        private void InitialEnterFields()
         {
             IsPasswordWatermarkVisible = true;
+        }
+
+        private void InitialRegisterFields()
+        {
             IsRegisterPasswordWatermarkVisible = true;
+        }
+
+        private void InitialCommands()
+        {
+            EnterButtonClickCommand = new DelegateCommandService(EnterButtonClick);
+            RegisterButtonClickCommand = new DelegateCommandService(RegisterButtonClick);
+            ExitButtonClickCommand = new DelegateCommandService(ExitButtonClick);
+            RecoverButtonClickCommand = new DelegateCommandService(RecoverButtonClick);
         }
 
         #endregion

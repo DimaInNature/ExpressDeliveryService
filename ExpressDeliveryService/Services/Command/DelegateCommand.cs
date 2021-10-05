@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ExpressDeliveryService.Services.Command
 {
-    public class DelegateCommandService : ICommand
+    public sealed class DelegateCommandService : ICommand
     {
         Action<object> _execute;
 

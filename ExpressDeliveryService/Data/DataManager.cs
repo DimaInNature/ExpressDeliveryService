@@ -4,12 +4,10 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 
-namespace ExpressDeliveryService.Services
+namespace ExpressDeliveryService.Data
 {
-    public class DataManager : IDataManager
+    public sealed class DataManager : IDataManager
     {
-        private IMongoDatabase db;
-
         public DataManager(string database)
         {
             // Connect to Local
@@ -17,6 +15,10 @@ namespace ExpressDeliveryService.Services
 
             db = client.GetDatabase(database);
         }
+
+        public static string ActualNameDB { get; } = "ExpressDeliveryDB";
+
+        private IMongoDatabase db;
 
         public void Create<T>(string table, T item)
         {
@@ -35,7 +37,6 @@ namespace ExpressDeliveryService.Services
             var collection = db.GetCollection<T>(table);
             var filter = Builders<T>.Filter.Eq("_id", id);
 
-            // Возвращает если есть, если нет - ошибка.
             return collection.Find(filter).First();
         }
 
@@ -50,7 +51,6 @@ namespace ExpressDeliveryService.Services
             var collection = db.GetCollection<T>(table); 
             var filter = Builders<T>.Filter.Eq("_id", id); 
             collection.DeleteOne(filter);
-            
         }
     }
 }

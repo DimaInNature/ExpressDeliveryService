@@ -5,12 +5,14 @@ using System.Windows;
 
 namespace ExpressDeliveryService.Services
 {
-    public class DisplayWindowService
+    public sealed class DisplayWindowService
     {
-        Dictionary<Type, Type> _vmToWindowMapping = new Dictionary<Type, Type>();
+        private readonly Dictionary<Type, Type> _vmToWindowMapping = new Dictionary<Type, Type>();
+
+        private readonly Dictionary<object, Window> _openWindows = new Dictionary<object, Window>();
 
         /// <summary> Регистрация связи ViewModel и View.</summary>
-        
+
         public void RegisterWindow<TVm, TWin>() where TWin : Window, new() where TVm : class
         {
             var vmType = typeof(TVm);
@@ -28,8 +30,6 @@ namespace ExpressDeliveryService.Services
                 
             _vmToWindowMapping[vmType] = typeof(TWin);
         }
-
-        Dictionary<object, Window> _openWindows = new Dictionary<object, Window>();
 
         /// <summary> Открывает окно View переданного в параметр ViewModel.
         /// Если есть соответствие.</summary>
