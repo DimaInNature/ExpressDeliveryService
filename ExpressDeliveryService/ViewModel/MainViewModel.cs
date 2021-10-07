@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using ExpressDeliveryService.ViewModel.Popup;
 
 namespace ExpressDeliveryService.ViewModel
 {
     public sealed class MainViewModel : ViewModelBase
     {
-        public MainViewModel(){}
+        public MainViewModel() { }
 
         public MainViewModel(User activeUser)
         {
@@ -1244,6 +1245,8 @@ namespace ExpressDeliveryService.ViewModel
 
         public ICommand SettingsUserEditClickCommand { get; private set; }
 
+        public ICommand ShowMapPopupClickCommand { get; private set; }
+
         #endregion
 
         #endregion
@@ -1526,6 +1529,26 @@ namespace ExpressDeliveryService.ViewModel
 
         #endregion
 
+        #region ShowMapPopupClickCommand
+
+        private async void ShowMapPopupClick(object obj)
+        {
+            string street = obj as string;
+
+            var displayRootRegistry = (Application.Current as App).DisplayWindow;
+
+            if (street != string.Empty && street != null)
+            {
+                await displayRootRegistry.ShowDialog(new MapPopupViewModel(street));
+            }
+            else
+            {
+                MessageBox.Show("Не указан адрес", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         private void ClearEditFields()
@@ -1595,6 +1618,7 @@ namespace ExpressDeliveryService.ViewModel
             DeleteMenuItemClickCommand = new DelegateCommandService(DeleteMenuItemClick);
             ExitMenuButtonClickCommand = new DelegateCommandService(ExitMenuButtonClick);
             SettingsUserEditClickCommand = new DelegateCommandService(SettingsUserEditClick);
+            ShowMapPopupClickCommand = new DelegateCommandService(ShowMapPopupClick);
         }
 
         private void InitialDataCollections()

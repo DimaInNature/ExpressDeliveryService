@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="ExpressDeliveryService.View.Popup.MapPopupView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:ExpressDeliveryService.View.Popup"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel.Popup"
+    Title="Google Map"
+    Width="600"
+    Height="450"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:MapPopupViewModel />
+    </Window.DataContext>
+
+    <gmaps:GMapControl
+        x:Name="Map"
+        CanDragMap="True"
+        MapProvider="{Binding MapProvider}"
+        MaxZoom="20"
+        MinZoom="2"
+        Zoom="16">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding MapLoadedCommand}" CommandParameter="{Binding ElementName=Map}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    </gmaps:GMapControl>
+
+</Window>

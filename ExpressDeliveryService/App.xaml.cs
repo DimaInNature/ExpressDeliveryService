@@ -2,6 +2,8 @@
 using ExpressDeliveryService.View;
 using ExpressDeliveryService.ViewModel;
 using System.Windows;
+using ExpressDeliveryService.View.Popup;
+using ExpressDeliveryService.ViewModel.Popup;
 
 namespace ExpressDeliveryService
 {
@@ -11,10 +13,14 @@ namespace ExpressDeliveryService
 
         public App()
         {
-            // Регистрация связей всех ViewModel и их View
+            RegisterWindows();
+        }
 
+        private void RegisterWindows()
+        {
             DisplayWindow.RegisterWindow<LoginViewModel, LoginView>();
             DisplayWindow.RegisterWindow<MainViewModel, MainView>();
+            DisplayWindow.RegisterWindow<MapPopupViewModel, MapPopupView>();
         }
     }
 }
