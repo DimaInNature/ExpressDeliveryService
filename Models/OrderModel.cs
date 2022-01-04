@@ -1,4 +1,5 @@
 ﻿using Models.Abstract;
+using Models.Enums;
 using Models.FluentBuilders;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,6 +37,8 @@ namespace Models
         public string PackagingPurchased { get; set; } = "False";
 
         public double TotalCost { get; set; }
+
+        public OrderStatus Status { get; set; } = OrderStatus.NotAccepted;
 
         public OrderModel() => CreatedDate = DateTime.UtcNow;
 
