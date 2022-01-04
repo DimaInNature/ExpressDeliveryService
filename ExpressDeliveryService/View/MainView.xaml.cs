@@ -1,19 +1,16 @@
 ﻿using System.Windows;
-using ExpressDeliveryService.ViewModel;
+using System.Windows.Input;
 
 namespace ExpressDeliveryService.View
 {
     public partial class MainView : Window
     {
-        public MainView()
-        {
-            InitializeComponent();
-        }
+        public MainView() => InitializeComponent();
 
-        private MainViewModel ViewModel
+        private void WindowDragMove(object sender, MouseButtonEventArgs e)
         {
-            get { return (MainViewModel)DataContext; }
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
-
     }
 }

@@ -1,33 +1,24 @@
-﻿using ExpressDeliveryService.Services.Command;
-using ExpressDeliveryService.ViewModel.Base;
+﻿using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
+using MVVM.Command;
+using MVVM.ViewModel;
 using System.Windows.Input;
 
 namespace ExpressDeliveryService.ViewModel.Popup
 {
-    public sealed class MapPopupViewModel : ViewModelBase
+    internal sealed class MapPopupViewModel : BaseViewModel
     {
-        public MapPopupViewModel() { }
+        internal MapPopupViewModel() { }
 
-        public MapPopupViewModel(string street)
+        internal MapPopupViewModel(string streetSource)
         {
-            _mapStreet = street;
-
-            InitialCommands();
+            InitializeCommands();
+            SetCondition(source: streetSource);
         }
 
         #region Properties
 
-        #region Commands
-
-        public ICommand MapLoadedCommand { get; private set; }
-
-        #endregion
-
-        #region Map Props
-
-        public GMap.NET.MapProviders.OpenStreetMapProvider MapProvider => _mapProvider;
-
-        private GMap.NET.MapProviders.OpenStreetMapProvider _mapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+        public OpenStreetMapProvider MapProvider { get; private set; }
 
         public string MapStreet
         {
@@ -35,7 +26,7 @@ namespace ExpressDeliveryService.ViewModel.Popup
             set
             {
                 _mapStreet = value;
-                OnPropertyChanged("MapStreet");
+                OnPropertyChanged(nameof(MapStreet));
             }
         }
 
@@ -43,27 +34,38 @@ namespace ExpressDeliveryService.ViewModel.Popup
 
         #endregion
 
+        #region Commands
+
+        public ICommand MapLoadedCommand { get; private set; }
+
         #endregion
 
-        #region Methods
-
-        #region Commands
+        #region Commands Methods
 
         private void MapLoaded(object obj)
         {
-            var control = obj as GMap.NET.WindowsPresentation.GMapControl;
+            var control = obj as GMapControl;
+
             control.DragButton = MouseButton.Left;
+
             control.SetPositionByKeywords(MapStreet);
         }
 
         #endregion
 
-        public void InitialCommands()
+        #region Other Methods
+
+        private void InitializeCommands()
         {
-            MapLoadedCommand = new DelegateCommandService(MapLoaded);
+            MapLoadedCommand = new RelayCommand(MapLoaded);
+        }
+
+        private void SetCondition(string source)
+        {
+            MapProvider = OpenStreetMapProvider.Instance;
+            MapStreet = source;
         }
 
         #endregion
-
     }
 }

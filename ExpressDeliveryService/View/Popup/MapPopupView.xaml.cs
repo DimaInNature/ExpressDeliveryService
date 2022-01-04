@@ -4,9 +4,6 @@ namespace ExpressDeliveryService.View.Popup
 {
     public partial class MapPopupView : Window
     {
-        public MapPopupView()
-        {
-            InitializeComponent();
-        }
+        public MapPopupView() => InitializeComponent();
     }
 }

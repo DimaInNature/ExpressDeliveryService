@@ -22,85 +22,12 @@
 
     <!--#region Animation-->
 
-    <Window.Resources>
-
-        <Storyboard x:Key="Storyboard1">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Sign_Up" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Hidden</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Panel_Slide" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-400" />
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Panel_Slide" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Sin" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Welcome" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CreateAccount" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Exit" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-
-        </Storyboard>
-        <Storyboard x:Key="Storyboard2">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Sin" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Panel_Slide" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-400" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Welcome" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Sign_Up" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CreateAccount" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
-            </ObjectAnimationUsingKeyFrames>
-
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Panel_Slide" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Panel_Slide" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-
-    </Window.Resources>
-
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="UP">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard1}" />
+            <BeginStoryboard Storyboard="{StaticResource ShowRegistrationPanel}" />
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="IN">
-            <BeginStoryboard x:Name="Storyboard2_BeginStoryboard" Storyboard="{StaticResource Storyboard2}" />
+            <BeginStoryboard Storyboard="{StaticResource ShowAuthorizationPanel}" />
         </EventTrigger>
     </Window.Triggers>
 
@@ -110,10 +37,6 @@
         Width="800"
         Height="500"
         MouseDown="WindowDragMove">
-
-        <x:Code>
-            private void WindowDragMove(object sender, MouseButtonEventArgs e) =&gt; DragMove();
-        </x:Code>
 
         <Rectangle
             x:Name="rectangle"
@@ -248,7 +171,7 @@
                 Background="Transparent"
                 BorderBrush="Transparent"
                 BorderThickness="0"
-                Command="{Binding RecoverButtonClickCommand}"
+                Command="{Binding RecoverCommand}"
                 Content="Восстановить доступ"
                 FontFamily="{DynamicResource ProximaNovaTh}"
                 FontSize="17"
@@ -271,26 +194,10 @@
                 Height="37"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Command="{Binding EnterButtonClickCommand}"
+                Command="{Binding LoginCommand}"
                 CommandParameter="{Binding ElementName=ThisWindow}"
-                Content="Войти">
-
-                <Button.Style>
-                    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=EnterLoginTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=PasswordBoxWatermark, Path=Visibility}" Value="Visible">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-            </Button>
+                Content="Войти"
+                Style="{DynamicResource ButtonStyle}" />
 
         </Grid>
 
@@ -332,7 +239,12 @@
                 FontSize="17"
                 Foreground="#d685ce"
                 Style="{DynamicResource TextBlockStyle}"
-                TextAlignment="Center"><Run Text="Создайте нового пользователя," /><LineBreak /><Run Text="используя ваши персональные данные" /></TextBlock>
+                TextAlignment="Center">
+                <Run Text="Создайте нового пользователя," />
+                <LineBreak />
+                <Run Text="используя ваши персональные данные" />
+            </TextBlock>
+
             <Button
                 x:Name="UP"
                 Width="160"
@@ -506,46 +418,15 @@
                 Margin="0,0,0,50"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Command="{Binding RegisterButtonClickCommand}"
+                Command="{Binding RegistrationCommand}"
                 CommandParameter="{Binding ElementName=ThisWindow}"
-                Content="Создать">
-
-                <Button.Style>
-                    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=RegisterLoginTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterPasswordBoxWatermark, Path=Visibility}" Value="Visible">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterMailTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterMiddleNameTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterSurnameTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=RegisterNameTextBox, Path=Text}" Value="">
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-            </Button>
+                Content="Создать"
+                Style="{DynamicResource ButtonStyle}" />
 
         </Grid>
 
         <Grid x:Name="Welcome" Visibility="Hidden">
+
             <TextBlock
                 Width="400"
                 Height="45"
@@ -568,7 +449,12 @@
                 Foreground="#d685ce"
                 Style="{DynamicResource TextBlockStyle}"
                 TextAlignment="Center"
-                TextWrapping="Wrap"><Run Text="Войдите в систему," /><LineBreak /><Run Text="используя Ваш логин и пароль" /></TextBlock>
+                TextWrapping="Wrap">
+                <Run Text="Войдите в систему," />
+                <LineBreak />
+                <Run Text="используя Ваш логин и пароль" />
+            </TextBlock>
+
             <Button
                 x:Name="IN"
                 Width="160"
@@ -591,7 +477,7 @@
             Height="20"
             Margin="0,5,10,0"
             VerticalAlignment="Top"
-            Command="{Binding Path=ExitButtonClickCommand}"
+            Command="{Binding CloseApplicationCommand}"
             Style="{DynamicResource ControlButtonCloseStyle}" />
 
     </Grid>

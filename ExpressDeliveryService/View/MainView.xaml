@@ -18,113 +18,17 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.Resources>
-
-        <!--#region LeftMenuOpen-->
-
-        <Storyboard x:Key="LeftMenuOpen">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200" />
-            </DoubleAnimationUsingKeyFrames>
-            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="WorkAreaBorder" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
-                <DiscreteBooleanKeyFrame KeyTime="0" Value="False" />
-            </BooleanAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MenuBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuCloseButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <!--#endregion-->
-
-        <!--#region LeftMenuClose-->
-
-        <Storyboard x:Key="LeftMenuClose">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LeftMenu" Storyboard.TargetProperty="(FrameworkElement.Width)">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="WorkAreaBorder" Storyboard.TargetProperty="(UIElement.IsHitTestVisible)">
-                <DiscreteBooleanKeyFrame KeyTime="0" Value="True" />
-            </BooleanAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MenuBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Collapsed}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuCloseButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Collapsed}" />
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LeftMenuShowButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <!--#endregion-->
-
-        <!--#region EditButton-->
-
-        <Storyboard x:Key="EditButtonAnimation">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <Storyboard x:Key="EditButtonAnimationLeave">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EditMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <!--#endregion-->
-
-        <!--#region DeleteButton-->
-
-        <Storyboard x:Key="DeleteButtonAnimation">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <Storyboard x:Key="DeleteButtonAnimationLeave">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}" />
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DeleteMenuPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-
-        <!--#endregion-->
-
-    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
 
     <Window.Triggers>
 
-        <!--#region LeftMenuShowButton-->
+        <!--#region Left Menu-->
 
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuShowButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuOpen}" />
         </EventTrigger>
-
-        <!--#endregion-->
-
-        <!--#region LeftMenuCloseButton-->
 
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="LeftMenuCloseButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
@@ -132,128 +36,120 @@
 
         <!--#endregion-->
 
-        <!--#region HomeMenuRadioButton-->
+        <!--#region Home-->
 
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="HomeMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="HomeMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region ViewMenuRadioButton-->
+        <!--#region View-->
 
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="ViewMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ViewMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region CreateMenuRadioButton-->
+        <!--#region Create-->
 
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="CreateMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="CreateMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region EditMenuRadioButton-->
+        <!--#region Update-->
 
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="EditMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimation}" />
+            <BeginStoryboard Storyboard="{StaticResource ShowUpdatePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="EditMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="EditMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region DeleteMenuRadioButton-->
+        <!--#region Delete-->
 
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimation}" />
+            <BeginStoryboard Storyboard="{StaticResource ShowDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="DeleteMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="DeleteMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
-        <!--#region SettingsMenuRadioButton-->
+        <!--#region Settings-->
 
         <EventTrigger RoutedEvent="UIElement.GotFocus" SourceName="SettingsMenuRadioButton">
             <BeginStoryboard Storyboard="{StaticResource LeftMenuClose}" />
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource EditButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideUpdatePanel}" />
         </EventTrigger>
+
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="SettingsMenuRadioButton">
-            <BeginStoryboard Storyboard="{StaticResource DeleteButtonAnimationLeave}" />
+            <BeginStoryboard Storyboard="{StaticResource HideDeletePanel}" />
         </EventTrigger>
 
         <!--#endregion-->
 
     </Window.Triggers>
 
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
-
-    <Border CornerRadius="20" MouseDown="WindowDragMove">
-
-        <x:Code>
-            private void WindowDragMove(object sender, MouseButtonEventArgs e) =&gt; DragMove();
-        </x:Code>
-
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <LinearGradientBrush.RelativeTransform>
-                    <TransformGroup>
-                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
-                        <SkewTransform CenterX="0.5" CenterY="0.5" />
-                        <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
-                        <TranslateTransform />
-                    </TransformGroup>
-                </LinearGradientBrush.RelativeTransform>
-                <GradientStop Offset="1" Color="#cb11ab" />
-                <GradientStop Color="#491274" />
-            </LinearGradientBrush>
-        </Border.Background>
+    <Border
+        CornerRadius="20"
+        MouseDown="WindowDragMove"
+        Style="{DynamicResource BorderStyle}">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -263,7 +159,7 @@
 
             <!--#region Menu-->
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Panel.ZIndex="2">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -284,9 +180,21 @@
                         Height="45"
                         Margin="20,5,0,0"
                         HorizontalAlignment="Left"
+                        Command="{Binding UpdateDataCollectionCommand}"
                         Style="{DynamicResource MenuButtonShow}"
                         Visibility="Visible" />
+
                 </Grid>
+
+                <Button
+                    Grid.Column="2"
+                    Width="35"
+                    Height="35"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding CloseApplicationCommand}"
+                    Style="{DynamicResource ControlButtonCloseStyle}"
+                    Visibility="Visible" />
 
             </Grid>
 
@@ -297,14 +205,17 @@
                 Grid.RowSpan="2"
                 Width="0"
                 HorizontalAlignment="Left"
+                Panel.ZIndex="3"
                 Background="#F6F6F6"
                 Row="0">
 
                 <Grid.Clip>
+
                     <RectangleGeometry
                         RadiusX="20"
                         RadiusY="20"
                         Rect="0,0,800,600" />
+
                 </Grid.Clip>
 
                 <Grid.RowDefinitions>
@@ -326,30 +237,10 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowMenuPageCommand}"
                     Content="Главная"
-                    IsChecked="True">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource HomeMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource HomeMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="ViewMenuRadioButton"
@@ -358,30 +249,10 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowViewPageCommand}"
                     Content="Просмотр"
-                    IsChecked="False">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource ViewMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource ViewMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="CreateMenuRadioButton"
@@ -390,30 +261,10 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowCreatePageCommand}"
                     Content="Создать"
-                    IsChecked="False">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource CreateMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource CreateMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="EditMenuRadioButton"
@@ -422,30 +273,10 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowUpdatePageCommand}"
                     Content="Изменить"
-                    IsChecked="False">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource EditMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource EditMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="DeleteMenuRadioButton"
@@ -454,30 +285,10 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowDeletePageCommand}"
                     Content="Удалить"
-                    IsChecked="False">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource DeleteMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource DeleteMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="SettingsMenuRadioButton"
@@ -486,59 +297,43 @@
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
+                    Panel.ZIndex="3"
+                    Command="{Binding ShowSettingsPageCommand}"
                     Content="Настройки"
-                    IsChecked="False">
-                    <RadioButton.Style>
-                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                    <Setter Property="IsChecked" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </RadioButton.Style>
-                </RadioButton>
+                    Style="{DynamicResource SettingsMenuRadioButtonStyle}" />
 
                 <Button
-                    x:Name="ExitMenuRadioButton"
+                    x:Name="LogoutMenuButton"
                     Grid.Row="7"
                     Width="180"
                     Height="25"
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left"
-                    Command="{Binding ExitMenuButtonClickCommand}"
+                    Panel.ZIndex="3"
+                    Command="{Binding LogoutCommand}"
                     CommandParameter="{Binding ElementName=ThisWindow}"
-                    Content="Выйти"
+                    Content="Logout"
                     Style="{DynamicResource MenuUserExitButton}" />
 
             </Grid>
 
             <!--#endregion-->
 
-            <!--#region Menu Panel-->
+            <!--#region Panels-->
+
+            <!--#region Update-->
 
             <Border
                 x:Name="EditMenuPanel"
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Margin="0,0,300,0"
-                Panel.ZIndex="-1"
+                Panel.ZIndex="2"
                 Background="#F6F6F6"
                 CornerRadius="20"
                 Opacity="0"
                 Visibility="Collapsed">
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -556,12 +351,14 @@
                                 BorderBrush="Transparent"
                                 BorderThickness="0"
                                 ItemsSource="{Binding Orders, Mode=TwoWay}"
-                                SelectedItem="{Binding SelectedEditOrder, Mode=TwoWay}">
+                                SelectedItem="{Binding SelectedUpdateOrder, Mode=TwoWay}">
+
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                                        <i:InvokeCommandAction Command="{Binding EditMenuItemClickCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding SelectUpdateItemCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
+
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
 
@@ -572,22 +369,17 @@
                                             Background="#CB11AB"
                                             CornerRadius="10">
 
-                                            <Grid>
-
-                                                <TextBlock
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    FontSize="20"
-                                                    Foreground="White"
-                                                    Style="{DynamicResource TextBlockStyle}"
-                                                    Text="{Binding Path=Product.Name}" />
-
-                                            </Grid>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Foreground="White"
+                                                Style="{DynamicResource TextBlockStyle}"
+                                                Text="{Binding Product.Name}" />
 
                                         </Border>
 
                                     </DataTemplate>
-
 
                                 </ListBox.ItemTemplate>
 
@@ -598,14 +390,19 @@
                     </ScrollViewer>
 
                 </Grid>
+
             </Border>
+
+            <!--#endregion-->
+
+            <!--#region Delete-->
 
             <Border
                 x:Name="DeleteMenuPanel"
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Margin="0,0,300,0"
-                Panel.ZIndex="-1"
+                Panel.ZIndex="2"
                 Background="#F6F6F6"
                 CornerRadius="20"
                 Opacity="0"
@@ -632,7 +429,7 @@
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                                        <i:InvokeCommandAction Command="{Binding DeleteMenuItemClickCommand}" />
+                                        <i:InvokeCommandAction Command="{Binding SelectDeleteItemCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
@@ -654,7 +451,7 @@
                                                     FontSize="20"
                                                     Foreground="White"
                                                     Style="{DynamicResource TextBlockStyle}"
-                                                    Text="{Binding Path=Product.Name}" />
+                                                    Text="{Binding Product.Name}" />
 
                                             </Grid>
 
@@ -676,11 +473,13 @@
 
             <!--#endregion-->
 
+            <!--#endregion-->
+
             <Border
                 Name="MenuBorder"
                 Grid.Row="0"
                 Grid.RowSpan="2"
-                Panel.ZIndex="-3"
+                Panel.ZIndex="1"
                 Background="Black"
                 CornerRadius="20"
                 IsHitTestVisible="False"
@@ -694,2263 +493,90 @@
                 Height="30"
                 Margin="200,-20,0,0"
                 HorizontalAlignment="Left"
-                Panel.ZIndex="-2"
                 Style="{DynamicResource MenuButtonClose}"
                 Visibility="Collapsed" />
 
             <!--#endregion-->
 
-            <Grid Grid.Row="1" Panel.ZIndex="-4">
+            <Grid Grid.Row="1">
 
                 <Border
                     Name="WorkAreaBorder"
+                    Panel.ZIndex="-1"
                     Background="#F2F2F2"
-                    CornerRadius="20"
-                    IsHitTestVisible="True">
+                    CornerRadius="20">
 
-                    <Grid>
+                    <Grid Visibility="{Binding MenuIsVisible, Mode=TwoWay}">
 
-                        <Grid Name="HomeGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.2*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1.2*" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+                        <Button
+                            x:Name="HomeCreateOrderButton"
+                            Grid.Row="0"
+                            Margin="15"
+                            BorderBrush="#cb11ab"
+                            Command="{Binding ShowCreatePageCommand}"
+                            Content="Создать"
+                            FontSize="70"
+                            Foreground="#cb11ab"
+                            Style="{DynamicResource HomeButtonStyle}" />
 
-                            <Grid Row="0">
-
-                                <Button
-                                    x:Name="HomeCreateOrderButton"
-                                    Margin="15"
-                                    BorderBrush="#cb11ab"
-                                    Content="Создать"
-                                    FontSize="70"
-                                    Foreground="#cb11ab"
-                                    Style="{DynamicResource HomeButtonStyle}" />
-
-                            </Grid>
-
-                            <Grid Row="1">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <Button
-                                    x:Name="HomeViewOrderButton"
-                                    Grid.Column="0"
-                                    Margin="15,0,5,15"
-                                    BorderBrush="#cb11ab"
-                                    Content="Просмотр"
-                                    FontSize="30"
-                                    Foreground="#cb11ab"
-                                    Style="{DynamicResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="HomeEditOrderButton"
-                                    Grid.Column="1"
-                                    Margin="15,0,5,15"
-                                    BorderBrush="#cb11ab"
-                                    Content="Изменить"
-                                    FontSize="30"
-                                    Foreground="#cb11ab"
-                                    Style="{DynamicResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="HomeDeleteOrderButton"
-                                    Grid.Column="2"
-                                    Margin="15,0,5,15"
-                                    BorderBrush="#cb11ab"
-                                    Content="Удалить"
-                                    FontSize="30"
-                                    Foreground="#cb11ab"
-                                    Style="{DynamicResource HomeButtonStyle}" />
-
-                                <Button
-                                    x:Name="HomeSettingsOrderButton"
-                                    Grid.Column="3"
-                                    Margin="15,0,15,15"
-                                    BorderBrush="#cb11ab"
-                                    Content="Настройки"
-                                    FontSize="30"
-                                    Foreground="#cb11ab"
-                                    Style="{DynamicResource HomeButtonStyle}" />
-
-                            </Grid>
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                        </Grid>
-
-                        <Grid Name="ViewGrid">
+                        <Grid Row="1">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled">
+                            <Button
+                                x:Name="HomeViewOrderButton"
+                                Grid.Column="0"
+                                Margin="15,0,5,15"
+                                BorderBrush="#cb11ab"
+                                Command="{Binding ShowViewPageCommand}"
+                                Content="Просмотр"
+                                FontSize="30"
+                                Foreground="#cb11ab"
+                                Style="{DynamicResource HomeButtonStyle}" />
+
+                            <Button
+                                x:Name="HomeEditOrderButton"
+                                Grid.Column="1"
+                                Margin="15,0,5,15"
+                                BorderBrush="#cb11ab"
+                                Command="{Binding ShowUpdatePageCommand}"
+                                Content="Изменить"
+                                FontSize="30"
+                                Foreground="#cb11ab"
+                                Style="{DynamicResource HomeButtonStyle}" />
+
+                            <Button
+                                x:Name="HomeDeleteOrderButton"
+                                Grid.Column="2"
+                                Margin="15,0,5,15"
+                                BorderBrush="#cb11ab"
+                                Command="{Binding ShowDeletePageCommand}"
+                                Content="Удалить"
+                                FontSize="30"
+                                Foreground="#cb11ab"
+                                Style="{DynamicResource HomeButtonStyle}" />
+
+                            <Button
+                                x:Name="HomeSettingsOrderButton"
+                                Grid.Column="3"
+                                Margin="15,0,15,15"
+                                BorderBrush="#cb11ab"
+                                Command="{Binding ShowSettingsPageCommand}"
+                                Content="Настройки"
+                                FontSize="30"
+                                Foreground="#cb11ab"
+                                Style="{DynamicResource HomeButtonStyle}" />
 
-                                <StackPanel Orientation="Vertical">
-
-                                    <ListBox
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="0"
-                                        ItemsSource="{Binding Orders, Mode=TwoWay}"
-                                        SelectedItem="{Binding SelectedViewOrder, Mode=TwoWay}">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-
-                                                <Border
-                                                    Width="170"
-                                                    Height="40"
-                                                    Margin="10,0,10,0"
-                                                    Background="#CB11AB"
-                                                    CornerRadius="10">
-
-                                                    <Grid>
-
-                                                        <TextBlock
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center"
-                                                            FontSize="20"
-                                                            Foreground="White"
-                                                            Style="{DynamicResource TextBlockStyle}"
-                                                            Text="{Binding Path=Product.Name}" />
-
-                                                    </Grid>
-
-                                                </Border>
-
-                                            </DataTemplate>
-
-                                        </ListBox.ItemTemplate>
-
-                                    </ListBox>
-
-                                </StackPanel>
-
-                            </ScrollViewer>
-
-                            <Grid Column="1">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <Grid>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--#region From-->
-
-                                    <TextBlock
-                                        Grid.RowSpan="2"
-                                        Width="82"
-                                        Height="30"
-                                        Margin="0,0,50,60"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="25"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Откуда" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Откуда забрать"
-                                        Text="{Binding SelectedViewOrder.FromPlace}" />
-
-                                    <DatePicker
-                                        Grid.Row="2"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        SelectedDate="{Binding SelectedViewOrder.FromDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить" />
-
-                                    <TextBox
-                                        Grid.Row="3"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding SelectedViewOrder.FromTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region To-->
-
-                                    <TextBlock
-                                        Grid.RowSpan="2"
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="30"
-                                        Margin="0,0,0,60"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="25"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Куда" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="50,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Куда привезти"
-                                        Text="{Binding SelectedViewOrder.ToPlace}" />
-
-                                    <DatePicker
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="50,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        SelectedDate="{Binding SelectedViewOrder.ToDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить" />
-
-                                    <TextBox
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,40,0"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding SelectedViewOrder.ToTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Other Box Props-->
-
-                                    <!--#endregion-->
-
-                                </Grid>
-
-                                <Grid Row="1">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBox
-                                        Grid.Row="0"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="0,0,35,100"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Название"
-                                        Text="{Binding SelectedViewOrder.Product.Name}" />
-
-                                    <TextBox
-                                        Grid.Row="0"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="1"
-                                        Width="150"
-                                        Height="40"
-                                        Margin="0,0,35,0"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Вес (гр.)"
-                                        Text="{Binding SelectedViewOrder.Product.Weight}" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="150"
-                                        Height="40"
-                                        Margin="0,50,35,00"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ценность (руб.)"
-                                        Text="{Binding SelectedViewOrder.Product.Cost}" />
-
-                                    <!--#region Box Size-->
-
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.ColumnSpan="2"
-                                        Width="200"
-                                        Height="23"
-                                        Margin="90,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Размер коробки (см)" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="20,15,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Высота"
-                                        Text="{Binding SelectedViewOrder.Box.Height}" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="140,15,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ширина"
-                                        Text="{Binding SelectedViewOrder.Box.Width}" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="20,15,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Длина"
-                                        Text="{Binding SelectedViewOrder.Box.Lenght}" />
-
-                                    <!--#endregion-->
-
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Width="240"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Bottom"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Дополнительные услуги" />
-
-                                    <CheckBox
-                                        Grid.Row="2"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,10,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Страхование"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.AvailabilityOfInsurancePurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <CheckBox
-                                        Grid.Row="2"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,40,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Температурный режим"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.ComplianceTemperatureRegimePurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <CheckBox
-                                        Grid.Row="2"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,70,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Упаковка"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding SelectedViewOrder.PackagingPurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Итоговая стоимость" />
-
-                                    <TextBox
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="160"
-                                        Height="40"
-                                        Margin="0,10,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Стоимость"
-                                        Text="{Binding SelectedViewOrder.TotalCost}" />
-
-                                </Grid>
-
-                            </Grid>
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                        </Grid>
-
-                        <Grid Name="CreateGrid">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <!--#region Top-->
-
-                            <Grid Row="0">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="30"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="Калькулятор расчета доставки" />
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <!--#region Body-->
-
-                            <Grid Row="1">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <Grid>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--#region From-->
-
-                                    <TextBlock
-                                        Width="90"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Откуда" />
-
-                                    <TextBox
-                                        Name="CreateFromStreetTextBox"
-                                        Grid.Row="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Откуда забрать"
-                                        Text="{Binding CreateFromPlace, Mode=TwoWay}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding CreateFromPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-
-                                    <DatePicker
-                                        Name="CreateFromTimeDatePicker"
-                                        Grid.Row="2"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить"
-                                        Text="{Binding CreateFromDate, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateFromTimeTextBox"
-                                        Grid.Row="2"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding CreateFromTime, Mode=TwoWay}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region To-->
-
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Куда" />
-
-                                    <TextBox
-                                        Name="CreateToStreetTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Куда привезти"
-                                        Text="{Binding CreateToPlace, Mode=TwoWay}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding CreateToPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-
-                                    <DatePicker
-                                        Name="CreateToTimeDatePicker"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить"
-                                        Text="{Binding CreateToDate, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateToTimeTextBox"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding CreateToTime, Mode=TwoWay}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Box Size-->
-
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.RowSpan="2"
-                                        Width="200"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Размер коробки (см)" />
-
-                                    <TextBox
-                                        Name="CreateBoxHeightTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="20,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Высота"
-                                        Text="{Binding CreateBoxHeight, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateBoxWidthTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="140,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ширина"
-                                        Text="{Binding CreateBoxWidth, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateBoxLenghtTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="260,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Длина"
-                                        Text="{Binding CreateBoxLenght, Mode=TwoWay}" />
-
-                                    <!--#endregion-->
-
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Информация о товаре" />
-
-                                </Grid>
-
-                                <Grid Row="1">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Width="240"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Дополнительные услуги" />
-
-                                    <CheckBox
-                                        Name="CreateAvailabilityOfInsurancePurchasedCheckBox"
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,10,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Страхование"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding CreateAvailabilityOfInsurancePurchased, Mode=TwoWay}" />
-
-                                    <CheckBox
-                                        Name="CreateComplianceTemperatureRegimePurchasedCheckBox"
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,40,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Температурный режим"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding CreateComplianceTemperatureRegimePurchased, Mode=TwoWay}" />
-
-                                    <CheckBox
-                                        Name="CreatePackagingPurchasedCheckBox"
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,70,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Упаковка"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding CreatePackagingPurchased, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateTotalCostTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="40"
-                                        Margin="0,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Стоимость"
-                                        Text="{Binding CreateTotalCost, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateProductCostTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ценность (руб.)"
-                                        Text="{Binding CreateProductCost, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateProductWeightTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="240,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Вес (гр.)"
-                                        Text="{Binding CreateProductWeight, Mode=TwoWay}" />
-
-                                    <TextBox
-                                        Name="CreateProductNameTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="0,10,30,0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Название"
-                                        Text="{Binding CreateProductName, Mode=TwoWay}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Width="160"
-                                        Height="40"
-                                        Margin="0,100,0,0"
-                                        Command="{Binding CreateButtonClickCommand}"
-                                        Content="Заказать">
-
-                                        <Button.Style>
-
-                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateFromStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateFromTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateFromTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxHeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxWidthTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateBoxLenghtTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateToStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateToTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateToTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateProductCostTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateProductWeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=CreateProductNameTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-
-
-                                                </Style.Triggers>
-
-                                            </Style>
-
-                                        </Button.Style>
-
-                                    </Button>
-
-                                </Grid>
-
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-
-                        </Grid>
-
-                        <Grid Name="EditGrid">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <!--#region Top-->
-
-                            <Grid Row="0">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="30"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="Изменить доставку" />
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <!--#region Body-->
-
-                            <Grid Row="1">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <Grid>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--#region From-->
-
-                                    <TextBlock
-                                        Width="90"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Откуда" />
-
-                                    <TextBox
-                                        Name="EditFromStreetTextBox"
-                                        Grid.Row="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Откуда забрать"
-                                        Text="{Binding EditFromPlace}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding EditFromPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-
-                                    <DatePicker
-                                        Name="EditFromTimeDatePicker"
-                                        Grid.Row="2"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        SelectedDate="{Binding EditFromDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить" />
-
-                                    <TextBox
-                                        Name="EditFromTimeTextBox"
-                                        Grid.Row="2"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding EditFromTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region To-->
-
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Куда" />
-
-                                    <TextBox
-                                        Name="EditToStreetTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Куда привезти"
-                                        Text="{Binding EditToPlace}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding EditToPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-
-                                    <DatePicker
-                                        Name="EditToTimeDatePicker"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        SelectedDate="{Binding EditToDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить" />
-
-                                    <TextBox
-                                        Name="EditToTimeTextBox"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding EditToTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Box Size-->
-
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.RowSpan="2"
-                                        Width="200"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Размер коробки (см)" />
-
-                                    <TextBox
-                                        Name="EditBoxHeightTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="20,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Высота"
-                                        Text="{Binding EditBoxHeight}" />
-
-                                    <TextBox
-                                        Name="EditBoxWidthTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="140,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ширина"
-                                        Text="{Binding EditBoxWidth}" />
-
-                                    <TextBox
-                                        Name="EditBoxLenghtTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="260,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Длина"
-                                        Text="{Binding EditBoxLenght}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Other Box Props-->
-
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Информация о товаре" />
-
-                                    <!--#endregion-->
-
-                                </Grid>
-
-                                <Grid Row="1">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Width="240"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Дополнительные услуги" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,10,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Страхование"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding EditAvailabilityOfInsurancePurchased}" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,40,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Температурный режим"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding EditComplianceTemperatureRegimePurchased}" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,70,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Упаковка"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding EditPackagingPurchased}" />
-
-                                    <TextBox
-                                        Name="EditTotalCostTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="40"
-                                        Margin="0,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Стоимость"
-                                        Text="{Binding EditTotalCost}" />
-
-                                    <TextBox
-                                        Name="EditProductCostTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ценность (руб.)"
-                                        Text="{Binding EditProductCost}" />
-
-                                    <TextBox
-                                        Name="EditProductWeightTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="240,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Вес (гр.)"
-                                        Text="{Binding EditProductWeight}" />
-
-                                    <TextBox
-                                        Name="EditProductNameTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="0,10,30,0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Название"
-                                        Text="{Binding EditProductName}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Width="160"
-                                        Height="40"
-                                        Margin="0,100,0,0"
-                                        Command="{Binding EditButtonClickCommand}"
-                                        Content="Изменить">
-
-                                        <Button.Style>
-
-                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=EditFromStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditFromTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditFromTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditBoxHeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditBoxWidthTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditBoxLenghtTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditToStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditToTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditToTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditProductCostTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditProductWeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=EditProductNameTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-
-
-                                                </Style.Triggers>
-
-                                            </Style>
-
-                                        </Button.Style>
-
-                                    </Button>
-
-                                </Grid>
-
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-
-                        </Grid>
-
-                        <Grid Name="DeleteGrid">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
-                            <!--#region Top-->
-
-                            <Grid Row="0">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="30"
-                                    Style="{DynamicResource TextBlockStyle}"
-                                    Text="Удалить доставку" />
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <!--#region Body-->
-
-                            <Grid Row="1">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <Grid>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--#region From-->
-
-                                    <TextBlock
-                                        Width="90"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Откуда" />
-
-                                    <TextBox
-                                        Name="DeleteFromStreetTextBox"
-                                        Grid.Row="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Откуда забрать"
-                                        Text="{Binding DeleteFromPlace}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding DeleteFromPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-
-                                    <DatePicker
-                                        Name="DeleteFromTimeDatePicker"
-                                        Grid.Row="2"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        SelectedDate="{Binding DeleteFromDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда отправить" />
-
-                                    <TextBox
-                                        Name="DeleteFromTimeTextBox"
-                                        Grid.Row="2"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding DeleteFromTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region To-->
-
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Width="60"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Куда" />
-
-                                    <TextBox
-                                        Name="DeleteToStreetTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="300"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Куда привезти"
-                                        Text="{Binding DeleteToPlace}" />
-
-                                    <Button
-                                        Grid.Column="1"
-                                        Grid.Row="1"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding ShowMapPopupClickCommand}"
-                                        CommandParameter="{Binding DeleteToPlace}"
-                                        Style="{DynamicResource MapButtonStyle}" />
-                                    
-                                    <DatePicker
-                                        Name="DeleteToTimeDatePicker"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        SelectedDate="{Binding DeleteToDate}"
-                                        Style="{DynamicResource DatePickerStyle}"
-                                        Tag="Когда получить" />
-
-                                    <TextBox
-                                        Name="DeleteToTimeTextBox"
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="0,0,30,0"
-                                        HorizontalAlignment="Right"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Время"
-                                        Text="{Binding DeleteToTime}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Box Size-->
-
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.RowSpan="2"
-                                        Width="200"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Размер коробки (см)" />
-
-                                    <TextBox
-                                        Name="DeleteBoxHeightTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="20,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Высота"
-                                        Text="{Binding DeleteBoxHeight}" />
-
-                                    <TextBox
-                                        Name="DeleteBoxWidhtTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="140,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ширина"
-                                        Text="{Binding DeleteBoxWidth}" />
-
-                                    <TextBox
-                                        Name="DeleteBoxLenghtTextBox"
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Width="100"
-                                        Height="40"
-                                        Margin="260,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Длина"
-                                        Text="{Binding DeleteBoxLenght}" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Other Box Props-->
-
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="26"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Информация о товаре" />
-
-                                    <!--#endregion-->
-
-                                </Grid>
-
-                                <Grid Row="1">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Width="240"
-                                        Height="23"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="21"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Дополнительные услуги" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,10,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Страхование"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding DeleteAvailabilityOfInsurancePurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,40,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Температурный режим"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding DeleteComplianceTemperatureRegimePurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <CheckBox
-                                        Grid.Row="1"
-                                        Width="225"
-                                        Height="25"
-                                        Margin="0,70,0,0"
-                                        VerticalAlignment="Top"
-                                        Content="Упаковка"
-                                        FontFamily="{DynamicResource ProximaNovaTh}"
-                                        FontSize="20"
-                                        IsChecked="{Binding DeletePackagingPurchased}"
-                                        IsHitTestVisible="False" />
-
-                                    <TextBox
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="40"
-                                        Margin="0,10,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Стоимость"
-                                        Text="{Binding DeleteTotalCost}" />
-
-                                    <TextBox
-                                        Name="DeleteProductCostTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="20,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Ценность (руб.)"
-                                        Text="{Binding DeleteProductCost}" />
-
-                                    <TextBox
-                                        Name="DeleteProductWeightTextBox"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="130"
-                                        Height="40"
-                                        Margin="240,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Вес (гр.)"
-                                        Text="{Binding DeleteProductWeight}" />
-
-                                    <TextBox
-                                        Name="DeleteProductNameTextBox"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Width="200"
-                                        Height="40"
-                                        Margin="0,10,30,0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
-                                        IsHitTestVisible="False"
-                                        Style="{DynamicResource ColorTextBoxStyle}"
-                                        Tag="Название"
-                                        Text="{Binding DeleteProductName}" />
-
-                                    <Button
-                                        Grid.Row="1"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Width="160"
-                                        Height="40"
-                                        Margin="0,100,0,0"
-                                        Command="{Binding DeleteButtonClickCommand}"
-                                        Content="Удалить">
-
-                                        <Button.Style>
-
-                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteFromTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxHeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxWidthTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteBoxLenghtTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteToStreetTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteToTimeDatePicker, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteToTimeTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductCostTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductWeightTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=DeleteProductNameTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-
-
-                                                </Style.Triggers>
-
-                                            </Style>
-
-                                        </Button.Style>
-
-                                    </Button>
-
-                                </Grid>
-
-                            </Grid>
-
-                            <!--#endregion-->
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-
-                        </Grid>
-
-                        <Grid Name="SettingsGrid">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Column="0">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <RadioButton
-                                    Name="UserSettingsRadioButton"
-                                    Grid.Row="0"
-                                    Width="180"
-                                    Height="25"
-                                    Content="Пользователь"
-                                    IsChecked="True">
-
-                                    <RadioButton.Style>
-                                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="True">
-                                                    <Setter Property="IsChecked" Value="False" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </RadioButton.Style>
-
-                                </RadioButton>
-
-                                <RadioButton
-                                    Name="ClientSettingsRadioButton"
-                                    Grid.Row="1"
-                                    Width="180"
-                                    Height="25"
-                                    Content="Клиент"
-                                    IsChecked="False">
-
-                                    <RadioButton.Style>
-                                        <Style BasedOn="{StaticResource SettingsMenuRadioButtonStyle}" TargetType="RadioButton">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="True">
-                                                    <Setter Property="IsChecked" Value="False" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </RadioButton.Style>
-
-                                </RadioButton>
-
-                            </Grid>
-
-                            <Grid Column="1">
-
-                                <!--  #Region User  -->
-
-                                <Grid Name="SettingsUserGrid">
-
-                                    <!--#region Top-->
-
-                                    <TextBlock
-                                        Width="400"
-                                        Height="40"
-                                        Margin="0,60,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Top"
-                                        FontSize="30"
-                                        Style="{DynamicResource TextBlockStyle}"
-                                        Text="Настройки пользователя"
-                                        TextAlignment="Center"
-                                        TextWrapping="Wrap" />
-
-                                    <!--#endregion-->
-
-                                    <!--#region Body-->
-
-                                    <TextBox
-                                        x:Name="SettingsUserNameTextBox"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="0,25,0,280"
-                                        HorizontalAlignment="Center"
-                                        Opacity="0.8"
-                                        Style="{DynamicResource LoginTextBoxStyle}"
-                                        Tag="Имя"
-                                        Text="{Binding SettingsUserName, Mode=TwoWay}" />
-
-                                    <Border
-                                        Width="300"
-                                        Height="2"
-                                        Margin="0,60,0,280"
-                                        Background="#491274"
-                                        IsHitTestVisible="False"
-                                        Opacity="0.5" />
-
-                                    <TextBox
-                                        x:Name="SettingsSurnameTextBox"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="0,25,0,200"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource LoginTextBoxStyle}"
-                                        Tag="Фамилия"
-                                        Text="{Binding SettingsUserSurname, Mode=TwoWay}" />
-
-                                    <Border
-                                        Width="300"
-                                        Height="2"
-                                        Margin="0,60,0,200"
-                                        Background="#491274"
-                                        IsHitTestVisible="False"
-                                        Opacity="0.5" />
-
-                                    <TextBox
-                                        x:Name="SettingsPatronymicTextBox"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="0,25,0,120"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource LoginTextBoxStyle}"
-                                        Tag="Отчество (при наличии)"
-                                        Text="{Binding SettingsUserPatronymic, Mode=TwoWay}" />
-
-                                    <Border
-                                        Width="300"
-                                        Height="2"
-                                        Margin="0,60,0,120"
-                                        Background="#491274"
-                                        IsHitTestVisible="False"
-                                        Opacity="0.5" />
-
-                                    <TextBox
-                                        x:Name="SettingsUserMailTextBox"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="0,25,0,40"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource LoginTextBoxStyle}"
-                                        Tag="Электронная почта"
-                                        Text="{Binding SettingsUserMail, Mode=TwoWay}" />
-
-                                    <Border
-                                        Width="300"
-                                        Height="2"
-                                        Margin="0,60,0,40"
-                                        Background="#491274"
-                                        IsHitTestVisible="False"
-                                        Opacity="0.5" />
-
-                                    <TextBox
-                                        x:Name="SettingsLoginTextBox"
-                                        Width="300"
-                                        Height="25"
-                                        Margin="0,65,0,0"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource LoginTextBoxStyle}"
-                                        Tag="Логин"
-                                        Text="{Binding SettingsUserLogin}" />
-
-                                    <Border
-                                        Width="300"
-                                        Height="2"
-                                        Margin="0,100,0,0"
-                                        Background="#491274"
-                                        IsHitTestVisible="False"
-                                        Opacity="0.5" />
-
-                                    <Button
-                                        Width="160"
-                                        Height="37"
-                                        Margin="0,0,0,100"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Bottom"
-                                        Command="{Binding SettingsUserEditClickCommand}"
-                                        Content="Сохранить">
-
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
-                                                <Style.Triggers>
-
-                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserNameTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=SettingsSurnameTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=SettingsPatronymicTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserMailTextBox, Path=Text}" Value="">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding ElementName=SettingsUserPasswordBoxWatermark, Path=Visibility}" Value="Visible">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Background" Value="Gray" />
-                                                    </DataTrigger>
-
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-
-                                    </Button>
-
-                                    <!--#endregion-->
-
-                                    <Grid.Style>
-                                        <Style TargetType="Grid">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="true">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="true">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Grid.Style>
-
-                                </Grid>
-
-                                <!--  #EndRegion  -->
-
-                                <!--  #Region Client  -->
-
-                                <Grid Name="SettingsClientGrid">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-
-                                    <!--#region Top-->
-
-                                    <Grid Row="0">
-
-                                        <TextBlock
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="24"
-                                            Style="{DynamicResource TextBlockStyle}"
-                                            Text="Настройки клиента" />
-
-                                    </Grid>
-
-                                    <!--#endregion-->
-
-                                    <!--#region Body-->
-
-                                    <Grid Row="1">
-
-                                        <Grid Row="0">
-
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="40" />
-                                                <RowDefinition Height="100" />
-                                                <RowDefinition Height="40" />
-                                                <RowDefinition Height="100" />
-                                                <RowDefinition />
-                                            </Grid.RowDefinitions>
-
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-
-                                            <!--#region Network and Data-->
-
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Grid.Column="0"
-                                                Width="153"
-                                                Height="27"
-                                                Margin="20,0,0,0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="23"
-                                                Style="{DynamicResource TextBlockStyle}"
-                                                Text="Сеть и данные" />
-
-                                            <CheckBox
-                                                Grid.Row="1"
-                                                Grid.Column="0"
-                                                Width="300"
-                                                Height="25"
-                                                Margin="20,10,20,0"
-                                                VerticalAlignment="Top"
-                                                Content="Проверка подключения к сети"
-                                                FontFamily="{DynamicResource ProximaNovaTh}"
-                                                FontSize="17" />
-
-                                            <CheckBox
-                                                Grid.Row="1"
-                                                Grid.Column="0"
-                                                Width="300"
-                                                Height="25"
-                                                Margin="20,40,20,0"
-                                                VerticalAlignment="Top"
-                                                Content="Проверка целостности данных"
-                                                FontFamily="{DynamicResource ProximaNovaTh}"
-                                                FontSize="17" />
-
-                                            <!--#endregion-->
-
-                                            <!--#region Logging-->
-
-                                            <TextBlock
-                                                Grid.Row="0"
-                                                Grid.Column="1"
-                                                Width="142"
-                                                Height="27"
-                                                Margin="20,0,0,0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="23"
-                                                Style="{DynamicResource TextBlockStyle}"
-                                                Text="Логирование" />
-
-                                            <CheckBox
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                Width="285"
-                                                Height="25"
-                                                Margin="20,10,20,0"
-                                                VerticalAlignment="Top"
-                                                Content="Сохранять историю действий"
-                                                FontFamily="{DynamicResource ProximaNovaTh}"
-                                                FontSize="17" />
-
-                                            <CheckBox
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                Width="275"
-                                                Height="25"
-                                                Margin="20,40,20,0"
-                                                VerticalAlignment="Top"
-                                                Content="Сохранять историю ошибок"
-                                                FontFamily="{DynamicResource ProximaNovaTh}"
-                                                FontSize="17" />
-
-                                            <!--#endregion-->
-
-                                            <!--#region Client-->
-
-                                            <TextBlock
-                                                Grid.Row="2"
-                                                Grid.Column="0"
-                                                Width="74"
-                                                Height="27"
-                                                Margin="20,0,0,0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="23"
-                                                Style="{DynamicResource TextBlockStyle}"
-                                                Text="Клиент" />
-
-                                            <CheckBox
-                                                Grid.Row="3"
-                                                Grid.Column="0"
-                                                Width="310"
-                                                Height="25"
-                                                Margin="20,10,20,0"
-                                                VerticalAlignment="Top"
-                                                Content="Располагать окно выше других"
-                                                FontFamily="{DynamicResource ProximaNovaTh}"
-                                                FontSize="17" />
-
-                                            <!--#endregion-->
-
-                                        </Grid>
-
-                                    </Grid>
-
-                                    <!--#endregion-->
-
-                                    <Grid.Style>
-                                        <Style TargetType="Grid">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=UserSettingsRadioButton, Path=IsChecked}" Value="True">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ElementName=ClientSettingsRadioButton, Path=IsChecked}" Value="True">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Grid.Style>
-
-                                </Grid>
-
-                                <!--  #EndRegion  -->
-
-                            </Grid>
-
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=HomeMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=ViewMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=CreateMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=EditMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=DeleteMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=SettingsMenuRadioButton, Path=IsChecked}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
                         </Grid>
 
                     </Grid>
@@ -2958,6 +584,16 @@
                 </Border>
 
             </Grid>
+
+            <Frame
+                x:Name="MainFrame"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10"
+                Panel.ZIndex="0"
+                Content="{Binding FrameSource, Mode=TwoWay}"
+                NavigationUIVisibility="Hidden"
+                Visibility="{Binding FrameVisibility, Mode=TwoWay}" />
 
         </Grid>
 

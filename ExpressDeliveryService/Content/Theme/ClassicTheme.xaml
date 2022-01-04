@@ -336,26 +336,7 @@
 
     <!--#region Button-->
 
-    <!--#region TransparentButton-->
-
-    <Storyboard x:Key="TransparentButtonMouseEnter">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-    <Storyboard x:Key="TransparentButtonMouseLeave">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
+    <!--#region Transparent-->
 
     <Style x:Key="TransparentButtonStyle" TargetType="Button">
 
@@ -412,37 +393,17 @@
         </Setter>
         <Style.Triggers>
             <EventTrigger RoutedEvent="Button.MouseEnter">
-                <BeginStoryboard Storyboard="{StaticResource TransparentButtonMouseEnter}" />
+                <BeginStoryboard Storyboard="{DynamicResource TransparentButtonMouseEnter}" />
             </EventTrigger>
             <EventTrigger RoutedEvent="Button.MouseLeave">
-                <BeginStoryboard Storyboard="{StaticResource TransparentButtonMouseLeave}" />
+                <BeginStoryboard Storyboard="{DynamicResource TransparentButtonMouseLeave}" />
             </EventTrigger>
         </Style.Triggers>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region Button-->
-
-    <Storyboard x:Key="ButtonMouseEnter">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="160" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Storyboard x:Key="ButtonMouseLeave">
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="130" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="70" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="40" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
+    <!--#region Classic-->
 
     <Style x:Key="ButtonStyle" TargetType="Button">
 
@@ -494,17 +455,17 @@
         </Setter>
         <Style.Triggers>
             <EventTrigger RoutedEvent="Button.MouseEnter">
-                <BeginStoryboard Storyboard="{StaticResource ButtonMouseEnter}" />
+                <BeginStoryboard Storyboard="{DynamicResource ButtonMouseEnter}" />
             </EventTrigger>
             <EventTrigger RoutedEvent="Button.MouseLeave">
-                <BeginStoryboard Storyboard="{StaticResource ButtonMouseLeave}" />
+                <BeginStoryboard Storyboard="{DynamicResource ButtonMouseLeave}" />
             </EventTrigger>
         </Style.Triggers>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region TextButton-->
+    <!--#region Text-->
 
     <Style x:Key="TextButtonStyle" TargetType="Button">
 
@@ -529,7 +490,7 @@
 
     <!--#endregion-->
 
-    <!--#region ControlButton-->
+    <!--#region Control-->
 
     <!--#region Base-->
 
@@ -678,7 +639,7 @@
 
     <!--#endregion-->
 
-    <!--#region MenuButton-->
+    <!--#region Menu-->
 
     <!--#region Show-->
 
@@ -815,30 +776,6 @@
 
     </Style>
 
-    <Storyboard x:Key="HomeButtonMouseEnterAnimation">
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#b341ad" />
-        </ColorAnimationUsingKeyFrames>
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#b341ad" />
-        </ColorAnimationUsingKeyFrames>
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
-        </ColorAnimationUsingKeyFrames>
-    </Storyboard>
-
-    <Storyboard x:Key="HomeButtonMouseLeaveAnimation">
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#cb11ab" />
-        </ColorAnimationUsingKeyFrames>
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="White" />
-        </ColorAnimationUsingKeyFrames>
-        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#cb11ab" />
-        </ColorAnimationUsingKeyFrames>
-    </Storyboard>
-
     <Style
         x:Key="HomeButtonStyle"
         BasedOn="{StaticResource BigButton}"
@@ -871,10 +808,10 @@
 
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="Button.MouseEnter">
-                            <BeginStoryboard Storyboard="{StaticResource HomeButtonMouseEnterAnimation}" />
+                            <BeginStoryboard Storyboard="{DynamicResource HomeButtonMouseEnterAnimation}" />
                         </EventTrigger>
                         <EventTrigger RoutedEvent="Button.MouseLeave">
-                            <BeginStoryboard Storyboard="{StaticResource HomeButtonMouseLeaveAnimation}" />
+                            <BeginStoryboard Storyboard="{DynamicResource HomeButtonMouseLeaveAnimation}" />
                         </EventTrigger>
                     </ControlTemplate.Triggers>
 
@@ -1272,6 +1209,29 @@
     </Style>
 
     <!--#endregion-->
+
+    <!--#endregion-->
+
+    <!--#region Border-->
+
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Offset="1" Color="#cb11ab" />
+                    <GradientStop Color="#491274" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!--#endregion-->
 
