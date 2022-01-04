@@ -2,6 +2,7 @@
 using Data.Repositories.Abstract;
 using ExpressDeliveryService.View;
 using Models;
+using Models.Enums;
 using MVVM.Command;
 using MVVM.ViewModel;
 using System.Collections.Generic;
@@ -302,9 +303,11 @@ namespace ExpressDeliveryService.ViewModel
 
         private void InitializeData()
         {
-            Orders = _activeUser.IsAdmin == "True"
+            Orders = _activeUser.Role == UserRole.Admin
                 ? _orderRepository.Get().ToList()
-                : _orderRepository.Get(order => order.UserId == _activeUser.Id).ToList();
+                : _orderRepository.Get(order =>
+                order.UserId == _activeUser.Id)
+                .ToList();
         }
 
         private void SetViewCondition() =>

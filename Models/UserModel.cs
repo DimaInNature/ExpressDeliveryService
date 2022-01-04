@@ -1,4 +1,5 @@
 ﻿using Models.Abstract;
+using Models.Enums;
 using Models.FluentBuilders;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Models
 
         public string Mail { get; set; }
 
-        public string IsAdmin { get; set; } = "False";
+        public UserRole Role { get; set; } = UserRole.Client;
 
         public virtual List<OrderModel> Orders { get; set; }
 

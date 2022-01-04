@@ -519,7 +519,7 @@
                             Margin="15"
                             BorderBrush="#cb11ab"
                             Command="{Binding ShowCreatePageCommand}"
-                            Content="Создать"
+                            Content="Взять заказ"
                             FontSize="70"
                             Foreground="#cb11ab"
                             Style="{DynamicResource HomeButtonStyle}" />
@@ -539,7 +539,7 @@
                                 Margin="15,0,5,15"
                                 BorderBrush="#cb11ab"
                                 Command="{Binding ShowViewPageCommand}"
-                                Content="Просмотр"
+                                Content="Неактивные"
                                 FontSize="30"
                                 Foreground="#cb11ab"
                                 Style="{DynamicResource HomeButtonStyle}" />
@@ -550,7 +550,7 @@
                                 Margin="15,0,5,15"
                                 BorderBrush="#cb11ab"
                                 Command="{Binding ShowUpdatePageCommand}"
-                                Content="Изменить"
+                                Content="Принятые"
                                 FontSize="30"
                                 Foreground="#cb11ab"
                                 Style="{DynamicResource HomeButtonStyle}" />
@@ -561,7 +561,7 @@
                                 Margin="15,0,5,15"
                                 BorderBrush="#cb11ab"
                                 Command="{Binding ShowDeletePageCommand}"
-                                Content="Удалить"
+                                Content="Статистика"
                                 FontSize="30"
                                 Foreground="#cb11ab"
                                 Style="{DynamicResource HomeButtonStyle}" />
