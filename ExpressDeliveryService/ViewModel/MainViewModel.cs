@@ -177,9 +177,13 @@ namespace ExpressDeliveryService.ViewModel
             (Application.Current as App).DisplayWindow
             .Show(viewModel: new LoginViewModel(), closableView: obj as MainView);
 
-        private void ShowMenuPage(object obj)
+        private bool CanExecuteShowMenuPage(object obj) =>
+            !(FrameSource is null && MenuIsVisible == Visibility.Visible);
+
+        private void ExecuteShowMenuPage(object obj)
         {
             FrameSource = null;
+
             MenuIsVisible = Visibility.Visible;
         }
 
@@ -188,11 +192,9 @@ namespace ExpressDeliveryService.ViewModel
 
         private void ExecuteSelectUpdateItem(object obj)
         {
-            var view = new UpdateOrderView
-            {
-                DataContext = new UpdateOrderViewModel(updatebleOrder: SelectedUpdateOrder)
-            };
-            FrameSource = view;
+            FrameSource = new UpdateOrderView(viewModel: new
+                UpdateOrderViewModel(updatebleOrder: SelectedUpdateOrder));
+
             MenuIsVisible = Visibility.Collapsed;
         }
 
@@ -201,45 +203,46 @@ namespace ExpressDeliveryService.ViewModel
 
         private void ExecuteSelectDeleteItem(object obj)
         {
-            var view = new DeleteOrderView
-            {
-                DataContext = new DeleteOrderViewModel(deletebleOrder: SelectedDeleteOrder)
-            };
-            FrameSource = view;
+            FrameSource = new DeleteOrderView(viewModel:
+                new DeleteOrderViewModel(deletebleOrder: SelectedDeleteOrder));
+
             MenuIsVisible = Visibility.Collapsed;
         }
 
-        private void ShowViewPage(object obj)
+        private bool CanExecuteShowViewPage(object obj) =>
+            !(FrameSource is ReadOrderView);
+
+        private void ExecuteShowViewPage(object obj)
         {
-            var view = new ReadOrderView()
-            {
-                DataContext = new ReadOrderViewModel(activeUser: _activeUser)
-            };
-            FrameSource = view;
+            FrameSource = new ReadOrderView(viewModel:
+                new ReadOrderViewModel(activeUser: _activeUser));
+
             MenuIsVisible = Visibility.Collapsed;
         }
 
-        private void ShowCreatePage(object obj)
+        private bool CanExecuteShowCreatePage(object obj) =>
+            !(FrameSource is CreateOrderView);
+
+        private void ExecuteShowCreatePage(object obj)
         {
-            var view = new CreateOrderView
-            {
-                DataContext = new CreateOrderViewModel(activeUser: _activeUser)
-            };
-            FrameSource = view;
+            FrameSource = new CreateOrderView(viewModel:
+                new CreateOrderViewModel(activeUser: _activeUser));
+
             MenuIsVisible = Visibility.Collapsed;
         }
 
-        private void ShowUpdatePage(object obj)
+        private bool CanExecuteShowUpdatePage(object obj) =>
+            !(FrameSource is UpdateOrderView);
+
+        private void ExecuteShowUpdatePage(object obj)
         {
             var order = Orders.FirstOrDefault();
 
             if (order != null)
             {
-                var view = new UpdateOrderView
-                {
-                    DataContext = new UpdateOrderViewModel(updatebleOrder: order)
-                };
-                FrameSource = view;
+                FrameSource = new UpdateOrderView(viewModel:
+                    new UpdateOrderViewModel(updatebleOrder: order));
+
                 MenuIsVisible = Visibility.Collapsed;
             }
             else
@@ -247,17 +250,18 @@ namespace ExpressDeliveryService.ViewModel
                     button: MessageBoxButton.OK, icon: MessageBoxImage.Information);
         }
 
-        private void ShowDeletePage(object obj)
+        private bool CanExecuteShowDeletePage(object obj) =>
+            !(FrameSource is DeleteOrderView);
+
+        private void ExecuteShowDeletePage(object obj)
         {
             var order = Orders.FirstOrDefault();
 
             if (order != null)
             {
-                var view = new DeleteOrderView
-                {
-                    DataContext = new DeleteOrderViewModel(deletebleOrder: order)
-                };
-                FrameSource = view;
+                FrameSource = new DeleteOrderView(viewModel:
+                    new DeleteOrderViewModel(deletebleOrder: order));
+
                 MenuIsVisible = Visibility.Collapsed;
             }
             else
@@ -265,13 +269,14 @@ namespace ExpressDeliveryService.ViewModel
                     button: MessageBoxButton.OK, icon: MessageBoxImage.Information);
         }
 
-        private void ShowSettingsPage(object obj)
+        private bool CanExecuteShowSettingsPage(object obj) =>
+            !(FrameSource is SettingsView);
+
+        private void ExecuteShowSettingsPage(object obj)
         {
-            var view = new SettingsView
-            {
-                DataContext = new SettingsViewModel(activeUser: _activeUser)
-            };
-            FrameSource = view;
+            FrameSource = new SettingsView(viewModel:
+                new SettingsViewModel(activeUser: _activeUser));
+
             MenuIsVisible = Visibility.Collapsed;
         }
 
@@ -288,16 +293,32 @@ namespace ExpressDeliveryService.ViewModel
         {
             SelectUpdateItemCommand = new RelayCommand(executeAction: ExecuteSelectUpdateItem,
                 canExecuteFunc: CanExecuteSelectUpdateItem);
+
             SelectDeleteItemCommand = new RelayCommand(executeAction: ExecuteSelectDeleteItem,
                 canExecuteFunc: CanExecuteSelectDeleteItem);
-            LogoutCommand = new RelayCommand(Logout);
-            ShowViewPageCommand = new RelayCommand(ShowViewPage);
-            ShowUpdatePageCommand = new RelayCommand(ShowUpdatePage);
-            ShowDeletePageCommand = new RelayCommand(ShowDeletePage);
-            ShowCreatePageCommand = new RelayCommand(ShowCreatePage);
-            ShowSettingsPageCommand = new RelayCommand(ShowSettingsPage);
-            ShowMenuPageCommand = new RelayCommand(ShowMenuPage);
+
+            ShowViewPageCommand = new RelayCommand(executeAction: ExecuteShowViewPage,
+                canExecuteFunc: CanExecuteShowViewPage);
+
+            ShowUpdatePageCommand = new RelayCommand(executeAction: ExecuteShowUpdatePage,
+                canExecuteFunc: CanExecuteShowUpdatePage);
+
+            ShowDeletePageCommand = new RelayCommand(executeAction: ExecuteShowDeletePage,
+                canExecuteFunc: CanExecuteShowDeletePage);
+
+            ShowCreatePageCommand = new RelayCommand(executeAction: ExecuteShowCreatePage,
+                canExecuteFunc: CanExecuteShowCreatePage);
+
+            ShowSettingsPageCommand = new RelayCommand(executeAction: ExecuteShowSettingsPage,
+                canExecuteFunc: CanExecuteShowSettingsPage);
+
+            ShowMenuPageCommand = new RelayCommand(executeAction: ExecuteShowMenuPage,
+                canExecuteFunc: CanExecuteShowMenuPage);
+
             UpdateDataCollectionCommand = new RelayCommand(UpdateDataCollection);
+
+            LogoutCommand = new RelayCommand(Logout);
+
             CloseApplicationCommand = new RelayCommand(CloseApplication);
         }
 
@@ -305,13 +326,13 @@ namespace ExpressDeliveryService.ViewModel
         {
             Orders = _activeUser.Role == UserRole.Admin
                 ? _orderRepository.Get().ToList()
-                : _orderRepository.Get(order =>
-                order.UserId == _activeUser.Id)
-                .ToList();
+                : _orderRepository.Get(order => order.UserId == _activeUser.Id).ToList();
         }
 
         private void SetViewCondition() =>
 
+            /* For convenience.
+               To remember that we are in the debag mode. */
 #if DEBUG
             _viewTitle = $"{_activeUser.Login} DEBUG MODE";
 

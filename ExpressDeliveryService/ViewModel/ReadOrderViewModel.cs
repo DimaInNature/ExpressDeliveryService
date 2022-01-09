@@ -10,6 +10,8 @@ namespace ExpressDeliveryService.ViewModel
 {
     internal sealed class ReadOrderViewModel : BaseViewModel
     {
+        internal ReadOrderViewModel() { }
+
         internal ReadOrderViewModel(UserModel activeUser)
         {
             _currentUser = activeUser;

@@ -54,9 +54,11 @@
     <Compile Include="Abstract\BaseModel.cs" />
     <Compile Include="Abstract\IBaseModel.cs" />
     <Compile Include="BoxModel.cs" />
+    <Compile Include="EmployeModel.cs" />
     <Compile Include="Enums\OrderStatus.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="FluentBuilders\BoxBuilder.cs" />
+    <Compile Include="FluentBuilders\EmployeBuilder.cs" />
     <Compile Include="FluentBuilders\OrderBuilder.cs" />
     <Compile Include="FluentBuilders\ProductBuilder.cs" />
     <Compile Include="FluentBuilders\UserBuilder.cs" />

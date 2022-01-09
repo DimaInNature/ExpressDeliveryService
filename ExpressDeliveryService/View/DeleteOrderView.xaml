@@ -5,9 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExpressDeliveryService.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
     d:DesignHeight="600"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:DeleteOrderViewModel />
+    </UserControl.DataContext>
 
     <Grid>
 
@@ -25,7 +30,7 @@
                 VerticalAlignment="Center"
                 FontSize="30"
                 Style="{DynamicResource TextBlockStyle}"
-                Text="Удалить доставку" />
+                Text="Удалить заказ" />
 
         </Grid>
 
@@ -66,7 +71,6 @@
                     Text="Откуда" />
 
                 <TextBox
-                    Name="DeleteFromStreetTextBox"
                     Grid.Row="1"
                     Width="300"
                     Height="40"
@@ -75,7 +79,7 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Откуда забрать"
-                    Text="{Binding FromPlace}" />
+                    Text="{Binding CurrentOrder.FromPlace}" />
 
                 <Button
                     Grid.Row="1"
@@ -88,19 +92,17 @@
                     Style="{DynamicResource MapButtonStyle}" />
 
                 <DatePicker
-                    Name="DeleteFromTimeDatePicker"
                     Grid.Row="2"
                     Width="200"
                     Height="40"
                     Margin="20,0,0,0"
                     HorizontalAlignment="Left"
                     IsHitTestVisible="False"
-                    SelectedDate="{Binding FromDate}"
+                    SelectedDate="{Binding CurrentOrder.FromDate}"
                     Style="{DynamicResource DatePickerStyle}"
                     Tag="Когда отправить" />
 
                 <TextBox
-                    Name="DeleteFromTimeTextBox"
                     Grid.Row="2"
                     Width="130"
                     Height="40"
@@ -109,7 +111,7 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Время"
-                    Text="{Binding FromTime}" />
+                    Text="{Binding CurrentOrder.FromTime}" />
 
                 <!--#endregion-->
 
@@ -126,7 +128,6 @@
                     Text="Куда" />
 
                 <TextBox
-                    Name="DeleteToStreetTextBox"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="300"
@@ -136,7 +137,7 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Куда привезти"
-                    Text="{Binding ToPlace}" />
+                    Text="{Binding CurrentOrder.ToPlace}" />
 
                 <Button
                     Grid.Row="1"
@@ -150,7 +151,6 @@
                     Style="{DynamicResource MapButtonStyle}" />
 
                 <DatePicker
-                    Name="DeleteToTimeDatePicker"
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="200"
@@ -158,12 +158,11 @@
                     Margin="20,0,0,0"
                     HorizontalAlignment="Left"
                     IsHitTestVisible="False"
-                    SelectedDate="{Binding ToDate}"
+                    SelectedDate="{Binding CurrentOrder.ToDate}"
                     Style="{DynamicResource DatePickerStyle}"
                     Tag="Когда получить" />
 
                 <TextBox
-                    Name="DeleteToTimeTextBox"
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="130"
@@ -173,7 +172,7 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Время"
-                    Text="{Binding ToTime}" />
+                    Text="{Binding CurrentOrder.ToTime}" />
 
                 <!--#endregion-->
 
@@ -191,7 +190,6 @@
                     Text="Размер коробки (см)" />
 
                 <TextBox
-                    Name="DeleteBoxHeightTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -201,10 +199,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Высота"
-                    Text="{Binding BoxHeight}" />
+                    Text="{Binding CurrentOrder.Box.Height, StringFormat={}{0} см.}" />
 
                 <TextBox
-                    Name="DeleteBoxWidhtTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -214,10 +211,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Ширина"
-                    Text="{Binding BoxWidth}" />
+                    Text="{Binding CurrentOrder.Box.Width, StringFormat={}{0} см.}" />
 
                 <TextBox
-                    Name="DeleteBoxLenghtTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -227,11 +223,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Длина"
-                    Text="{Binding BoxLenght}" />
+                    Text="{Binding CurrentOrder.Box.Length, StringFormat={}{0} см.}" />
 
                 <!--#endregion-->
-
-                <!--#region Other Box Props-->
 
                 <TextBlock
                     Grid.Row="3"
@@ -241,8 +235,6 @@
                     FontSize="26"
                     Style="{DynamicResource TextBlockStyle}"
                     Text="Информация о товаре" />
-
-                <!--#endregion-->
 
             </Grid>
 
@@ -278,7 +270,7 @@
                     Content="Страхование"
                     FontFamily="{DynamicResource ProximaNovaTh}"
                     FontSize="20"
-                    IsChecked="{Binding AvailabilityOfInsurancePurchased}"
+                    IsChecked="{Binding CurrentOrder.AvailabilityOfInsurancePurchased}"
                     IsHitTestVisible="False" />
 
                 <CheckBox
@@ -290,7 +282,7 @@
                     Content="Температурный режим"
                     FontFamily="{DynamicResource ProximaNovaTh}"
                     FontSize="20"
-                    IsChecked="{Binding ComplianceTemperatureRegimePurchased}"
+                    IsChecked="{Binding CurrentOrder.ComplianceTemperatureRegimePurchased}"
                     IsHitTestVisible="False" />
 
                 <CheckBox
@@ -302,7 +294,7 @@
                     Content="Упаковка"
                     FontFamily="{DynamicResource ProximaNovaTh}"
                     FontSize="20"
-                    IsChecked="{Binding PackagingPurchased}"
+                    IsChecked="{Binding CurrentOrder.PackagingPurchased}"
                     IsHitTestVisible="False" />
 
                 <TextBox
@@ -316,10 +308,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Стоимость"
-                    Text="{Binding TotalCost}" />
+                    Text="{Binding CurrentOrder.TotalCost, StringFormat={}{0} руб.}" />
 
                 <TextBox
-                    Name="DeleteProductCostTextBox"
                     Grid.Row="0"
                     Grid.Column="1"
                     Width="200"
@@ -329,10 +320,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Ценность (руб.)"
-                    Text="{Binding ProductCost}" />
+                    Text="{Binding CurrentOrder.Product.Cost, StringFormat={}{0} руб.}" />
 
                 <TextBox
-                    Name="DeleteProductWeightTextBox"
                     Grid.Row="0"
                     Grid.Column="1"
                     Width="130"
@@ -341,11 +331,10 @@
                     HorizontalAlignment="Left"
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Вес (гр.)"
-                    Text="{Binding ProductWeight}" />
+                    Tag="Вес (г.)"
+                    Text="{Binding CurrentOrder.Product.Weight, StringFormat={}{0} г.}" />
 
                 <TextBox
-                    Name="DeleteProductNameTextBox"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="200"
@@ -356,7 +345,7 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Название"
-                    Text="{Binding ProductName}" />
+                    Text="{Binding CurrentOrder.Product.Name}" />
 
                 <Button
                     Grid.Row="1"

@@ -4,10 +4,9 @@ namespace Models.FluentBuilders
 {
     public sealed class OrderBuilder
     {
-        public OrderBuilder()
-        {
-            _order = new OrderModel();
-        }
+        public OrderBuilder() => _order = new OrderModel();
+
+        public static implicit operator OrderModel(OrderBuilder builder) => builder._order;
 
         private readonly OrderModel _order;
 
@@ -53,6 +52,18 @@ namespace Models.FluentBuilders
             return this;
         }
 
+        public OrderBuilder SetPerformer(int performerId)
+        {
+            _order.PerformerId = performerId;
+            return this;
+        }
+
+        public OrderBuilder SetPerformer(UserModel performer)
+        {
+            _order.PerformerId = performer.Id;
+            return this;
+        }
+
         public OrderBuilder SetFromPlace(string fromPlace)
         {
             _order.FromPlace = fromPlace;
@@ -89,6 +100,12 @@ namespace Models.FluentBuilders
             return this;
         }
 
+        public OrderBuilder SetDistance(double distance)
+        {
+            _order.Distance = distance;
+            return this;
+        }
+
         public OrderBuilder SetAvailabilityOfInsurancePurchased(bool availabilityOfInsurancePurchased)
         {
             _order.AvailabilityOfInsurancePurchased = availabilityOfInsurancePurchased
@@ -118,7 +135,5 @@ namespace Models.FluentBuilders
             _order.TotalCost = totalCost;
             return this;
         }
-
-        public static implicit operator OrderModel(OrderBuilder builder) => builder._order;
     }
 }

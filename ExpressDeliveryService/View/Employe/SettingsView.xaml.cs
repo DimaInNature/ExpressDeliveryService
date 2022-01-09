@@ -1,7 +1,7 @@
-﻿using ExpressDeliveryService.ViewModel;
+﻿using ExpressDeliveryService.ViewModel.Employe;
 using System.Windows.Controls;
 
-namespace ExpressDeliveryService.View
+namespace ExpressDeliveryService.View.Employe
 {
     public partial class SettingsView : UserControl
     {

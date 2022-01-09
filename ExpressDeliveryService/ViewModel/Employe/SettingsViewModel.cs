@@ -1,33 +1,31 @@
 ﻿using Common;
 using Data.Repositories;
 using Data.Repositories.Abstract;
+using ExpressDeliveryService.ViewModel.Popup;
 using Models;
 using MVVM.Command;
 using MVVM.ViewModel;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ExpressDeliveryService.ViewModel
+namespace ExpressDeliveryService.ViewModel.Employe
 {
-    internal sealed class SettingsViewModel : BaseViewModel
+    internal class SettingsViewModel : BaseViewModel
     {
         internal SettingsViewModel() { }
 
-        internal SettingsViewModel(UserModel activeUser)
+        internal SettingsViewModel(EmployeModel activeUser)
         {
             InitializeRepositories();
 
-            _currentUser = _userRepository
-                .Get(user => user.Id == activeUser.Id)
-                .First();
+            _currentUser = _employeRepository.FindById(activeUser.Id);
 
-            InitializeCommands();
+            InitializeCommand();
             SetSettingsUserFields();
         }
 
-        private readonly UserModel _currentUser;
+        private readonly EmployeModel _currentUser;
 
         #region Properties
 
@@ -102,54 +100,82 @@ namespace ExpressDeliveryService.ViewModel
 
         private string _login;
 
-        #endregion
+        public string FavouriteLocation
+        {
+            get => _favouriteLocation;
+            set
+            {
+                _favouriteLocation = string.IsNullOrWhiteSpace(value)
+                    ? string.Empty
+                    : value;
+                OnPropertyChanged(nameof(FavouriteLocation));
+            }
+        }
 
-        #region Repositories
-
-        private IGenericRepository<UserModel> _userRepository;
+        private string _favouriteLocation;
 
         #endregion
 
         #region Commands
 
-        public ICommand UpdateUserDataCommand { get; private set; }
+        public ICommand SaveSettingsCommand { get; private set; }
+
+        public ICommand ShowMapCommand { get; private set; }
 
         #endregion
 
-        #region Command Logic
+        #region Repositories
 
-        private bool CanExecuteUpdateUserData(object obj) =>
-            StringHelper.StrIsNotNullOrWhiteSpace(Name, Surname,
-                Mail, Login) && !(_currentUser is null);
+        private IGenericRepository<EmployeModel> _employeRepository;
 
-        private void ExecuteUpdateUserData(object obj)
+        #endregion
+
+        #region Command Methods
+
+        private bool CanExecuteSaveSettings(object obj) =>
+            StringHelper.StrIsNotNullOrWhiteSpace(Login, Name, Surname,
+                Patronymic, FavouriteLocation) && _currentUser != null;
+
+        private void ExecuteSaveSettings(object obj)
         {
-            var user = UserModel.CreateBuilder()
+            var user = EmployeModel.CreateBuilder()
                 .SetId(_currentUser.Id)
+                .SetLogin(Login)
+                .SetPassword(_currentUser.Password)
                 .SetName(Name)
                 .SetSurname(Surname)
                 .SetPatronymic(Patronymic)
-                .SetMail(Mail)
-                .SetPassword(_currentUser.Password)
-                .SetLogin(Login);
+                .SetFavouriteLocation(FavouriteLocation);
 
-            _userRepository.Update(user);
+            _employeRepository.Update(user);
 
             MessageBox.Show(messageBoxText: "Данные были обновлены", caption: "Успех",
-                button: MessageBoxButton.OK, icon: MessageBoxImage.Information);
+               button: MessageBoxButton.OK, icon: MessageBoxImage.Information);
         }
+
+        private async void ExecuteShowMap(object obj) =>
+            await (Application.Current as App).DisplayWindow
+            .ShowDialog(viewModel: new MapPopupViewModel(streetSource: obj as string));
+
+        private bool CanExecuteShowMap(object obj) =>
+            !string.IsNullOrWhiteSpace(obj as string);
 
         #endregion
 
-        private void InitializeCommands()
+        #region Other Methods
+
+        private void InitializeCommand()
         {
-            UpdateUserDataCommand = new RelayCommand(executeAction: ExecuteUpdateUserData,
-                canExecuteFunc: CanExecuteUpdateUserData);
+            ShowMapCommand = new RelayCommand(executeAction: ExecuteShowMap,
+                canExecuteFunc: CanExecuteShowMap);
+
+            SaveSettingsCommand = new RelayCommand(executeAction: ExecuteSaveSettings,
+                canExecuteFunc: CanExecuteSaveSettings);
         }
 
         private void InitializeRepositories()
         {
-            _userRepository = new EFGenericRepository<UserModel>();
+            _employeRepository = new EFGenericRepository<EmployeModel>();
         }
 
         private void SetSettingsUserFields()
@@ -159,6 +185,9 @@ namespace ExpressDeliveryService.ViewModel
             Patronymic = _currentUser.Patronymic;
             Mail = _currentUser.Mail;
             Login = _currentUser.Login;
+            FavouriteLocation = _currentUser.FavouriteLocation;
         }
+
+        #endregion
     }
 }

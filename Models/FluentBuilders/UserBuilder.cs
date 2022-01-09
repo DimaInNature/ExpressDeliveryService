@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Models.Enums;
+using System.Collections.Generic;
 
 namespace Models.FluentBuilders
 {
     public sealed class UserBuilder
     {
-        public UserBuilder()
-        {
-            _user = new UserModel();
-        }
+        public UserBuilder() => _user = new UserModel();
+
+        public static implicit operator UserModel(UserBuilder builder) => builder._user;
 
         private readonly UserModel _user;
 
@@ -59,6 +59,10 @@ namespace Models.FluentBuilders
             return this;
         }
 
-        public static implicit operator UserModel(UserBuilder builder) => builder._user;
+        public UserBuilder SetRole(UserRole role)
+        {
+            _user.Role = role;
+            return this;
+        }
     }
 }

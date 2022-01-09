@@ -2,10 +2,9 @@
 {
     public sealed class ProductBuilder
     {
-        public ProductBuilder()
-        {
-            _product = new ProductModel();
-        }
+        public ProductBuilder() => _product = new ProductModel();
+
+        public static implicit operator ProductModel(ProductBuilder builder) => builder._product;
 
         private readonly ProductModel _product;
 
@@ -32,7 +31,5 @@
             _product.Weight = weight;
             return this;
         }
-
-        public static implicit operator ProductModel(ProductBuilder builder) => builder._product;
     }
 }

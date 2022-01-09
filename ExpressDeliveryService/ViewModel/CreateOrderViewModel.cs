@@ -6,7 +6,6 @@ using Models;
 using MVVM.Command;
 using MVVM.ViewModel;
 using System;
-using System.Device.Location;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -334,6 +333,9 @@ namespace ExpressDeliveryService.ViewModel
 
             _productRepository.Create(product);
 
+            double distance = GoogleMapHelper.GetDistanceBetweenTwoKeywords(fromKey:
+                FromPlace, toKey: ToPlace);
+
             var order = OrderModel.CreateBuilder()
                 .SetBox(box)
                 .SetProduct(product)
@@ -347,7 +349,8 @@ namespace ExpressDeliveryService.ViewModel
                 .SetTotalCost(TotalCost)
                 .SetPackagingPurchased(PackagingPurchased)
                 .SetAvailabilityOfInsurancePurchased(AvailabilityOfInsurancePurchased)
-                .SetComplianceTemperatureRegimePurchased(ComplianceTemperatureRegimePurchased);
+                .SetComplianceTemperatureRegimePurchased(ComplianceTemperatureRegimePurchased)
+                .SetDistance(distance);
 
             _orderRepository.Create(order);
 
@@ -389,20 +392,10 @@ namespace ExpressDeliveryService.ViewModel
 
             if (!string.IsNullOrWhiteSpace(FromPlace) && !string.IsNullOrWhiteSpace(ToPlace))
             {
-                var fromLongitude = GoogleMapHelper.GetLongitudeByKeywords(FromPlace);
+                double distance = GoogleMapHelper.GetDistanceBetweenTwoKeywords(fromKey:
+                    FromPlace, toKey: ToPlace);
 
-                var fromLatitude = GoogleMapHelper.GetLatitudeByKeywords(FromPlace);
-
-                var toLongitude = GoogleMapHelper.GetLongitudeByKeywords(ToPlace);
-
-                var toLatitude = GoogleMapHelper.GetLatitudeByKeywords(ToPlace);
-
-                var fromGeo = new GeoCoordinate(latitude: fromLatitude, longitude: fromLongitude);
-                var toGeo = new GeoCoordinate(latitude: toLatitude, longitude: toLongitude);
-
-                double distance = fromGeo.GetDistanceTo(toGeo);
-
-                TotalCost += (distance / 1000) / 100 * 20;
+                TotalCost += distance / 1000 / 100 * 20;
             }
 
             TotalCost = Math.Round(value: TotalCost,
@@ -415,6 +408,7 @@ namespace ExpressDeliveryService.ViewModel
         {
             CreateOrderCommand = new RelayCommand(executeAction: ExecuteCreateOrder,
                 canExecuteFunc: CanExecuteCreateOrder);
+
             ShowMapCommand = new RelayCommand(executeAction: ExecuteShowMap,
                 canExecuteFunc: CanExecuteShowMap);
         }

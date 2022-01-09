@@ -519,7 +519,7 @@
                                 <BitmapImage
                                     CacheOption="OnLoad"
                                     DecodePixelHeight="200"
-                                    UriSource="/Content/Images/Controls/WindowControls/Default/ControlButtonClose.png" />
+                                    UriSource="/Content/Images/Controls/WindowControls/Close/Default.png" />
                             </Image.Source>
                         </Image>
                     </Border>
@@ -529,7 +529,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Image" Property="Source" Value="/Content/Images/Controls/WindowControls/MouseEnter/ControlButtonCloseMouseEnter.png" />
+                            <Setter TargetName="Image" Property="Source" Value="/Content/Images/Controls/WindowControls/Close/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -556,7 +556,7 @@
                                 <BitmapImage
                                     CacheOption="OnLoad"
                                     DecodePixelHeight="200"
-                                    UriSource="/Content/Images/Controls/Other/ShowMapButton/MapIcon.png" />
+                                    UriSource="/Content/Images/Controls/Other/ShowMapButton/Default.png" />
                             </Image.Source>
                         </Image>
                     </Grid>
@@ -566,7 +566,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Image" Property="Source" Value="/Content/Images/Controls/Other/ShowMapButton/MapIconMouseEnter.png" />
+                            <Setter TargetName="Image" Property="Source" Value="/Content/Images/Controls/Other/ShowMapButton/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -602,7 +602,7 @@
                             Margin="2"
                             HorizontalAlignment="Center"
                             RenderOptions.BitmapScalingMode="Fant"
-                            Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonDefault.png" />
+                            Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/Default.png" />
 
                         <TextBlock
                             x:Name="TextB"
@@ -618,7 +618,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/MouseEnter.png" />
                             <Setter TargetName="TextB" Property="Foreground" Value="White" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
@@ -657,7 +657,7 @@
                                 <BitmapImage
                                     CacheOption="OnLoad"
                                     DecodePixelHeight="200"
-                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/MenuIconShowDefault.png" />
+                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Default.png" />
                             </Image.Source>
                         </Image>
                     </Border>
@@ -667,7 +667,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Image" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/MenuIconShowEnter.png" />
+                            <Setter TargetName="Image" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -694,7 +694,7 @@
                                 <BitmapImage
                                     CacheOption="OnLoad"
                                     DecodePixelHeight="200"
-                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/WindowControls/Default/CloseLeftMenuButtonIcon.png" />
+                                    UriSource="/ExpressDeliveryService;component/Content/Images/Controls/WindowControls/CloseLeftMenu/Default.png" />
                             </Image.Source>
                         </Image>
                     </Border>
@@ -733,7 +733,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -749,7 +749,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/ExitUserButtonEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/UserExit/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -851,7 +851,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/HomeMenuButtonIconDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -867,13 +867,220 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/HomeMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/MouseEnter.png" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/HomeMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Home/MouseEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region ScrollerOrder-->
+
+    <Style x:Key="ScrollerOrderRadioButtonStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/ScrollerOrder/Default.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/ScrollerOrder/MouseEnter.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/ScrollerOrder/MouseEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region AcceptOrder-->
+
+    <Style x:Key="AcceptOrderRadioButtonStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/AcceptOrder/Default.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/AcceptOrder/MouseEnter.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/AcceptOrder/MouseEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#CB11AB" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#endregion-->
+
+    <!--#region NotAcceptOrder-->
+
+    <Style x:Key="NotAcceptOrderRadioButtonStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="Background" Value="#F6F6F6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
+                                HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/NotAcceptOrder/Default.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/NotAcceptOrder/MouseEnter.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/NotAcceptOrder/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -920,7 +1127,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/ViewMenuButtonIconDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -936,13 +1143,13 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/ViewMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/MouseEnter.png" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/ViewMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/View/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -989,7 +1196,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/CreateMenuButtonIconDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -1005,13 +1212,13 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/CreateMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/MouseEnter.png" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/CreateMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Create/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -1033,9 +1240,9 @@
 
     <!--#endregion-->
 
-    <!--#region Edit-->
+    <!--#region Update-->
 
-    <Style x:Key="EditMenuRadioButtonStyle" TargetType="RadioButton">
+    <Style x:Key="UpdateMenuRadioButtonStyle" TargetType="RadioButton">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
         <Setter Property="Cursor" Value="Hand" />
@@ -1058,7 +1265,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Edit/EditMenuButtonIconDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Update/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -1074,13 +1281,13 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Edit/EditMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Update/MouseEnter.png" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Edit/EditMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Update/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -1127,7 +1334,7 @@
                                 Margin="2"
                                 HorizontalAlignment="Center"
                                 RenderOptions.BitmapScalingMode="Fant"
-                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/DeleteMenuButtonIconDefault.png" />
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/Default.png" />
 
                             <ContentPresenter
                                 Grid.Column="1"
@@ -1143,13 +1350,13 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/DeleteMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/MouseEnter.png" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/DeleteMenuButtonIconEnter.png" />
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Delete/MouseEnter.png" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
 
@@ -1175,22 +1382,52 @@
 
     <Style x:Key="SettingsMenuRadioButtonStyle" TargetType="RadioButton">
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontFamily" Value="{DynamicResource ProximaNovaLight}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontSize" Value="17" />
-        <Setter Property="Background" Value="#F2F2F2" />
+        <Setter Property="Background" Value="#F6F6F6" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
 
                     <Border Background="{TemplateBinding Background}" CornerRadius="10">
                         <Grid>
-                            <ContentPresenter
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                x:Name="Img"
+                                Grid.Column="0"
+                                Margin="2"
                                 HorizontalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="Fant"
+                                Source="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/Default.png" />
+
+                            <ContentPresenter
+                                Grid.Column="1"
+                                Margin="-10,0,0,0"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}" />
                         </Grid>
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/MouseEnter.png" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Img" Property="Source" Value="/ExpressDeliveryService;component/Content/Images/Controls/MenuControl/Settings/MouseEnter.png" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
 
                 </ControlTemplate>
 

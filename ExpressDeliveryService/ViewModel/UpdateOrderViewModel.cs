@@ -6,7 +6,6 @@ using Models;
 using MVVM.Command;
 using MVVM.ViewModel;
 using System;
-using System.Device.Location;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -332,7 +331,11 @@ namespace ExpressDeliveryService.ViewModel
                 .SetWeight(_currentOrder.Product.Weight)
                 .SetCost(_currentOrder.Product.Cost);
 
-            var newOrder = OrderModel.CreateBuilder()
+            double distance = Math.Round(value:
+                GoogleMapHelper.GetDistanceBetweenTwoKeywords(fromKey: FromPlace, toKey: ToPlace),
+                digits: 2, mode: MidpointRounding.ToEven);
+
+            var order = OrderModel.CreateBuilder()
                 .SetId(_currentOrder.Id)
                 .SetFromPlace(FromPlace)
                 .SetFromDate(FromDate)
@@ -346,9 +349,10 @@ namespace ExpressDeliveryService.ViewModel
                 .SetTotalCost(TotalCost)
                 .SetUser(_currentOrder.UserId)
                 .SetProduct(product)
-                .SetBox(box);
+                .SetBox(box)
+                .SetDistance(distance);
 
-            _orderRepository.Update(newOrder);
+            _orderRepository.Update(order);
 
             MessageBox.Show(messageBoxText: "Заказ был изменён", caption: "Успех",
                 button: MessageBoxButton.OK, icon: MessageBoxImage.Information);
@@ -356,8 +360,9 @@ namespace ExpressDeliveryService.ViewModel
 
         private bool CanExecuteUpdateOrder(object obj) =>
            !(_currentOrder is null) && TotalCost >= 0 &&
-            StringHelper.StrIsNotNullOrWhiteSpace(FromPlace, FromTime, ToPlace,
-                ToTime, BoxWidth, BoxHeight, BoxLenght, ProductName, ProductCost, ProductWeight);
+            StringHelper.StrIsNotNullOrWhiteSpace(FromPlace, FromTime,
+                ToPlace, ToTime, BoxWidth, BoxHeight, BoxLenght, ProductName,
+                ProductCost, ProductWeight);
 
         #endregion
 
@@ -388,20 +393,10 @@ namespace ExpressDeliveryService.ViewModel
 
             if (!string.IsNullOrWhiteSpace(FromPlace) && !string.IsNullOrWhiteSpace(ToPlace))
             {
-                var fromLongitude = GoogleMapHelper.GetLongitudeByKeywords(FromPlace);
+                double distance = GoogleMapHelper.GetDistanceBetweenTwoKeywords(fromKey:
+                    FromPlace, toKey: ToPlace);
 
-                var fromLatitude = GoogleMapHelper.GetLatitudeByKeywords(FromPlace);
-
-                var toLongitude = GoogleMapHelper.GetLongitudeByKeywords(ToPlace);
-
-                var toLatitude = GoogleMapHelper.GetLatitudeByKeywords(ToPlace);
-
-                var fromGeo = new GeoCoordinate(latitude: fromLatitude, longitude: fromLongitude);
-                var toGeo = new GeoCoordinate(latitude: toLatitude, longitude: toLongitude);
-
-                double distance = fromGeo.GetDistanceTo(toGeo);
-
-                TotalCost += (distance / 1000) / 100 * 20;
+                TotalCost += distance / 1000 / 100 * 20;
             }
 
             TotalCost = Math.Round(value: TotalCost,
@@ -439,6 +434,7 @@ namespace ExpressDeliveryService.ViewModel
         {
             UpdateOrderCommand = new RelayCommand(executeAction: ExecuteUpdateOrder,
                 canExecuteFunc: CanExecuteUpdateOrder);
+
             ShowMapCommand = new RelayCommand(executeAction: ExecuteShowMap,
                 canExecuteFunc: CanExecuteShowMap);
         }

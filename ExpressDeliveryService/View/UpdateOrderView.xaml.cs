@@ -1,9 +1,14 @@
-﻿using System.Windows.Controls;
+﻿using ExpressDeliveryService.ViewModel;
+using System.Windows.Controls;
 
 namespace ExpressDeliveryService.View
 {
     public partial class UpdateOrderView : UserControl
     {
-        public UpdateOrderView() => InitializeComponent();
+        internal UpdateOrderView(UpdateOrderViewModel viewModel)
+        {
+            InitializeComponent();
+            DataContext = viewModel;
+        }
     }
 }

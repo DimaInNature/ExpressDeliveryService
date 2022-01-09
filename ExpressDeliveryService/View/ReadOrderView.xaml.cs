@@ -1,9 +1,14 @@
-﻿using System.Windows.Controls;
+﻿using ExpressDeliveryService.ViewModel;
+using System.Windows.Controls;
 
 namespace ExpressDeliveryService.View
 {
     public partial class ReadOrderView : UserControl
     {
-        public ReadOrderView() => InitializeComponent();
+        internal ReadOrderView(ReadOrderViewModel viewModel)
+        {
+            InitializeComponent();
+            DataContext = viewModel;
+        }
     }
 }

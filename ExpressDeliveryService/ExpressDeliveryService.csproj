@@ -88,6 +88,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Device" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
@@ -136,7 +137,11 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\DeleteOrderViewModel.cs" />
-    <Compile Include="ViewModel\EmployeViewModel.cs" />
+    <Compile Include="ViewModel\Employe\AcceptedOrdersViewModel.cs" />
+    <Compile Include="ViewModel\Employe\EmployeViewModel.cs" />
+    <Compile Include="ViewModel\Employe\NotAcceptedOrdersViewModel.cs" />
+    <Compile Include="ViewModel\Employe\ScrollerOrdersViewModel.cs" />
+    <Compile Include="ViewModel\Employe\SettingsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Popup\MapPopupViewModel.cs" />
     <Compile Include="ViewModel\ReadOrderViewModel.cs" />
@@ -148,8 +153,20 @@
     <Compile Include="View\DeleteOrderView.xaml.cs">
       <DependentUpon>DeleteOrderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EmployeView.xaml.cs">
+    <Compile Include="View\Employe\AcceptedOrdersView.xaml.cs">
+      <DependentUpon>AcceptedOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employe\EmployeView.xaml.cs">
       <DependentUpon>EmployeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employe\NotAcceptedOrdersView.xaml.cs">
+      <DependentUpon>NotAcceptedOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employe\ScrollerOrdersView.xaml.cs">
+      <DependentUpon>ScrollerOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employe\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -182,7 +199,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EmployeView.xaml">
+    <Page Include="View\Employe\AcceptedOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employe\EmployeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employe\NotAcceptedOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employe\ScrollerOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Employe\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,67 +282,67 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Create\CreateMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Create\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Create\CreateMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Create\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Delete\DeleteMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Delete\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Delete\DeleteMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Delete\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Edit\EditMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Update\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Edit\EditMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Update\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Home\HomeMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Home\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Home\HomeMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Home\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\MenuIconShowDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\MenuIconShowEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Settings\SettingsMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Settings\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\Settings\SettingsMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\Settings\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\UserExit\ExitUserButtonDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\UserExit\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\UserExit\ExitUserButtonEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\UserExit\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\View\ViewMenuButtonIconDefault.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\View\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\MenuControl\View\ViewMenuButtonIconEnter.png" />
+    <Resource Include="Content\Images\Controls\MenuControl\View\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\Other\ShowMapButton\MapIcon.png" />
+    <Resource Include="Content\Images\Controls\Other\ShowMapButton\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\Other\ShowMapButton\MapIconMouseEnter.png" />
+    <Resource Include="Content\Images\Controls\Other\ShowMapButton\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\WindowControls\Default\CloseLeftMenuButtonIcon.png" />
+    <Resource Include="Content\Images\Controls\WindowControls\CloseLeftMenu\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\WindowControls\Default\ControlButtonClose.png" />
+    <Resource Include="Content\Images\Controls\WindowControls\Close\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Images\Controls\WindowControls\MouseEnter\ControlButtonCloseMouseEnter.png" />
+    <Resource Include="Content\Images\Controls\WindowControls\Close\MouseEnter.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Images\Logo\Logo.ico" />
@@ -332,6 +365,25 @@
       <Name>MVVM</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\ScrollerOrder\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\ScrollerOrder\MouseEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\AcceptOrder\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\AcceptOrder\MouseEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\NotAcceptOrder\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Images\Controls\MenuControl\NotAcceptOrder\MouseEnter.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

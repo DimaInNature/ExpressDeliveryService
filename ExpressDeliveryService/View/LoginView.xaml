@@ -162,33 +162,6 @@
                 Opacity="0.5" />
 
             <Button
-                Width="160"
-                Height="20"
-                Margin="0,171,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                BorderThickness="0"
-                Command="{Binding RecoverCommand}"
-                Content="Восстановить доступ"
-                FontFamily="{DynamicResource ProximaNovaTh}"
-                FontSize="17"
-                Opacity="0.8">
-                <Button.Style>
-                    <Style BasedOn="{StaticResource TextButtonStyle}" TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="#491274" />
-                                <Setter Property="Opacity" Value="1" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-
-            <Button
                 x:Name="EnterButton"
                 Width="160"
                 Height="37"
@@ -403,6 +376,16 @@
                 </TextBox.Style>
             </TextBox>
 
+            <CheckBox
+                Height="25"
+                Margin="0,260,0,0"
+                HorizontalAlignment="Center"
+                Content="Я - Сотрудник"
+                FontFamily="{DynamicResource ProximaNovaTh}"
+                FontSize="20"
+                Foreground="Gray"
+                IsChecked="{Binding CreateUserIsEmploye, Mode=TwoWay}" />
+
             <Border
                 Width="250"
                 Height="2"
@@ -481,4 +464,5 @@
             Style="{DynamicResource ControlButtonCloseStyle}" />
 
     </Grid>
+
 </Window>

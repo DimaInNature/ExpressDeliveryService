@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace ExpressDeliveryService.View
+namespace ExpressDeliveryService.View.Employe
 {
     public partial class EmployeView : Window
     {

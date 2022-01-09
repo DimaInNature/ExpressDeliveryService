@@ -1,8 +1,12 @@
-﻿using GMap.NET.MapProviders;
+﻿using Common;
+using GMap.NET;
+using GMap.NET.MapProviders;
 using GMap.NET.WindowsPresentation;
 using MVVM.Command;
 using MVVM.ViewModel;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace ExpressDeliveryService.ViewModel.Popup
 {
@@ -45,6 +49,24 @@ namespace ExpressDeliveryService.ViewModel.Popup
         private void MapLoaded(object obj)
         {
             var control = obj as GMapControl;
+
+            var lat = GoogleMapHelper.GetLatitudeByKeywords(street: MapStreet);
+
+            var lng = GoogleMapHelper.GetLongitudeByKeywords(street: MapStreet);
+
+            var marker = new GMapMarker(new PointLatLng(lat, lng))
+            {
+                Shape = new Ellipse
+                {
+                    Width = 10,
+                    Height = 10,
+                    Fill = Brushes.Purple
+                }
+            };
+
+            control.Markers.Add(marker);
+
+            control.ShowCenter = false;
 
             control.DragButton = MouseButton.Left;
 

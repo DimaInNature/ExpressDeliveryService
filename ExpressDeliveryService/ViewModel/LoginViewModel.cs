@@ -2,6 +2,7 @@
 using Data.Repositories;
 using Data.Repositories.Abstract;
 using ExpressDeliveryService.View;
+using ExpressDeliveryService.ViewModel.Employe;
 using Models;
 using MVVM.Command;
 using MVVM.ViewModel;
@@ -155,6 +156,18 @@ namespace ExpressDeliveryService.ViewModel
 
         private string _createUserMail;
 
+        public bool CreateUserIsEmploye
+        {
+            get => _createUserIsEmploye;
+            set
+            {
+                _createUserIsEmploye = value;
+                OnPropertyChanged(nameof(CreateUserIsEmploye));
+            }
+        }
+
+        private bool _createUserIsEmploye;
+
         #region RegisterPasswordBox
 
         public SecureString SecureRegisterPassword
@@ -200,6 +213,7 @@ namespace ExpressDeliveryService.ViewModel
         #region Repositories
 
         private IGenericRepository<UserModel> _userRepository;
+        private IGenericRepository<EmployeModel> _employeRepository;
 
         #endregion
 
@@ -242,16 +256,36 @@ namespace ExpressDeliveryService.ViewModel
 
         private void ExecuteLogin(object obj)
         {
-            var user = _userRepository
+            /* First, we look for whether there is
+               a match in the table with users => */
+
+            var existUser = _userRepository
                 .Get(u => u.Login == EnterUserLogin && u.Password == Password)
                 .FirstOrDefault();
 
-            if (user != null)
+            // If a match is found, window is showing and pass the link to the user =>
+
+            if (existUser != null)
                 (Application.Current as App).DisplayWindow
-                    .Show(viewModel: new MainViewModel(user), closableView: obj as LoginView);
+                    .Show(viewModel: new MainViewModel(activeUser: existUser),
+                        closableView: obj as LoginView);
             else
-                MessageBox.Show(messageBoxText: "Пользователя с таким логином не существует",
-                    caption: "Ошибка", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+            {
+                /* If no match is found.We perform the same actions,
+                   but with a table with employees. => */
+
+                var existEmploye = _employeRepository
+                    .Get(e => e.Login == EnterUserLogin && e.Password == Password)
+                    .FirstOrDefault();
+
+                if (existEmploye != null)
+                    (Application.Current as App).DisplayWindow
+                        .Show(viewModel: new EmployeViewModel(activeUser: existEmploye),
+                        closableView: obj as LoginView);
+                else
+                    MessageBox.Show(messageBoxText: "Пользователя с таким логином не существует",
+                        caption: "Ошибка", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+            }
         }
 
         private bool CanExecuteRegistration(object obj) =>
@@ -260,24 +294,51 @@ namespace ExpressDeliveryService.ViewModel
 
         private void ExecuteRegistration(object obj)
         {
-            var soughtUser = _userRepository
+            /* Looking for a match in the tables of users and employees.
+               Because there cannot be two users with the same logins in the system. */
+
+            var existUser = _userRepository
                 .Get(u => u.Login == CreateUserLogin)
                 .FirstOrDefault();
 
-            if (soughtUser is null)
+            var existEmploye = _employeRepository
+                .Get(e => e.Login == CreateUserLogin)
+                .FirstOrDefault();
+
+            if (existUser is null && existEmploye is null)
             {
-                var user = UserModel.CreateBuilder()
-                    .SetName(CreateUserName)
-                    .SetSurname(CreateUserSurname)
-                    .SetPatronymic(CreateUserPatronymic)
-                    .SetMail(CreateUserMail)
-                    .SetLogin(CreateUserLogin)
-                    .SetPassword(RegisterPassword);
+                if (CreateUserIsEmploye)
+                {
+                    var employe = EmployeModel.CreateBuilder()
+                        .SetName(CreateUserName)
+                        .SetSurname(CreateUserSurname)
+                        .SetPatronymic(CreateUserPatronymic)
+                        .SetMail(CreateUserMail)
+                        .SetLogin(CreateUserLogin)
+                        .SetPassword(CreateUserPatronymic);
 
-                _userRepository.Create(user);
+                    _employeRepository.Create(employe);
 
-                (Application.Current as App).DisplayWindow
-                    .Show(viewModel: new MainViewModel(user), closableView: obj as LoginView);
+                    (Application.Current as App).DisplayWindow
+                        .Show(viewModel: new EmployeViewModel(activeUser: employe),
+                            closableView: obj as LoginView);
+                }
+                else
+                {
+                    var user = UserModel.CreateBuilder()
+                        .SetName(CreateUserName)
+                        .SetSurname(CreateUserSurname)
+                        .SetPatronymic(CreateUserPatronymic)
+                        .SetMail(CreateUserMail)
+                        .SetLogin(CreateUserLogin)
+                        .SetPassword(RegisterPassword);
+
+                    _userRepository.Create(user);
+
+                    (Application.Current as App).DisplayWindow
+                        .Show(viewModel: new MainViewModel(user),
+                            closableView: obj as LoginView);
+                }
             }
             else
                 MessageBox.Show(messageBoxText: "Пользователь с таким логином уже существует",
@@ -287,11 +348,6 @@ namespace ExpressDeliveryService.ViewModel
         private static void CloseApplication(object obj) =>
             Application.Current.Shutdown();
 
-        private static void Recover(object obj)
-        {
-
-        }
-
         #endregion
 
         #region Methods
@@ -299,22 +355,23 @@ namespace ExpressDeliveryService.ViewModel
         private void InitializeRepositories()
         {
             _userRepository = new EFGenericRepository<UserModel>();
+            _employeRepository = new EFGenericRepository<EmployeModel>();
         }
 
         private void SetViewCondition()
         {
-            IsPasswordWatermarkVisible = true;
-            IsRegisterPasswordWatermarkVisible = true;
+            IsPasswordWatermarkVisible = IsRegisterPasswordWatermarkVisible = true;
         }
 
         private void InitializeCommands()
         {
             LoginCommand = new RelayCommand(executeAction: ExecuteLogin,
                 canExecuteFunc: CanExecuteLogin);
+
             RegistrationCommand = new RelayCommand(executeAction: ExecuteRegistration,
                 canExecuteFunc: CanExecuteRegistration);
+
             CloseApplicationCommand = new RelayCommand(CloseApplication);
-            RecoverCommand = new RelayCommand(Recover);
         }
 
         #endregion

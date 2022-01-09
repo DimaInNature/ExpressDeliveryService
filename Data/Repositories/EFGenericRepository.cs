@@ -24,6 +24,7 @@ namespace Data.Repositories
 
         public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate) =>
             _dbSet.AsNoTracking()
+            .AsParallel()
             .Where(predicate)
             .ToList();
 

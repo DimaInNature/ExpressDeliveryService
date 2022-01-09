@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    [Table("Orders")]
+    [Table(name: "Orders")]
     public class OrderModel : BaseModel
     {
         public int BoxId { get; set; }
@@ -17,6 +17,9 @@ namespace Models
 
         public int UserId { get; set; }
         public virtual UserModel User { get; set; }
+
+        public int? PerformerId { get; set; }
+        public virtual EmployeModel Performer { get; set; }
 
         public string FromPlace { get; set; }
 
@@ -37,6 +40,8 @@ namespace Models
         public string PackagingPurchased { get; set; } = "False";
 
         public double TotalCost { get; set; }
+
+        public double Distance { get; set; }
 
         public OrderStatus Status { get; set; } = OrderStatus.NotAccepted;
 

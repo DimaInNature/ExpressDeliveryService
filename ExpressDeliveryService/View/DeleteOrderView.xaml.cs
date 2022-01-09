@@ -1,9 +1,14 @@
-﻿using System.Windows.Controls;
+﻿using ExpressDeliveryService.ViewModel;
+using System.Windows.Controls;
 
 namespace ExpressDeliveryService.View
 {
     public partial class DeleteOrderView : UserControl
     {
-        public DeleteOrderView() => InitializeComponent();
+        internal DeleteOrderView(DeleteOrderViewModel viewModel)
+        {
+            InitializeComponent();
+            DataContext = viewModel;
+        }
     }
 }

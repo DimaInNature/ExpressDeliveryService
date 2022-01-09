@@ -276,7 +276,7 @@
                     Panel.ZIndex="3"
                     Command="{Binding ShowUpdatePageCommand}"
                     Content="Изменить"
-                    Style="{DynamicResource EditMenuRadioButtonStyle}" />
+                    Style="{DynamicResource UpdateMenuRadioButtonStyle}" />
 
                 <RadioButton
                     x:Name="DeleteMenuRadioButton"

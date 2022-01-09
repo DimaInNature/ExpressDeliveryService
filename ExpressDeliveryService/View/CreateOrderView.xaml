@@ -24,12 +24,14 @@
         <!--#region Top-->
 
         <Grid Row="0">
+
             <TextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="30"
                 Style="{DynamicResource TextBlockStyle}"
-                Text="Калькулятор расчета доставки" />
+                Text="Калькулятор расчета стоимости доставки" />
+
         </Grid>
 
         <!--#endregion-->
@@ -69,7 +71,6 @@
                     Text="Откуда" />
 
                 <TextBox
-                    Name="CreateFromStreetTextBox"
                     Grid.Row="1"
                     Width="300"
                     Height="40"
@@ -90,7 +91,6 @@
                     Style="{DynamicResource MapButtonStyle}" />
 
                 <DatePicker
-                    Name="CreateFromTimeDatePicker"
                     Grid.Row="2"
                     Width="200"
                     Height="40"
@@ -101,7 +101,6 @@
                     Tag="Когда отправить" />
 
                 <TextBox
-                    Name="CreateFromTimeTextBox"
                     Grid.Row="2"
                     Width="130"
                     Height="40"
@@ -126,7 +125,6 @@
                     Text="Куда" />
 
                 <TextBox
-                    Name="CreateToStreetTextBox"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="300"
@@ -149,7 +147,6 @@
                     Style="{DynamicResource MapButtonStyle}" />
 
                 <DatePicker
-                    Name="CreateToTimeDatePicker"
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="200"
@@ -161,7 +158,6 @@
                     Tag="Когда получить" />
 
                 <TextBox
-                    Name="CreateToTimeTextBox"
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="130"
@@ -170,7 +166,7 @@
                     HorizontalAlignment="Right"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Время"
-                    Text="{Binding ToTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding ToTime, Mode=TwoWay}" />
 
                 <!--#endregion-->
 
@@ -188,7 +184,6 @@
                     Text="Размер коробки (см)" />
 
                 <TextBox
-                    Name="CreateBoxHeightTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -200,7 +195,6 @@
                     Text="{Binding BoxHeight, Mode=TwoWay}" />
 
                 <TextBox
-                    Name="CreateBoxWidthTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -212,7 +206,6 @@
                     Text="{Binding BoxWidth, Mode=TwoWay}" />
 
                 <TextBox
-                    Name="CreateBoxLenghtTextBox"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="100"
@@ -260,7 +253,6 @@
                     Text="Дополнительные услуги" />
 
                 <CheckBox
-                    Name="CreateAvailabilityOfInsurancePurchasedCheckBox"
                     Grid.Row="1"
                     Width="225"
                     Height="25"
@@ -272,7 +264,6 @@
                     IsChecked="{Binding AvailabilityOfInsurancePurchased, Mode=TwoWay}" />
 
                 <CheckBox
-                    Name="CreateComplianceTemperatureRegimePurchasedCheckBox"
                     Grid.Row="1"
                     Width="225"
                     Height="25"
@@ -284,7 +275,6 @@
                     IsChecked="{Binding ComplianceTemperatureRegimePurchased, Mode=TwoWay}" />
 
                 <CheckBox
-                    Name="CreatePackagingPurchasedCheckBox"
                     Grid.Row="1"
                     Width="225"
                     Height="25"
@@ -296,7 +286,6 @@
                     IsChecked="{Binding PackagingPurchased, Mode=TwoWay}" />
 
                 <TextBox
-                    Name="CreateTotalCostTextBox"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="140"
@@ -307,10 +296,9 @@
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Стоимость"
-                    Text="{Binding TotalCost, Mode=TwoWay}" />
+                    Text="{Binding TotalCost, Mode=TwoWay, StringFormat={}{0} руб.}" />
 
                 <TextBox
-                    Name="CreateProductCostTextBox"
                     Grid.Row="0"
                     Grid.Column="1"
                     Width="200"
@@ -322,7 +310,6 @@
                     Text="{Binding ProductCost, Mode=TwoWay}" />
 
                 <TextBox
-                    Name="CreateProductWeightTextBox"
                     Grid.Row="0"
                     Grid.Column="1"
                     Width="130"
@@ -330,11 +317,10 @@
                     Margin="240,0,0,0"
                     HorizontalAlignment="Left"
                     Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Вес (гр.)"
+                    Tag="Вес (г.)"
                     Text="{Binding ProductWeight, Mode=TwoWay}" />
 
                 <TextBox
-                    Name="CreateProductNameTextBox"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="200"

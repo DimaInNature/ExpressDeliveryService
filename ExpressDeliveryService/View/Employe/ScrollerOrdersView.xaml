@@ -1,17 +1,17 @@
 ﻿<UserControl
-    x:Class="ExpressDeliveryService.View.UpdateOrderView"
+    x:Class="ExpressDeliveryService.View.Employe.ScrollerOrdersView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:ExpressDeliveryService.View"
+    xmlns:local="clr-namespace:ExpressDeliveryService.View.Employe"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel"
+    xmlns:vm="clr-namespace:ExpressDeliveryService.ViewModel.Employe"
     d:DesignHeight="600"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <vm:UpdateOrderViewModel />
+        <vm:ScrollerOrdersViewModel />
     </UserControl.DataContext>
 
     <Grid>
@@ -30,7 +30,7 @@
                 VerticalAlignment="Center"
                 FontSize="30"
                 Style="{DynamicResource TextBlockStyle}"
-                Text="Изменить заказ" />
+                Text="Выберите заказ" />
 
         </Grid>
 
@@ -59,117 +59,68 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <!--#region From-->
-
-                <TextBlock
-                    Width="90"
-                    Height="35"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="28"
-                    Style="{DynamicResource TextBlockStyle}"
-                    Text="Откуда" />
-
-                <TextBox
-                    Grid.Row="1"
-                    Width="300"
-                    Height="40"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Откуда забрать"
-                    Text="{Binding FromPlace}" />
-
-                <Button
-                    Grid.Row="1"
-                    Width="40"
-                    Height="40"
-                    Margin="0,0,30,0"
-                    HorizontalAlignment="Right"
-                    Command="{Binding ShowMapCommand}"
-                    CommandParameter="{Binding FromPlace}"
-                    Style="{DynamicResource MapButtonStyle}" />
-
-                <DatePicker
-                    Grid.Row="2"
-                    Width="200"
-                    Height="40"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    SelectedDate="{Binding FromDate}"
-                    Style="{DynamicResource DatePickerStyle}"
-                    Tag="Когда отправить" />
-
-                <TextBox
-                    Grid.Row="2"
-                    Width="130"
-                    Height="40"
-                    Margin="0,0,30,0"
-                    HorizontalAlignment="Right"
-                    Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Время"
-                    Text="{Binding FromTime}" />
-
-                <!--#endregion-->
-
                 <!--#region To-->
 
-                <TextBlock
-                    Grid.Column="1"
-                    Width="60"
-                    Height="35"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="28"
-                    Style="{DynamicResource TextBlockStyle}"
-                    Text="Куда" />
-
                 <TextBox
-                    Name="EditToStreetTextBox"
                     Grid.Row="1"
-                    Grid.Column="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Width="300"
                     Height="40"
                     Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Куда привезти"
-                    Text="{Binding ToPlace}" />
+                    Text="{Binding SelectedOrder.ToPlace, Mode=TwoWay}" />
 
                 <Button
                     Grid.Row="1"
-                    Grid.Column="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Width="40"
                     Height="40"
-                    Margin="0,0,30,0"
-                    HorizontalAlignment="Right"
+                    Margin="400,0,30,0"
+                    HorizontalAlignment="Center"
                     Command="{Binding ShowMapCommand}"
-                    CommandParameter="{Binding ToPlace}"
+                    CommandParameter="{Binding SelectedOrder.ToPlace}"
                     Style="{DynamicResource MapButtonStyle}" />
 
                 <DatePicker
-                    Name="EditToTimeDatePicker"
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="200"
                     Height="40"
                     Margin="20,0,0,0"
                     HorizontalAlignment="Left"
-                    SelectedDate="{Binding ToDate}"
+                    IsHitTestVisible="False"
+                    SelectedDate="{Binding SelectedOrder.ToDate, Mode=TwoWay}"
                     Style="{DynamicResource DatePickerStyle}"
                     Tag="Когда получить" />
 
                 <TextBox
-                    Name="EditToTimeTextBox"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Width="200"
+                    Height="40"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Style="{DynamicResource ColorTextBoxStyle}"
+                    Tag="Расстояние"
+                    Text="{Binding SelectedOrder.Distance, StringFormat={}{0} м.}" />
+
+                <TextBox
                     Grid.Row="2"
                     Grid.Column="1"
                     Width="130"
                     Height="40"
                     Margin="0,0,30,0"
                     HorizontalAlignment="Right"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Время"
-                    Text="{Binding ToTime}" />
+                    Text="{Binding SelectedOrder.ToTime, Mode=TwoWay}" />
 
                 <!--#endregion-->
 
@@ -193,9 +144,10 @@
                     Height="40"
                     Margin="20,10,0,0"
                     HorizontalAlignment="Left"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Высота"
-                    Text="{Binding BoxHeight}" />
+                    Text="{Binding SelectedOrder.Box.Height, Mode=TwoWay, StringFormat={}{0} cм.}" />
 
                 <TextBox
                     Grid.Row="3"
@@ -204,9 +156,10 @@
                     Height="40"
                     Margin="140,10,0,0"
                     HorizontalAlignment="Left"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Ширина"
-                    Text="{Binding BoxWidth}" />
+                    Text="{Binding SelectedOrder.Box.Width, Mode=TwoWay, StringFormat={}{0} cм.}" />
 
                 <TextBox
                     Grid.Row="3"
@@ -215,13 +168,12 @@
                     Height="40"
                     Margin="260,10,0,0"
                     HorizontalAlignment="Left"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Длина"
-                    Text="{Binding BoxLenght}" />
+                    Text="{Binding SelectedOrder.Box.Length, Mode=TwoWay, StringFormat={}{0} cм.}" />
 
                 <!--#endregion-->
-
-                <!--#region Other Box Props-->
 
                 <TextBlock
                     Grid.Row="3"
@@ -231,8 +183,6 @@
                     FontSize="26"
                     Style="{DynamicResource TextBlockStyle}"
                     Text="Информация о товаре" />
-
-                <!--#endregion-->
 
             </Grid>
 
@@ -249,72 +199,18 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    Grid.Row="0"
-                    Width="240"
-                    Height="23"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="21"
-                    Style="{DynamicResource TextBlockStyle}"
-                    Text="Дополнительные услуги" />
-
-                <CheckBox
-                    Grid.Row="1"
-                    Width="225"
-                    Height="25"
-                    Margin="0,10,0,0"
-                    VerticalAlignment="Top"
-                    Content="Страхование"
-                    FontFamily="{DynamicResource ProximaNovaTh}"
-                    FontSize="20"
-                    IsChecked="{Binding AvailabilityOfInsurancePurchased}" />
-
-                <CheckBox
-                    Grid.Row="1"
-                    Width="225"
-                    Height="25"
-                    Margin="0,40,0,0"
-                    VerticalAlignment="Top"
-                    Content="Температурный режим"
-                    FontFamily="{DynamicResource ProximaNovaTh}"
-                    FontSize="20"
-                    IsChecked="{Binding ComplianceTemperatureRegimePurchased}" />
-
-                <CheckBox
-                    Grid.Row="1"
-                    Width="225"
-                    Height="25"
-                    Margin="0,70,0,0"
-                    VerticalAlignment="Top"
-                    Content="Упаковка"
-                    FontFamily="{DynamicResource ProximaNovaTh}"
-                    FontSize="20"
-                    IsChecked="{Binding PackagingPurchased}" />
-
                 <TextBox
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="140"
                     Height="40"
                     Margin="0,10,0,0"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Стоимость"
-                    Text="{Binding TotalCost}" />
-
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Width="200"
-                    Height="40"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Ценность (руб.)"
-                    Text="{Binding ProductCost}" />
+                    Text="{Binding SelectedOrder.TotalCost, Mode=TwoWay, StringFormat={}{0} руб.}" />
 
                 <TextBox
                     Grid.Row="0"
@@ -323,32 +219,41 @@
                     Height="40"
                     Margin="240,0,0,0"
                     HorizontalAlignment="Left"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
-                    Tag="Вес (гр.)"
-                    Text="{Binding ProductWeight}" />
+                    Tag="Вес (г.)"
+                    Text="{Binding SelectedOrder.Product.Weight, Mode=TwoWay, StringFormat={}{0} г.}" />
 
                 <TextBox
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Width="200"
                     Height="40"
-                    Margin="0,10,30,0"
-                    HorizontalAlignment="Right"
+                    Margin="0,0,30,0"
+                    HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    IsHitTestVisible="False"
                     Style="{DynamicResource ColorTextBoxStyle}"
                     Tag="Название"
-                    Text="{Binding ProductName}" />
+                    Text="{Binding SelectedOrder.Product.Name, Mode=TwoWay}" />
 
                 <Button
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
+                    Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     Width="160"
                     Height="40"
-                    Margin="0,100,0,0"
-                    Command="{Binding UpdateOrderCommand}"
-                    Content="Изменить"
+                    Command="{Binding AcceptOrderCommand}"
+                    Content="Принять"
+                    Style="{DynamicResource ButtonStyle}" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Width="160"
+                    Height="40"
+                    Margin="0,0,0,0"
+                    Command="{Binding ShowNextOrderCommand}"
+                    Content="Следующий"
                     Style="{DynamicResource ButtonStyle}" />
 
             </Grid>
