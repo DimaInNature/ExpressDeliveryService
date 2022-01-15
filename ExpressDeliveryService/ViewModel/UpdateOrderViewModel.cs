@@ -372,35 +372,45 @@ namespace ExpressDeliveryService.ViewModel
         {
             TotalCost = 0;
 
+            BoxModel box;
+            ProductModel product;
+            OrderModel order;
+
             if (StringHelper.StrIsNotNullOrWhiteSpace(BoxHeight, BoxLenght, BoxWidth))
-                TotalCost += Convert.ToDouble(BoxHeight) * Convert.ToDouble(BoxLenght)
-                    * Convert.ToDouble(BoxWidth) / 30;
+                box = BoxModel.CreateBuilder()
+                    .SetWidth(Convert.ToDouble(BoxWidth))
+                    .SetHeight(Convert.ToDouble(BoxHeight))
+                    .SetLength(Convert.ToDouble(BoxLenght));
+            else
+                box = null;
 
-            if (!string.IsNullOrWhiteSpace(ProductCost) && Convert.ToDouble(ProductCost) > 0)
-                TotalCost += Convert.ToDouble(ProductCost) / 5;
+            if (StringHelper.StrIsNotNullOrWhiteSpace(ProductCost, ProductWeight))
+                product = ProductModel.CreateBuilder()
+                    .SetWeight(Convert.ToInt32(ProductWeight))
+                    .SetCost(Convert.ToDouble(ProductCost));
+            else
+                product = null;
 
-            if (!string.IsNullOrWhiteSpace(ProductWeight) && Convert.ToDouble(ProductWeight) > 0)
-                TotalCost += Convert.ToDouble(ProductWeight) / 10;
+            if (StringHelper.StrIsNotNullOrWhiteSpace(FromPlace, ToPlace))
+                order = OrderModel.CreateBuilder()
+                    .SetAvailabilityOfInsurancePurchased(AvailabilityOfInsurancePurchased)
+                    .SetComplianceTemperatureRegimePurchased(ComplianceTemperatureRegimePurchased)
+                    .SetPackagingPurchased(PackagingPurchased)
+                    .SetFromPlace(FromPlace)
+                    .SetToPlace(ToPlace);
+            else
+                order = null;
 
-            if (AvailabilityOfInsurancePurchased && !string.IsNullOrWhiteSpace(ProductCost))
-                TotalCost += Convert.ToDouble(ProductCost) / 10;
-
-            if (PackagingPurchased && StringHelper.StrIsNotNullOrWhiteSpace(BoxHeight, BoxLenght, BoxWidth))
-                TotalCost += 150;
-
-            if (ComplianceTemperatureRegimePurchased)
-                TotalCost += TotalCost / 100 * 20;
-
-            if (!string.IsNullOrWhiteSpace(FromPlace) && !string.IsNullOrWhiteSpace(ToPlace))
+            if (box != null && product != null && order != null)
             {
-                double distance = GoogleMapHelper.GetDistanceBetweenTwoKeywords(fromKey:
-                    FromPlace, toKey: ToPlace);
+                TotalCostCalculator.Calculate(
+                boxData: box,
+                productData: product,
+                orderData: order,
+                result: out double totalCost);
 
-                TotalCost += distance / 1000 / 100 * 20;
+                TotalCost = totalCost;
             }
-
-            TotalCost = Math.Round(value: TotalCost,
-                digits: 2, mode: MidpointRounding.ToEven);
 
             OnPropertyChanged(nameof(TotalCost));
         }
