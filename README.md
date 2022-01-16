@@ -41,19 +41,24 @@ if (AvailabilityOfInsurancePurchased)  // It is possible to choose insurance if 
 if (PackagingPurchased)   // Packing the goods in a special way will also increase the cost of the order.
   TotalCost += 150;
   
-if (ComplianceTemperatureRegimePurchased)      // If the goods require proper temperature conditions during transportation.
-  TotalCost += TotalCost / 100 * 20; // + 20%  //Then its cost of the entire order will increase by 20%
+if (ComplianceTemperatureRegimePurchased) // If the goods require proper temperature conditions during transportation.
+  TotalCost += TotalCost / 100 * 20;      //Then its cost of the entire order will increase by 20%
   
 double distance = /* Here is the distance between the points. */ ;
 
 TotalCost += distance / 1000 / 100 * 20; // The cost of transportation also depends on the distance.
 ```
 
-## Technologies and Patterns
+## Technologies
+* ### [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+This is a software environment, a necessary component for the operation   
+of applications developed using this very environment.
 * ### [WPF (Model - View - ViewModel Pattern)](https://github.com/dotnet/wpf)
 UI rendering technology and architecture design pattern.
 * ### [Entity Framework](https://github.com/dotnet/ef6)
-Used as an ORM. I used SQLite as a database because I needed 
+Used as an ORM. I used SQLite as a database because I needed  
 a simple and fast solution that would allow me to store data in a structured way.
 * ### [Gmap](https://github.com/judero01col/GMap.NET) 
 Used for working with google maps.
+* ### [xUnit.net](https://github.com/xunit/xunit) 
+Unit testing tool.
