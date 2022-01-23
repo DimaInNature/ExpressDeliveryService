@@ -5,20 +5,22 @@ namespace Common
 {
     public static class GoogleMapHelper
     {
-        public static double GetLongitudeByKeywords(string street) =>
-            new GMapControl().GetPositionByKeywords(street).Lng;
-
-        public static double GetLatitudeByKeywords(string street) =>
-            new GMapControl().GetPositionByKeywords(street).Lat;
+        public static (double Latitude, double Longitude) GetLatitudeAndLongitudeByKeywords(string street)
+        {
+            var data = new GMapControl().GetPositionByKeywords(street);
+            return (Latitude: data.Lat, Longitude: data.Lng);
+        }
 
         public static double GetDistanceBetweenTwoKeywords(string fromKey, string toKey)
         {
-            var fromLatitude = GetLatitudeByKeywords(fromKey);
-            var fromLongitude = GetLongitudeByKeywords(fromKey);
+            (var fromLatitude, var fromLongitude) = (GetLatitudeAndLongitudeByKeywords(fromKey).Latitude,
+                GetLatitudeAndLongitudeByKeywords(fromKey).Longitude);
+
             var fromGeo = new GeoCoordinate(latitude: fromLatitude, longitude: fromLongitude);
 
-            var toLatitude = GetLatitudeByKeywords(toKey);
-            var toLongitude = GetLongitudeByKeywords(toKey);
+            (var toLatitude, var toLongitude) = (GetLatitudeAndLongitudeByKeywords(street: toKey).Latitude,
+                GetLatitudeAndLongitudeByKeywords(street: toKey).Longitude);
+
             var toGeo = new GeoCoordinate(latitude: toLatitude, longitude: toLongitude);
 
             return fromGeo.GetDistanceTo(toGeo);
