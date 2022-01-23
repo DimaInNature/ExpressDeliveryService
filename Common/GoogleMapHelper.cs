@@ -13,13 +13,11 @@ namespace Common
 
         public static double GetDistanceBetweenTwoKeywords(string fromKey, string toKey)
         {
-            (var fromLatitude, var fromLongitude) = (GetLatitudeAndLongitudeByKeywords(fromKey).Latitude,
-                GetLatitudeAndLongitudeByKeywords(fromKey).Longitude);
+            (var fromLatitude, var fromLongitude) = GetLatitudeAndLongitudeByKeywords(fromKey);
 
             var fromGeo = new GeoCoordinate(latitude: fromLatitude, longitude: fromLongitude);
 
-            (var toLatitude, var toLongitude) = (GetLatitudeAndLongitudeByKeywords(street: toKey).Latitude,
-                GetLatitudeAndLongitudeByKeywords(street: toKey).Longitude);
+            (var toLatitude, var toLongitude) = GetLatitudeAndLongitudeByKeywords(street: toKey);
 
             var toGeo = new GeoCoordinate(latitude: toLatitude, longitude: toLongitude);
 
